@@ -1,0 +1,51 @@
+1) When it comes to crafting an impactful cover letter for HENNGE, clarity, conciseness, and relevance are paramount. 
+    It should effectively address the candidate’s motivations for joining HENNGE; highlight relevant skills and experiences
+    not fully captured in their CV; and demonstrate a genuine interest in the company and its mission.
+2) The cover letter should also show that the candidate has taken the time to get to know HENNGE and make it explicitly clear
+     what position they are actually applying for.
+3)  if the candidate is not from Japan, we’d like to hear why they want to come here, what’s the motivation that drives them? <covered>
+
+4) Crafting a cover letter requires candidates to conduct research on HENNGE, its products, culture, and values. <covered>
+5) why your hiring would be a win-win for all involved.
+6) we’re all about actively contributing to the development and improvement of Open Source Software  <covered>
+7) Candidates who exhibit curiosity, adaptability, and a willingness to embrace challenges are well-suited to 
+    thrive in our fast-paced environment. <covered>
+8) I’d say a strong candidate is someone who can show how they are a “learnaholic”. <covered>
+    Somebody who is keen to keep learning and evolving. This is one important facet of the HENNGE way.
+9) Liberating Technology For All <covered>
+10) Progress comes from challenging norms. Never afraid to take the first bite, we pluck the unripe <covered>
+    fruits of future technologies to maintain our position as early adopters.
+11) SaaS (software as a service) is our ideal business model in order to achieve the above. Our leading service, HENNGE One,
+     has continuously growing numbers of users thanks to meaningful customer feedback and due to our ceaseless effort to 
+     adopt change and overcome failure.
+12) This means that we must be willing to adopt new or premature technology, even if it repeatedly makes us sick (fail) that we may be hospitalized,
+     so that we can accumulate expertise and determine “fruits” that are good and useful for our customers from those that are precarious
+13) There is an overabundance of trial and error, ideas that run counter to conventional wisdom or unsettled course of action as part 
+     of everyday life at HENNGE. You may feel that your prior experience does not work to your advantage at times. However,
+     through the challenges, your curiosity and ability to adapt to change will push you to grow as an individual and will also support the growth of HENNGE.
+14) Values:
+    -> Get inspired by technology's ability to transform the world within a lifetime
+    -> Rise to the challenge, fail forward and pluck those unripe technological fruits.
+    -> Stay curious with a thirst for knowledge and hunger to learn.
+    -> Find your place in an inclusive environment that values diversity of nationality, gender, age, and thought as the source of our expanding potential.
+15) Company product:
+    -> HENNGE One: Provide services that remove obstacles for companies that trying to improve productivity by adopting cloud in one-stop.
+        Enhance security and usability of cloud to all the employees by having company-wide implementation
+    -> Engineering Team Introduction;
+        i) Access Control Team  :   Developing and maintaining essential features within HENNGE One Identity Edition, including Access Control, 
+                                  Single Sign-On, and Secure Browser.
+        ii) Secure Transfer Team: Developing Secure Transfer, a key component of HENNGE One's DLP features. This solution provides a user-friendly way for
+                                  organizations to securely share sensitive data with external parties
+        iii) Email DLP Team     : At the forefront of protecting sensitive data, this team develops and refines HENNGE One DLP Edition's powerful email
+                                  filtering and Data Loss Prevention (DLP) capabilities, enabling organizations to effectively enforce email security policies and prevent data leakage.
+        iv) Email Archive Team  : Develops and maintains the Email Archive feature within HENNGE One DLP Edition, a solution that reliably archives emails
+                                  sent to and from our customers' email addresses.
+        v) File DLP Team        : The team ensures the File DLP feature is secure, eﬃcient, and user-friendly, while signiﬁcantly contributing to HENNGE's
+                                  mission of providing powerful tools for data protection and regulatory compliance.
+        vi) Tadrill Team        : Tadrill: a phishing and malware email training and reporting system designed to bolster employee cybersecurity awareness 
+                                  and protect organizations from targeted attacks.
+                                  Oukasho: a backend internal service providing APIs to streamline the deployment and conﬁguration of HENNGE products.
+    -> Languages: Python, Go, Typescript, React, vueJs, Svelte, GraphQl, FastAPI, Kotlin, Redux, SASS
+    -> Workflow : Github, Github Actions, Datadog, CircleCi, Sntry, ArgoCD, Playwright
+    -> Storage/Infra: AWS, Kubernetes, Docker, Terraform, Elasticsearch, DynamoDB, PostgreSQL, MicrosoftAzure, Google cloud
+    -> HENNGE Way: Love Tech, Eat Unripe fruits, Be a learnholistic, Passion, respect Differnces, keep it Open, Track and Trust, Win Together

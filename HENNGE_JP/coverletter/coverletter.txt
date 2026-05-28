@@ -1,0 +1,49 @@
+
+
+
+
+
+
+
+
+
+### SEPARATING THOUGHTS #####
+## Introduction(50–70 words):
+I began my programming career when i was in High school, while there i was bored with playing games and so i learnt little bit about game dev using Unity and built a 2D game eventhough 
+it was not that impressive and from that i slowly started programming in python and strted building fullstack projects, apart from that to apply my knowledge into real world i started freelancing whcih 
+gave me chance to meet with people from europe to africa.
+
+## Motivation (50-100 words) and Relevant Skills & Experience (100–150 words)  and closing (50-70 words)
+In my first year of collage when i was not able to figure out things in collage and i felt left out and out of sync at that i saw a anime FullMetal ALchemsit Brotherhood
+and after that i completely hooked into world of anime, the characters, the art the storyline everything about it is fascinating every anime i watched i got more fascinated 
+with the culture of japan how japanese conduct themselves and how japanese percieve themselves and what differnt things i can learn from the m so i watched several vlogs
+favourite of mine is "Life Where I'm From", and i was amazed by the humility and culture of japan and also its beautiful sceenery and aprt from thati  got to play "ghost of Tusishma"
+and "sekiro: die twice" and i would genuinely once in my life would like to visit the island of Tusishma.
+On researching more about the HENNGE i was very fascinated by its value of eating unripe fruit, which very much align with my value of trying out differnent technologies and be in general
+curious about latest technology which are coming, recently while scrolling through the some research page i was fascinated by "gaussian splattering" technique for generating 3D images from
+2D. Similarly i also have experince of integrating differnt generative AI models in my project one of which i recently did using selenium, python, ReactsJS, ViteJS and Gemini to build a 
+chrome extension to manage linkdin Messages like a superhero. 
+Similarly i was fascinated with Operating System while learning about it so i built my own 32bit Operating System to truly understands how this marvel of technology in reality built 
+Apart from that i am avid user of Ubuntu linux and lot of open source software so i understand how important is Opensource Community to the world so tried to contibute to Django and Wagtail(CMS builder)
+and i am also a very big fan of opensource community and softwares.
+while reseacrching more about HENNGE i was fascinated by the Enginnering team work and would love know more how Access Control Team, Secure Transfer Team, Email DLP Team, Email Archive Team, 
+ File DLP Team and Tadrill Team work and very fascinated with how tandrill term implement the technolgical solution regarding phishing and malware email training and reporting system designed to bolster employee cybersecurity awareness 
+On researching more about the HENNGE i was very fascinated by its value of eating unripe fruit, which very much align with my value of trying out differnent technologies and be in general
+curious about latest technology which are coming, recently while scrolling through the some research page i was fascinated by "gaussian splattering" technique for generating 3D images from
+2D. Similarly i also have experince of integrating differnt generative AI models in my project one of which i recently did using selenium, python, ReactsJS, ViteJS and Gemini to build a 
+chrome extension to manage linkdin Messages like a superhero. 
+Similarly i was fascinated with Operating System while learning about it so i built my own 32bit Operating System to truly understands how this marvel of technology in reality built 
+Apart from that i am avid user of Ubuntu linux and lot of open source software so i understand how important is Opensource Community to the world so tried to contibute to Django and Wagtail(CMS builder)
+and i am also a very big fan of opensource community and softwares.
+UqaabOS: A basic operating system in 32-bit mode with features like a Global Descriptor Table, basic interrupt handling, and PCI support. It’s written in C++ and still a work in progress.
+GitHub: https://github.com/faishal882/uqaabOS
+
+Jahan (Web Framework): A simple web framework inspired by Flask with an integrated WSGI server.
+GitHub: https://github.com/faishal882/jahan
+
+Distributed Version Control Tool: Inspired by Git’s architecture.
+GitHub: https://github.com/faishal882/jh-vcs
+
+JPLox: A language interpreter built while following Crafting Interpreters by Robert Nystrom.
+GitHub: https://github.com/faishal882/jplox
+
