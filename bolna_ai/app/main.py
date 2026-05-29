@@ -2,13 +2,15 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass
+import uuid
 
 from fastapi import FastAPI, Header, HTTPException, status
 
 from app.bolna import BolnaApiError
 from app.bolna import BolnaClient
 from app.config import Settings, get_settings
-from app.models import BolnaEvent
+from app.logging_utils import configure_logging, event_context, get_logger
+from app.models import BolnaEvent, WebhookResponse
 from app.registry import AlertRegistry
 from app.service import OrchestrationService
 from app.slack import SlackApiError, SlackPublisher
@@ -19,6 +21,9 @@ class AppContainer:
     settings: Settings
     registry: AlertRegistry
     service: OrchestrationService
+
+
+logger = get_logger(__name__)
 
 
 def build_container(settings: Settings) -> AppContainer:
@@ -46,6 +51,7 @@ def build_container(settings: Settings) -> AppContainer:
 def create_app(settings: Settings | None = None) -> FastAPI:
     resolved_settings = settings or get_settings()
     container = build_container(resolved_settings)
+    configure_logging()
 
     @asynccontextmanager
     async def lifespan(_: FastAPI):
@@ -63,15 +69,24 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def bolna_webhook(
         payload: BolnaEvent,
         x_bolna_webhook_secret: str | None = Header(default=None),
+        x_request_id: str | None = Header(default=None),
     ) -> dict[str, object]:
+        request_id = x_request_id or str(uuid.uuid4())
         if x_bolna_webhook_secret != app.state.container.settings.bolna_webhook_secret:
+            logger.warning(
+                "Rejected webhook with invalid secret",
+                extra=event_context(
+                    request_id=request_id,
+                    execution_id=payload.canonical_execution_id,
+                ),
+            )
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid webhook secret",
             )
 
         try:
-            result = app.state.container.service.handle_webhook(payload)
+            result = app.state.container.service.handle_webhook(payload, request_id=request_id)
         except ValueError as exc:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
         except SlackApiError as exc:
@@ -87,7 +102,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
         if isinstance(result, dict):
             return result
-        return asdict(result)
+        return WebhookResponse(**asdict(result)).model_dump()
 
     return app
 

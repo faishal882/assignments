@@ -50,3 +50,10 @@ class AlertRecord(BaseModel):
     slack_channel: str | None = None
     slack_ts: str | None = None
     transcript_recovered: bool = False
+
+
+class WebhookResponse(BaseModel):
+    status: str
+    execution_id: str | None = None
+    transcript_recovered: bool = False
+    request_id: str | None = None

@@ -20,9 +20,13 @@ def make_client(tmp_path):
         def __init__(self):
             self.calls = []
 
-        def handle_webhook(self, payload):
-            self.calls.append(payload)
-            return {"status": "ignored", "execution_id": payload.canonical_execution_id}
+        def handle_webhook(self, payload, request_id=None):
+            self.calls.append((payload, request_id))
+            return {
+                "status": "ignored",
+                "execution_id": payload.canonical_execution_id,
+                "request_id": request_id,
+            }
 
     stub = StubService()
     app.state.container.service = stub
@@ -42,20 +46,22 @@ def test_webhook_accepts_valid_secret_and_forwards_payload(tmp_path):
 
     response = client.post(
         "/webhooks/bolna/calls",
-        headers={"X-Bolna-Webhook-Secret": "secret"},
+        headers={"X-Bolna-Webhook-Secret": "secret", "X-Request-Id": "req-123"},
         json={"id": "exec-1", "status": "queued"},
     )
 
     assert response.status_code == 200
     assert response.json()["status"] == "ignored"
+    assert response.json()["request_id"] == "req-123"
     assert len(stub.calls) == 1
+    assert stub.calls[0][1] == "req-123"
 
 
 def test_webhook_maps_slack_failure_to_503(tmp_path):
     client, _ = make_client(tmp_path)
 
     class FailingService:
-        def handle_webhook(self, payload):
+        def handle_webhook(self, payload, request_id=None):
             raise SlackApiError("slack unavailable")
 
     client.app.state.container.service = FailingService()
