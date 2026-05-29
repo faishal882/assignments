@@ -48,6 +48,7 @@ def make_service(tmp_path, slack_publisher, bolna_client):
         bolna_client=bolna_client,
         slack_max_retries=2,
         slack_retry_backoff_seconds=0,
+        processing_claim_timeout_seconds=60,
     )
 
 
@@ -63,6 +64,19 @@ def test_completed_webhook_posts_once_and_dedupes(tmp_path):
     assert first.status == "processed"
     assert second.status == "duplicate"
     assert len(slack.post_calls) == 1
+
+
+def test_processing_record_suppresses_concurrent_duplicate(tmp_path):
+    slack = FakeSlackPublisher()
+    bolna = FakeBolnaClient()
+    service = make_service(tmp_path, slack, bolna)
+    service.registry.claim("exec-1", stale_after_seconds=60)
+    event = BolnaEvent(id="exec-1", agent_id="agent-1", status="completed", conversation_time=42)
+
+    result = service.handle_webhook(event)
+
+    assert result.status == "duplicate"
+    assert slack.post_calls == []
 
 
 def test_missing_transcript_triggers_one_recovery_and_update(tmp_path):

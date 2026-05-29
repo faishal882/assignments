@@ -2,8 +2,15 @@ from __future__ import annotations
 
 import sqlite3
 from contextlib import closing
+from enum import StrEnum
 
 from app.models import AlertRecord
+
+
+class ClaimResult(StrEnum):
+    CLAIMED = "claimed"
+    POSTED = "posted"
+    PROCESSING = "processing"
 
 
 class AlertRegistry:
@@ -27,7 +34,7 @@ class AlertRegistry:
             )
             conn.commit()
 
-    def claim(self, execution_id: str) -> bool:
+    def claim(self, execution_id: str, stale_after_seconds: int) -> ClaimResult:
         with sqlite3.connect(self.sqlite_path) as conn:
             try:
                 conn.execute(
@@ -38,9 +45,43 @@ class AlertRegistry:
                     (execution_id,),
                 )
                 conn.commit()
-                return True
+                return ClaimResult.CLAIMED
             except sqlite3.IntegrityError:
-                return False
+                pass
+
+            conn.row_factory = sqlite3.Row
+            with closing(
+                conn.execute(
+                    """
+                    SELECT state
+                    FROM alerts
+                    WHERE execution_id = ?
+                    """,
+                    (execution_id,),
+                )
+            ) as cursor:
+                row = cursor.fetchone()
+
+            if row is None:
+                return ClaimResult.PROCESSING
+            if row["state"] == "posted":
+                return ClaimResult.POSTED
+
+            stale_window = f"-{max(1, stale_after_seconds)} seconds"
+            cursor = conn.execute(
+                """
+                UPDATE alerts
+                SET updated_at = CURRENT_TIMESTAMP
+                WHERE execution_id = ?
+                  AND state = 'processing'
+                  AND updated_at <= datetime('now', ?)
+                """,
+                (execution_id, stale_window),
+            )
+            conn.commit()
+            if cursor.rowcount == 1:
+                return ClaimResult.CLAIMED
+            return ClaimResult.PROCESSING
 
     def get(self, execution_id: str) -> AlertRecord | None:
         with sqlite3.connect(self.sqlite_path) as conn:

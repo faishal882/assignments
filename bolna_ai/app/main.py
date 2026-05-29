@@ -38,6 +38,7 @@ def build_container(settings: Settings) -> AppContainer:
         bolna_client=bolna_client,
         slack_max_retries=settings.slack_max_retries,
         slack_retry_backoff_seconds=settings.slack_retry_backoff_seconds,
+        processing_claim_timeout_seconds=settings.processing_claim_timeout_seconds,
     )
     return AppContainer(settings=settings, registry=registry, service=service)
 

@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     sqlite_path: str = "alerts.db"
     slack_max_retries: int = 3
     slack_retry_backoff_seconds: float = 0.5
+    processing_claim_timeout_seconds: int = 60
     transcript_max_chars: int = 3000
 
 

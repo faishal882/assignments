@@ -6,7 +6,7 @@ from typing import Protocol
 
 from app.bolna import BolnaApiError
 from app.models import BolnaEvent
-from app.registry import AlertRegistry
+from app.registry import AlertRegistry, ClaimResult
 from app.slack import SlackApiError, SlackPublisher
 
 
@@ -28,6 +28,7 @@ class OrchestrationService:
     bolna_client: BolnaExecutionFetcher
     slack_max_retries: int
     slack_retry_backoff_seconds: float
+    processing_claim_timeout_seconds: int
 
     def handle_webhook(self, event: BolnaEvent) -> ProcessingResult:
         if event.status != "completed":
@@ -37,11 +38,10 @@ class OrchestrationService:
         if not execution_id:
             raise ValueError("Webhook payload missing execution identifier")
 
-        existing = self.registry.get(execution_id)
-        if existing and existing.state == "posted":
+        claim_result = self.registry.claim(execution_id, self.processing_claim_timeout_seconds)
+        if claim_result == ClaimResult.POSTED:
             return ProcessingResult(status="duplicate", execution_id=execution_id)
-
-        if not existing and not self.registry.claim(execution_id):
+        if claim_result == ClaimResult.PROCESSING:
             return ProcessingResult(status="duplicate", execution_id=execution_id)
 
         try:
