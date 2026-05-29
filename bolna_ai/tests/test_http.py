@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 
 from app.config import Settings
 from app.main import create_app
+from app.slack import SlackApiError
 
 
 def make_client(tmp_path):
@@ -48,3 +49,21 @@ def test_webhook_accepts_valid_secret_and_forwards_payload(tmp_path):
     assert response.status_code == 200
     assert response.json()["status"] == "ignored"
     assert len(stub.calls) == 1
+
+
+def test_webhook_maps_slack_failure_to_503(tmp_path):
+    client, _ = make_client(tmp_path)
+
+    class FailingService:
+        def handle_webhook(self, payload):
+            raise SlackApiError("slack unavailable")
+
+    client.app.state.container.service = FailingService()
+    response = client.post(
+        "/webhooks/bolna/calls",
+        headers={"X-Bolna-Webhook-Secret": "secret"},
+        json={"id": "exec-1", "status": "completed"},
+    )
+
+    assert response.status_code == 503
+    assert response.json()["detail"] == "slack unavailable"

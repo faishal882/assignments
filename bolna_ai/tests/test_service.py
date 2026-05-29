@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 
 import pytest
 
+from app.bolna import BolnaApiError
 from app.models import BolnaEvent, SlackPostResult
 from app.registry import AlertRegistry
 from app.service import OrchestrationService
@@ -29,9 +30,12 @@ class FakeSlackPublisher:
 class FakeBolnaClient:
     recovered_event: BolnaEvent | None = None
     fetch_calls: list[str] = field(default_factory=list)
+    fail_fetch: bool = False
 
     def fetch_execution(self, execution_id: str) -> BolnaEvent | None:
         self.fetch_calls.append(execution_id)
+        if self.fail_fetch:
+            raise BolnaApiError("fetch failed")
         return self.recovered_event
 
 
@@ -95,6 +99,21 @@ def test_failed_slack_post_does_not_leave_processed_record(tmp_path):
         service.handle_webhook(event)
 
     assert service.registry.get("exec-1") is None
+
+
+def test_recovery_failure_does_not_fail_processed_alert(tmp_path):
+    slack = FakeSlackPublisher()
+    bolna = FakeBolnaClient(fail_fetch=True)
+    service = make_service(tmp_path, slack, bolna)
+    event = BolnaEvent(id="exec-1", agent_id="agent-1", status="completed")
+
+    result = service.handle_webhook(event)
+
+    assert result.status == "processed"
+    assert result.transcript_recovered is False
+    record = service.registry.get("exec-1")
+    assert record is not None
+    assert record.state == "posted"
 
 
 def test_build_message_truncates_long_transcript():

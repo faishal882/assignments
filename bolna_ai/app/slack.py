@@ -67,17 +67,20 @@ class SlackPublisher:
         if not self.default_channel:
             raise SlackApiError("SLACK_CHANNEL_ID is not configured")
 
-        with httpx.Client(timeout=self.timeout_seconds) as client:
-            response = client.post(
-                f"https://slack.com/api/{method}",
-                headers={
-                    "Authorization": f"Bearer {self.bot_token}",
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-                json=payload,
-            )
+        try:
+            with httpx.Client(timeout=self.timeout_seconds) as client:
+                response = client.post(
+                    f"https://slack.com/api/{method}",
+                    headers={
+                        "Authorization": f"Bearer {self.bot_token}",
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    json=payload,
+                )
+            response.raise_for_status()
+        except httpx.HTTPError as exc:
+            raise SlackApiError(f"Slack API request failed: {exc}") from exc
 
-        response.raise_for_status()
         body = response.json()
         if not body.get("ok"):
             raise SlackApiError(body.get("error", "Unknown Slack API error"))

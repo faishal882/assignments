@@ -7,6 +7,10 @@ import httpx
 from app.models import BolnaEvent
 
 
+class BolnaApiError(RuntimeError):
+    pass
+
+
 @dataclass
 class BolnaClient:
     api_key: str
@@ -17,11 +21,14 @@ class BolnaClient:
         if not self.api_key:
             return None
 
-        with httpx.Client(base_url=self.base_url, timeout=self.timeout_seconds) as client:
-            response = client.get(
-                f"/executions/{execution_id}",
-                headers={"Authorization": f"Bearer {self.api_key}"},
-            )
+        try:
+            with httpx.Client(base_url=self.base_url, timeout=self.timeout_seconds) as client:
+                response = client.get(
+                    f"/executions/{execution_id}",
+                    headers={"Authorization": f"Bearer {self.api_key}"},
+                )
+            response.raise_for_status()
+        except httpx.HTTPError as exc:
+            raise BolnaApiError(f"Bolna execution fetch failed: {exc}") from exc
 
-        response.raise_for_status()
         return BolnaEvent.model_validate(response.json())

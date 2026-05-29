@@ -5,12 +5,13 @@ from dataclasses import asdict, dataclass
 
 from fastapi import FastAPI, Header, HTTPException, status
 
+from app.bolna import BolnaApiError
 from app.bolna import BolnaClient
 from app.config import Settings, get_settings
 from app.models import BolnaEvent
 from app.registry import AlertRegistry
 from app.service import OrchestrationService
-from app.slack import SlackPublisher
+from app.slack import SlackApiError, SlackPublisher
 
 
 @dataclass
@@ -72,6 +73,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             result = app.state.container.service.handle_webhook(payload)
         except ValueError as exc:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+        except SlackApiError as exc:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail=str(exc),
+            ) from exc
+        except BolnaApiError as exc:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail=str(exc),
+            ) from exc
 
         if isinstance(result, dict):
             return result

@@ -4,6 +4,7 @@ import time
 from dataclasses import dataclass
 from typing import Protocol
 
+from app.bolna import BolnaApiError
 from app.models import BolnaEvent
 from app.registry import AlertRegistry
 from app.slack import SlackApiError, SlackPublisher
@@ -70,7 +71,11 @@ class OrchestrationService:
         if not execution_id:
             return False
 
-        recovered_event = self.bolna_client.fetch_execution(execution_id)
+        try:
+            recovered_event = self.bolna_client.fetch_execution(execution_id)
+        except BolnaApiError:
+            return False
+
         if not recovered_event or not recovered_event.transcript:
             return False
 
