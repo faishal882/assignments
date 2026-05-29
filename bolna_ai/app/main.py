@@ -118,13 +118,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return WebhookResponse(**asdict(result)).model_dump()
 
     return app
+
+
 try:
     app = create_app()
 except ValidationError as exc:
-    failed_app = FastAPI(title="Bolna Slack Alert Integration")
-
-    @failed_app.on_event("startup")
-    async def fail_startup() -> None:
+    @asynccontextmanager
+    async def failed_lifespan(_: FastAPI):
         raise RuntimeError(f"Application configuration is invalid: {exc}") from exc
+        yield
+
+    failed_app = FastAPI(title="Bolna Slack Alert Integration", lifespan=failed_lifespan)
 
     app = failed_app
