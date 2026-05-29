@@ -30,25 +30,27 @@ def make_client(tmp_path):
 
     stub = StubService()
     app.state.container.service = stub
-    return TestClient(app), stub
+    return app, stub
 
 
 def test_webhook_rejects_invalid_secret(tmp_path):
-    client, _ = make_client(tmp_path)
+    app, _ = make_client(tmp_path)
 
-    response = client.post("/webhooks/bolna/calls", json={"id": "exec-1", "status": "completed"})
+    with TestClient(app) as client:
+        response = client.post("/webhooks/bolna/calls", json={"id": "exec-1", "status": "completed"})
 
     assert response.status_code == 401
 
 
 def test_webhook_accepts_valid_secret_and_forwards_payload(tmp_path):
-    client, stub = make_client(tmp_path)
+    app, stub = make_client(tmp_path)
 
-    response = client.post(
-        "/webhooks/bolna/calls",
-        headers={"X-Bolna-Webhook-Secret": "secret", "X-Request-Id": "req-123"},
-        json={"id": "exec-1", "status": "queued"},
-    )
+    with TestClient(app) as client:
+        response = client.post(
+            "/webhooks/bolna/calls",
+            headers={"X-Bolna-Webhook-Secret": "secret", "X-Request-Id": "req-123"},
+            json={"id": "exec-1", "status": "queued"},
+        )
 
     assert response.status_code == 200
     assert response.json()["status"] == "ignored"
@@ -58,18 +60,46 @@ def test_webhook_accepts_valid_secret_and_forwards_payload(tmp_path):
 
 
 def test_webhook_maps_slack_failure_to_503(tmp_path):
-    client, _ = make_client(tmp_path)
+    app, _ = make_client(tmp_path)
 
     class FailingService:
         def handle_webhook(self, payload, request_id=None):
             raise SlackApiError("slack unavailable")
 
-    client.app.state.container.service = FailingService()
-    response = client.post(
-        "/webhooks/bolna/calls",
-        headers={"X-Bolna-Webhook-Secret": "secret"},
-        json={"id": "exec-1", "status": "completed"},
-    )
+    app.state.container.service = FailingService()
+    with TestClient(app) as client:
+        response = client.post(
+            "/webhooks/bolna/calls",
+            headers={"X-Bolna-Webhook-Secret": "secret"},
+            json={"id": "exec-1", "status": "completed"},
+        )
 
     assert response.status_code == 503
     assert response.json()["detail"] == "slack unavailable"
+
+
+def test_get_alert_returns_404_for_missing_execution(tmp_path):
+    app, _ = make_client(tmp_path)
+
+    with TestClient(app) as client:
+        response = client.get("/alerts/exec-missing")
+
+    assert response.status_code == 404
+
+
+def test_get_alert_and_list_alerts_return_registry_data(tmp_path):
+    app, _ = make_client(tmp_path)
+
+    with TestClient(app) as client:
+        registry = client.app.state.container.registry
+        registry.claim("exec-1", stale_after_seconds=60)
+        registry.mark_posted("exec-1", "C123", "123.456")
+        get_response = client.get("/alerts/exec-1")
+        list_response = client.get("/alerts")
+
+    assert get_response.status_code == 200
+    assert get_response.json()["execution_id"] == "exec-1"
+    assert get_response.json()["state"] == "posted"
+
+    assert list_response.status_code == 200
+    assert list_response.json()[0]["execution_id"] == "exec-1"

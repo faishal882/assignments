@@ -65,6 +65,18 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def healthcheck() -> dict[str, str]:
         return {"status": "ok"}
 
+    @app.get("/alerts/{execution_id}")
+    def get_alert(execution_id: str) -> dict[str, object]:
+        record = app.state.container.registry.get(execution_id)
+        if record is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Alert not found")
+        return record.model_dump()
+
+    @app.get("/alerts")
+    def list_alerts(limit: int = 20) -> list[dict[str, object]]:
+        safe_limit = min(max(limit, 1), 100)
+        return [record.model_dump() for record in app.state.container.registry.list_recent(safe_limit)]
+
     @app.post("/webhooks/bolna/calls")
     def bolna_webhook(
         payload: BolnaEvent,

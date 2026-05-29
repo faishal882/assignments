@@ -109,6 +109,33 @@ class AlertRegistry:
             transcript_recovered=bool(row["transcript_recovered"]),
         )
 
+    def list_recent(self, limit: int = 20) -> list[AlertRecord]:
+        with sqlite3.connect(self.sqlite_path) as conn:
+            conn.row_factory = sqlite3.Row
+            with closing(
+                conn.execute(
+                    """
+                    SELECT execution_id, state, slack_channel, slack_ts, transcript_recovered
+                    FROM alerts
+                    ORDER BY updated_at DESC, execution_id DESC
+                    LIMIT ?
+                    """,
+                    (limit,),
+                )
+            ) as cursor:
+                rows = cursor.fetchall()
+
+        return [
+            AlertRecord(
+                execution_id=row["execution_id"],
+                state=row["state"],
+                slack_channel=row["slack_channel"],
+                slack_ts=row["slack_ts"],
+                transcript_recovered=bool(row["transcript_recovered"]),
+            )
+            for row in rows
+        ]
+
     def mark_posted(self, execution_id: str, slack_channel: str, slack_ts: str) -> None:
         with sqlite3.connect(self.sqlite_path) as conn:
             conn.execute(
