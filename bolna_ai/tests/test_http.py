@@ -103,3 +103,23 @@ def test_get_alert_and_list_alerts_return_registry_data(tmp_path):
 
     assert list_response.status_code == 200
     assert list_response.json()[0]["execution_id"] == "exec-1"
+
+
+def test_list_alerts_respects_limit_and_ordering(tmp_path):
+    app, _ = make_client(tmp_path)
+
+    with TestClient(app) as client:
+        registry = client.app.state.container.registry
+        registry.claim("exec-1", stale_after_seconds=60)
+        registry.mark_posted("exec-1", "C123", "111.111")
+        registry.claim("exec-2", stale_after_seconds=60)
+        registry.mark_posted("exec-2", "C123", "222.222")
+        registry.mark_transcript_recovered("exec-2")
+
+        response = client.get("/alerts?limit=1")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert len(payload) == 1
+    assert payload[0]["execution_id"] == "exec-2"
+    assert payload[0]["transcript_recovered"] is True

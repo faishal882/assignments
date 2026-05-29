@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass
 import uuid
 
-from fastapi import FastAPI, Header, HTTPException, status
+from fastapi import FastAPI, Header, HTTPException, Query, status
 from pydantic import ValidationError
 
 from app.bolna import BolnaApiError
@@ -83,9 +83,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         payload: BolnaEvent,
         x_bolna_webhook_secret: str | None = Header(default=None),
         x_request_id: str | None = Header(default=None),
+        webhook_secret: str | None = Query(default=None),
     ) -> dict[str, object]:
         request_id = x_request_id or str(uuid.uuid4())
-        if x_bolna_webhook_secret != app.state.container.settings.bolna_webhook_secret:
+        provided_secret = x_bolna_webhook_secret or webhook_secret
+        if provided_secret != app.state.container.settings.bolna_webhook_secret:
             logger.warning(
                 "Rejected webhook with invalid secret",
                 extra=event_context(
