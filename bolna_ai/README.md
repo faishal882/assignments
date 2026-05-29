@@ -29,7 +29,10 @@ Environment variables:
 - `SQLITE_PATH` (default: `alerts.db`)
 - `SLACK_MAX_RETRIES` (default: `3`)
 - `SLACK_RETRY_BACKOFF_SECONDS` (default: `0.5`)
+- `PROCESSING_CLAIM_TIMEOUT_SECONDS` (default: `60`)
 - `TRANSCRIPT_MAX_CHARS` (default: `3000`)
+
+`SLACK_BOT_TOKEN`, `SLACK_CHANNEL_ID`, and `BOLNA_WEBHOOK_SECRET` are required. The app now fails fast at startup if they are missing.
 
 ## Run locally
 

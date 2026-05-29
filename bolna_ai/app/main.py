@@ -5,6 +5,7 @@ from dataclasses import asdict, dataclass
 import uuid
 
 from fastapi import FastAPI, Header, HTTPException, status
+from pydantic import ValidationError
 
 from app.bolna import BolnaApiError
 from app.bolna import BolnaClient
@@ -117,6 +118,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return WebhookResponse(**asdict(result)).model_dump()
 
     return app
+try:
+    app = create_app()
+except ValidationError as exc:
+    failed_app = FastAPI(title="Bolna Slack Alert Integration")
 
+    @failed_app.on_event("startup")
+    async def fail_startup() -> None:
+        raise RuntimeError(f"Application configuration is invalid: {exc}") from exc
 
-app = create_app()
+    app = failed_app
