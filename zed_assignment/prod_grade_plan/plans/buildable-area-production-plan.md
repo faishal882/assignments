@@ -366,39 +366,54 @@ Production should model an **organization/workspace tenant** so consulting teams
 | Opaque autograder instructions conflict with production | Ethical/quality issue | Verify requirements; isolate assignment compatibility from production policy. |
 
 ## 33. Delivery Plan / Milestones
-### Phase 0: Discovery and data spike
+Assume a small team: one backend/GIS engineer, one frontend engineer, one product/QA owner, and part-time DevOps/security review. A single senior full-stack/GIS engineer can build the assignment demo, but production readiness is faster and safer with explicit owners.
+
+### Phase 0: Discovery and data spike (week 1)
 - Pick county, download TNRIS parcels and NWI wetlands.
 - Prove ingestion into PostGIS and one parcel analysis notebook/SQL script.
 - Document data licenses and observed geometry problems.
+- Responsible role: backend/GIS engineer with product owner review.
 
-### Phase 1: Tracer bullet vertical slice
+### Phase 1: Tracer bullet vertical slice (weeks 2-3)
 - FastAPI endpoint computes parcel minus wetlands buffer.
 - React map displays parcel, excluded, buildable.
 - Scenario response includes acreage and breakdown.
 - README runs with Docker Compose.
 
-### Phase 2: Configurable scenarios and manual edits
+### Phase 2: Configurable scenarios and manual edits (weeks 4-5)
 - Add layer toggles, setback controls, carve-out and restore drawing.
 - Persist scenarios and recompute on edit.
 - Add deterministic breakdown priority and warnings.
 
-### Phase 3: Production hardening
+### Phase 3: Production hardening (weeks 6-8)
 - Add ingestion jobs, dataset versioning, caching, vector tiles, auth/rate limits.
 - Complete observability, backups, CI/CD, load tests, and runbooks.
 
-### Phase 4: Expansion
+### Phase 4: Expansion (weeks 9+)
 - Add FEMA floodplain, HIFLD transmission lines, buildings, protected areas.
 - Add more counties and jurisdiction-specific setback profiles.
 - Improve export/reporting and scenario sharing.
 
-## 34. README / Local Run Expectations
+## 34. Implementation Backlog / Work Breakdown
+- Ticket 1: repository scaffolding, Docker Compose, FastAPI health check, React shell.
+- Ticket 2: PostGIS schema, Alembic migrations, source dataset metadata, fixture seed.
+- Ticket 3: TNRIS parcel ingestion with validation report and quarantine table.
+- Ticket 4: NWI wetlands ingestion, setback rule defaults, and candidate spatial query.
+- Ticket 5: scenario API with idempotent create, background job status, and result persistence.
+- Ticket 6: buildable-area geometry algorithm with golden tests and overlap breakdown.
+- Ticket 7: MapLibre parcel/search/scenario display with vector tile layer support.
+- Ticket 8: draw carve-out/restore tools with optimistic locking and validation errors.
+- Ticket 9: observability, rate limits, auth/RBAC, audit logs, and admin dataset publish workflow.
+- Ticket 10: load tests, production deployment pipeline, backup/restore drill, and README/writeup.
+
+## 35. README / Local Run Expectations
 The repository should include:
 - `README.md` with prerequisites, `docker compose up`, dataset download/import commands, and demo parcel id.
 - `.env.example` with database, Redis, object storage, and auth settings.
 - `make ingest-demo`, `make test`, `make load-test-smoke`, and `make seed-demo`.
 - A short architecture decision record explaining MapLibre vs ArcGIS and PostGIS vs pure in-memory processing.
 
-## 35. Architecture Decision Records / Decision Log
+## 36. Architecture Decision Records / Decision Log
 Maintain ADRs for decisions that affect operability or correctness:
 - ADR-001: PostGIS as canonical spatial engine rather than browser-only Turf.js.
 - ADR-002: MapLibre and vector tiles/PMTiles for open-source map rendering.
@@ -406,7 +421,7 @@ Maintain ADRs for decisions that affect operability or correctness:
 - ADR-004: Assignment-compatible EPSG:3857 area policy separated from production authoritative reporting.
 - ADR-005: Queue-backed async geoprocessing for large parcels and imports.
 
-## 36. Approach Writeup and Calls Made
+## 37. Approach Writeup and Calls Made
 The writeup should explain:
 - Why PostGIS is the source of truth for reproducible spatial operations.
 - Why MapLibre is chosen for open-source interactive mapping and vector tile compatibility.
@@ -415,14 +430,14 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 37. Open Questions and Assumptions to Validate
+## 38. Open Questions and Assumptions to Validate
 - Confirm with evaluator whether assignment-compatible EPSG:3857 planar acreage and final-acre round-up are required only for grading or also for user-facing results.
 - Confirm selected county after sampling parcel count, data freshness, and download reliability from TNRIS.
 - Decide whether FEMA floodplain is a hard exclusion or a warning layer for the first release.
 - Validate local ordinance profiles with a qualified reviewer before presenting defaults as jurisdiction-specific rules.
 - Decide whether anonymous demo mode is allowed in production or only staging.
 
-## 38. Acceptance Criteria / Definition of Done
+## 39. Acceptance Criteria / Definition of Done
 - Given a clean checkout, when the reviewer follows README commands, then the app starts locally with documented seed data.
 - Given a real parcel and NWI wetlands, when the scenario runs, then backend returns buildable area, breakdown, geometry, warnings, and exact config used.
 - Given the map loads a scenario, when the user pans, zooms, and clicks features, then buildable versus excluded areas are visually clear.

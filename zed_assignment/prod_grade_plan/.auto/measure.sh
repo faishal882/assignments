@@ -68,6 +68,9 @@ require "api error model" 'error code|problem\+json|validation error|conflict|un
 require "licensing compliance" 'license|terms of use|attribution|redistribution|data license' 4
 require "pii handling" 'pii|personally identifiable|redact|data minimization|privacy' 4
 require "data refresh" 'refresh cadence|scheduled refresh|incremental update|staleness|source date' 4
+require "implementation backlog" 'work breakdown|backlog|ticket|issue|user story|vertical slice' 4
+require "team roles" 'role|staffing|owner|responsible|raci|team' 3
+require "timeline estimates" 'week|timeline|duration|sprint|estimate' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
