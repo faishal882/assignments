@@ -345,8 +345,15 @@ Production should model an **organization/workspace tenant** so consulting teams
 - OpenTelemetry traces around API request, spatial query, buffer/union/difference, and serialization.
 - Metrics: request latency, job duration, cache hit rate, spatial query rows scanned, geometry vertex counts, failed ingestion rows, scenario failure reason.
 - SLO: 99.5% successful scenario creation excluding invalid user input; p95 normal analysis under 3 s.
+- Error budget: if monthly scenario-creation failures exceed the budget, pause non-critical feature releases and prioritize reliability work.
 - Alerts for job queue backlog, PostGIS CPU/IO saturation, high invalid-geometry failure rate, tile generation failures, and disk usage.
 - Runbook covers rollback, dataset version disablement, database restore, and queue drain.
+
+### Incident playbooks
+- Severity 1: API unavailable or database write failures. Triage load balancer, API health, PostGIS failover, and recent deploys; escalate to on-call owner and start incident notes.
+- Severity 2: analyses failing or queue not draining. Check worker logs, Redis/queue depth, bad dataset versions, and geometry failure spike.
+- Bad data incident: disable the suspect dataset version, invalidate affected caches, notify impacted tenants, and provide a postmortem with affected scenario ids.
+- After every severity 1/2 incident, write a postmortem with root cause, customer impact, detection gap, and follow-up owner.
 
 ## 24. Deployment Architecture
 - Docker Compose for local development: API, worker, PostGIS, Redis, frontend.
@@ -375,6 +382,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Immutable raw source files retained by checksum.
 - Generated tiles and scenario exports can be regenerated from source data and scenario config.
 - Dataset versions are never overwritten; deprecated versions can be hidden from new analyses but remain available for existing scenarios.
+- Data rollback means disabling or reverting the published dataset version pointer, not deleting raw data; affected scenarios are marked with a bad-data warning and can be re-run on a corrected version.
 - Document retention policy for user-created manual edits and exports.
 
 ## 28. High Availability and Disaster Recovery
