@@ -524,14 +524,24 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 40. Open Questions and Assumptions to Validate
+## 40. Support Model and User Enablement
+Production adoption needs support paths because users will question acreage, data freshness, and manual-edit behavior.
+- Support model: define support tiers for demo users, tenant admins, and internal operators; route product questions, data-quality disputes, and incidents to separate queues.
+- Support ticket intake captures scenario id, parcel id, dataset versions, browser, request id, and screenshots so engineers can reproduce the issue.
+- Triage workflow distinguishes user training issues from data defects, rule-profile questions, performance incidents, and security/privacy reports.
+- User guide and in-app documentation explain parcel search, constraint toggles, setback overrides, carve-out/restore policy, export interpretation, and limitations.
+- Operator guide covers dataset publish, rollback, failed-job replay, cache invalidation, and incident escalation.
+- Training materials and contextual tooltips reinforce that the result is planning analysis, not legal advice.
+- Feedback loop: recurring support themes become backlog issues, rule-profile improvements, data-source refresh tasks, or UX changes reviewed in product planning.
+
+## 41. Open Questions and Assumptions to Validate
 - Confirm with evaluator whether assignment-compatible EPSG:3857 planar acreage and final-acre round-up are required only for grading or also for user-facing results.
 - Confirm selected county after sampling parcel count, data freshness, and download reliability from TNRIS.
 - Decide whether FEMA floodplain is a hard exclusion or a warning layer for the first release.
 - Validate local ordinance profiles with a qualified reviewer before presenting defaults as jurisdiction-specific rules.
 - Decide whether anonymous demo mode is allowed in production or only staging.
 
-## 41. Acceptance Criteria / Definition of Done
+## 42. Acceptance Criteria / Definition of Done
 - Given a clean checkout, when the reviewer follows README commands, then the app starts locally with documented seed data.
 - Given a real parcel and NWI wetlands, when the scenario runs, then backend returns buildable area, breakdown, geometry, warnings, and exact config used.
 - Given the map loads a scenario, when the user pans, zooms, and clicks features, then buildable versus excluded areas are visually clear.
@@ -540,7 +550,7 @@ The writeup should explain:
 - Given invalid geometries or oversized edits, when submitted, then the API returns recoverable validation errors without crashing.
 - Given production deployment, then observability, backup/restore, security, performance, data lineage, and runbooks are in place.
 
-## 42. Limitations, Uncertainty, and Explainability
+## 43. Limitations, Uncertainty, and Explainability
 This product is a planning analysis tool, not legal advice, a survey-grade determination, or a substitute for professional civil/environmental review. Every report and export should state this limitation clearly.
 
 Explainability requirements:

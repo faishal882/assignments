@@ -101,6 +101,9 @@ require "contract testing" 'contract test|consumer-driven|openapi diff|schema co
 require "database operations" 'vacuum|analyze|autovacuum|connection pool|pgbouncer|query timeout' 4
 require "partitioning archival" 'partition|archive|retention|cold storage|table bloat|maintenance window' 3
 require "query safeguards" 'statement timeout|query budget|slow query|kill.*query|resource limit' 3
+require "support model" 'support model|support tier|help desk|support queue|customer support|on-call handoff' 4
+require "user documentation" 'user guide|operator guide|training|tooltip|documentation' 3
+require "feedback loop" 'feedback loop|user feedback|issue intake|feature request|support ticket|triage' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
