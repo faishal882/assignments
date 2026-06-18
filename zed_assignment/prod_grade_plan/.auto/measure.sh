@@ -92,6 +92,9 @@ require "explainability" 'explainability|why removed|explanation|reason code|evi
 require "secrets management" 'secret|kms|vault|key rotation|credential' 4
 require "supply chain security" 'sbom|dependency scan|slsa|provenance|container scan|pin dependencies' 4
 require "release strategy" 'canary|blue-green|staging|feature flag|release gate|smoke test' 4
+require "data qa thresholds" 'acceptance threshold|validation threshold|qa gate|publish gate|quality gate' 4
+require "dataset diff review" 'dataset diff|change report|before/after|acreage delta|material change' 4
+require "human approval workflow" 'approval workflow|human review|reviewer sign-off|two-person|approve.*publish' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
