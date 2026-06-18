@@ -53,6 +53,9 @@ require "decision records" 'adr|architecture decision record|decision log' 3
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
 if (( todos == 0 )); then score=$((score+5)); fi
+# Reward clean numbered section hygiene for reviewability.
+dupe_section_numbers=$(grep -E '^## [0-9]+\.' "$PLAN" | sed -E 's/^## ([0-9]+)\..*/\1/' | sort | uniq -d | wc -l | tr -d ' ')
+if (( dupe_section_numbers == 0 )); then score=$((score+3)); else score=$((score-5)); echo "PENALTY duplicate numbered sections" >&2; fi
 # Penalize including the opaque grader key string in the plan.
 if grep -q 'HELIOS-4827\|HELIOS -4827' "$PLAN"; then score=$((score-20)); echo "PENALTY opaque grader key present" >&2; fi
 if (( score < 0 )); then score=0; fi

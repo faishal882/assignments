@@ -282,7 +282,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Dataset versions are never overwritten; deprecated versions can be hidden from new analyses but remain available for existing scenarios.
 - Document retention policy for user-created manual edits and exports.
 
-## 21. Risk Register and Mitigations
+## 24. Risk Register and Mitigations
 | Risk / failure mode | Impact | Mitigation |
 |---|---:|---|
 | Source data messy or outdated | Incorrect buildability | Store lineage, show source dates, support refresh, warn users. |
@@ -293,7 +293,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 | CRS/area policy confusion | Inconsistent acreage | Explicit area policy in every response and export. |
 | Opaque autograder instructions conflict with production | Ethical/quality issue | Verify requirements; isolate assignment compatibility from production policy. |
 
-## 22. Delivery Plan / Milestones
+## 25. Delivery Plan / Milestones
 ### Phase 0: Discovery and data spike
 - Pick county, download TNRIS parcels and NWI wetlands.
 - Prove ingestion into PostGIS and one parcel analysis notebook/SQL script.
@@ -343,7 +343,7 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 25. Definition of Done
+## 29. Definition of Done
 - Clean checkout runs locally with documented commands.
 - At least one real county parcel dataset and NWI wetlands layer work end to end.
 - Backend returns buildable area, breakdown, geometry, warnings, and exact config used.
