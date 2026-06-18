@@ -65,6 +65,9 @@ require "open questions" 'open question|assumption to validate|confirm with eval
 require "idempotency" 'idempotency|idempotent|request id|dedup|retry-safe' 4
 require "concurrency controls" 'concurrency|optimistic lock|version conflict|transaction isolation|race condition' 4
 require "api error model" 'error code|problem\+json|validation error|conflict|unprocessable' 3
+require "licensing compliance" 'license|terms of use|attribution|redistribution|data license' 4
+require "pii handling" 'pii|personally identifiable|redact|data minimization|privacy' 4
+require "data refresh" 'refresh cadence|scheduled refresh|incremental update|staleness|source date' 4
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
