@@ -131,6 +131,9 @@ require "collaboration conflicts" 'collaboration|concurrent edit|conflict resolu
 require "county onboarding" 'county onboarding|new county|county rollout|onboarding checklist|source mapping' 4
 require "regional partitioning" 'regional partition|county partition|geographic shard|multi-county|jurisdiction boundary' 4
 require "schema mapping registry" 'schema mapping|field mapping|crosswalk|mapping registry|attribute normalization' 3
+require "transactional outbox" 'transactional outbox|outbox table|exactly-once|at-least-once|event delivery' 4
+require "webhooks integrations" 'webhook|integration|external system|callback|subscription event' 4
+require "event taxonomy" 'domain event|event taxonomy|scenario.*completed|dataset.*published|event schema' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi

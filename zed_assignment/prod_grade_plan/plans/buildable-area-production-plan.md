@@ -64,6 +64,13 @@ User selects parcel + layers + setbacks
 
 Job lifecycle states: `queued`, `running`, `complete`, `failed_retryable`, `failed_terminal`, and `cancelled`. Retryable failures include temporary database/worker/object-storage errors; terminal failures include invalid geometry after repair, unsupported CRS, or quota violation. Users can cancel queued jobs and clone a failed scenario with changed settings.
 
+Domain events and integrations:
+- Publish versioned domain events for `scenario.created`, `scenario.completed`, `scenario.failed`, `scenario.exported`, `dataset.published`, `dataset.disabled`, `rule_profile.changed`, and `share_link.opened`.
+- Use a transactional outbox table written in the same database transaction as scenario/result/admin changes; workers deliver events at-least-once with idempotency keys rather than pretending distributed exactly-once delivery exists.
+- External webhooks/integrations subscribe per tenant to selected events, receive signed payloads with event schema version, and must acknowledge delivery; retries use exponential backoff and dead-letter handling.
+- Webhook payloads include references and provenance metadata, not unrestricted private geometry URLs, unless the recipient is explicitly authorized.
+- Event schemas are contract-tested and deprecation-managed like the public API.
+
 ## 5. Backend Architecture
 ### FastAPI modules
 - `api/`: OpenAPI endpoints, request validation, auth, pagination.
