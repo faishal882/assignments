@@ -43,6 +43,19 @@ Browser (React + MapLibre)
   -> Redis (job state, response cache, tile metadata)
 ```
 
+Primary request flow / sequence diagram:
+```
+User selects parcel + layers + setbacks
+  -> React validates form and POSTs /scenarios with Idempotency-Key
+  -> API stores scenario as queued and returns scenario id
+  -> Worker loads parcel/constraints, computes exclusions/buildable geometry
+  -> Worker writes scenario_result and generated export/tile references
+  -> React status polling or websocket receives complete/failed
+  -> Map reloads buildable/excluded layers and breakdown table
+```
+
+Job lifecycle states: `queued`, `running`, `complete`, `failed_retryable`, `failed_terminal`, and `cancelled`. Retryable failures include temporary database/worker/object-storage errors; terminal failures include invalid geometry after repair, unsupported CRS, or quota violation. Users can cancel queued jobs and clone a failed scenario with changed settings.
+
 ## 5. Backend Architecture
 ### FastAPI modules
 - `api/`: OpenAPI endpoints, request validation, auth, pagination.

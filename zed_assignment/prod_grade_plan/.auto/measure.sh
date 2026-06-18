@@ -77,6 +77,9 @@ require "cache invalidation" 'cache invalidation|invalidate|cache key|input fing
 require "county selection" 'county selection|choose.*county|sampling|feature count|manageable parcel' 3
 require "demo reproducibility" 'demo parcel|seed data|fixture|snapshot|reproducible demo' 3
 require "graceful degradation" 'degraded mode|graceful degradation|fallback|read-only mode|partial outage' 3
+require "sequence flow" 'sequence diagram|request flow|analysis flow|user flow|status polling' 4
+require "job lifecycle" 'job lifecycle|queued|running|complete|failed|cancel|retry' 4
+require "export/reporting" 'export|pdf|csv|geojson|report|share' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
