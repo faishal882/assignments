@@ -202,6 +202,13 @@ Spatial boolean operations on messy public data will create tiny slivers unless 
 ## 13. Area Calculation Policy
 The assignment compatibility mode computes areas in EPSG:3857 Web Mercator with planar geometry area, then converts square meters to acres and rounds the final buildable acreage up to the nearest whole acre if that requirement is confirmed by the evaluator. This is intentionally separated behind an `AreaPolicy` interface so production deployments can also provide equal-area or geodesic reporting with clear labels.
 
+Measurement unit and precision policy:
+- Store canonical calculated areas in square meters with explicit CRS/area policy metadata; derive acres, square feet, and hectares for display/export.
+- Define rounding mode per output: assignment-compatible whole-acre round-up, production summary acreage to a configured decimal precision, and detailed breakdown values that reconcile to the displayed total.
+- Preserve unrounded values internally for audit and signed reports, but avoid false precision in user-facing summaries.
+- Number formatting, date formatting, and timezone display use tenant/user locale settings while exported machine-readable fields remain ISO-8601 and numeric.
+- UI labels always include units, CRS/area policy, and whether a value is rounded, raw, or display-simplified.
+
 The plan does not embed opaque grader keys or hard-coded benchmark artifacts in design docs. If an evaluator truly requires a specific source-code marker, isolate it in implementation review notes and verify it is not a security or cheating concern.
 
 ## 14. Configurable Setbacks

@@ -122,6 +122,9 @@ require "entitlements" 'entitlement|plan limit|feature access|quota tier|subscri
 require "report integrity" 'signed report|report signature|tamper-evident|checksum|verification' 4
 require "share links" 'share link|public link|expiring link|revocation|recipient' 3
 require "export provenance" 'export provenance|report metadata|watermark|citation|generated at' 3
+require "unit policy" 'unit policy|unit conversion|acres|square feet|hectare|measurement units' 4
+require "localization" 'localization|i18n|locale|timezone|date format|number format' 3
+require "numeric precision" 'decimal precision|rounding mode|significant digits|precision policy|acreage precision' 4
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
