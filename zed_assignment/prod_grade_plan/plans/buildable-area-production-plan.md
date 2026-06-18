@@ -250,6 +250,14 @@ API production rules:
 - Validation errors for malformed GeoJSON, excessive vertices, outside-parcel edits, and unsupported CRS return 422 Unprocessable Entity.
 - Rate-limit and quota responses include reset time and support idempotent retry after backoff.
 
+API versioning and compatibility:
+- Expose stable public endpoints under `/api/v1`; internal worker/admin APIs can evolve faster but remain documented.
+- Treat response fields as additive by default and preserve backward compatibility for saved scenarios, exports, and frontend clients during the v1 lifecycle.
+- Use OpenAPI diff checks in CI to detect breaking changes before merge.
+- Add contract tests for frontend consumers and any external integration clients that rely on scenario creation, result fetch, and export endpoints.
+- Deprecation policy: announce breaking changes with a migration window, emit deprecation headers for sunset endpoints, and provide migration notes before removing fields or changing semantics.
+- Version scenario result schemas independently from HTTP API versions so old reports remain readable even after backend model changes.
+
 Example result:
 ```json
 {

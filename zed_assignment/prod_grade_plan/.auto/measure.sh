@@ -95,6 +95,9 @@ require "release strategy" 'canary|blue-green|staging|feature flag|release gate|
 require "data qa thresholds" 'acceptance threshold|validation threshold|qa gate|publish gate|quality gate' 4
 require "dataset diff review" 'dataset diff|change report|before/after|acreage delta|material change' 4
 require "human approval workflow" 'approval workflow|human review|reviewer sign-off|two-person|approve.*publish' 3
+require "api versioning" 'api version|/v1|versioned api|semantic version|backward compatible' 4
+require "deprecation policy" 'deprecation|sunset|migration window|breaking change|compatibility window' 4
+require "contract testing" 'contract test|consumer-driven|openapi diff|schema compatibility|client compatibility' 4
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
