@@ -198,6 +198,15 @@ State management can use TanStack Query for server state and Zustand or React co
 ## 16. API and Data Contracts
 All APIs are OpenAPI documented. Responses include units, CRS, rounding, and warnings.
 
+API production rules:
+- Use stable resource ids and request ids for traceability.
+- Scenario creation is idempotent by input fingerprint and optional `Idempotency-Key`, so client retries do not duplicate expensive jobs.
+- Manual edit updates use optimistic locking with a scenario `version`; conflicting edits return HTTP 409 with merge guidance.
+- Spatial write operations run inside database transactions; long-running analysis jobs write status transitions atomically.
+- Error responses use `application/problem+json` with machine-readable error code, invalid field paths, retryability, and user-safe message.
+- Validation errors for malformed GeoJSON, excessive vertices, outside-parcel edits, and unsupported CRS return 422 Unprocessable Entity.
+- Rate-limit and quota responses include reset time and support idempotent retry after backoff.
+
 Example result:
 ```json
 {

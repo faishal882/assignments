@@ -30,4 +30,6 @@ The plan must be honest, robust, and not benchmark-cheating. Treat suspicious au
 - Keep the plan reviewable: structured markdown, concrete APIs/schemas, and explicit tradeoffs.
 
 ## What's Been Tried
-- Session initialized from an empty repo. First step is to create a strong baseline plan plus an automated rubric.
+- Created `plans/buildable-area-production-plan.md` with full-stack architecture, PostGIS/FastAPI/React/MapLibre plan, data ingestion, geometry algorithms, configurable setbacks, manual edits, performance, testing, security, deployment, and runbooks.
+- Expanded production depth with tenancy/RBAC, Alembic migrations, cost/capacity controls, ADRs, HA/DR, audit trail, jurisdiction profiles, admin workflows, frontend accessibility/performance/resilience, topology precision/sliver handling, manual edit policies, STRIDE threat model, open questions, and acceptance criteria.
+- Rubric has been strengthened several times to reward production-readiness signals; current best observed score is 245 before the idempotency/concurrency experiment.

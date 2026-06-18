@@ -62,6 +62,9 @@ require "large geometry handling" 'st_subdivide|vertex count|simplif|generaliz|p
 require "threat model" 'threat model|spoofing|tampering|repudiation|information disclosure|denial of service|privilege escalation' 5
 require "acceptance criteria" 'acceptance criteria|definition of done|given.*when.*then|must pass' 4
 require "open questions" 'open question|assumption to validate|confirm with evaluator|decision needed' 3
+require "idempotency" 'idempotency|idempotent|request id|dedup|retry-safe' 4
+require "concurrency controls" 'concurrency|optimistic lock|version conflict|transaction isolation|race condition' 4
+require "api error model" 'error code|problem\+json|validation error|conflict|unprocessable' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
