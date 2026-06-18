@@ -98,6 +98,13 @@ Indexes:
 ## 7. Data Sources and Layer Choices
 Initial county: choose a manageable Texas county from TNRIS, e.g. Hays, Bastrop, or Williamson after sampling feature count and file size.
 
+County selection criteria:
+- parcel feature count small enough for local Docker demo but large enough to expose messy real data;
+- current TNRIS download availability and clear attribution/license notes;
+- NWI and FEMA coverage intersecting selected parcels so constraints are visible;
+- at least one reproducible demo parcel snapshot with known expected outputs;
+- documented fallback county if the preferred source changes or becomes unavailable.
+
 Candidate public layers:
 - **Parcels**: TNRIS county parcel datasets. Verify terms and refresh cadence.
 - **Wetlands**: USFWS National Wetlands Inventory (NWI). Default buffer: start with 15 m or a jurisdiction-specific value if documented; expose as configurable because legal buffers vary.
@@ -360,6 +367,8 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Use managed Postgres failover or documented replica promotion; test restore drills quarterly.
 - Redis is treated as ephemeral cache/queue state; durable scenario results live in PostGIS/object storage.
 - Keep a disaster recovery runbook for database restore, dataset re-publication, tile regeneration, and DNS rollback.
+- Graceful degradation: if workers are down, existing scenarios and tiles remain read-only; if a source layer is disabled, new scenarios show unavailable-layer warnings rather than failing the whole app.
+- Fallback behavior: queued jobs retry with exponential backoff, exports can be regenerated later, and the UI clearly distinguishes partial outage from invalid user input.
 
 ## 29. Audit Trail and Scenario Reproducibility
 - Audit log every scenario create/update/export, manual edit, setback change, dataset publish, and admin override.
