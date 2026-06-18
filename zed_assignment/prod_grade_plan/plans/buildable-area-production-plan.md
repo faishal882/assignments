@@ -208,6 +208,14 @@ A dataset version should not become visible to new scenarios until it passes exp
 
 Rejected versions remain stored for forensic review but are not selectable by production scenarios. Approved versions get a signed publish record with reviewer, timestamp, validation report link, and release notes.
 
+Dataset rollout safety:
+- Before publish, run a dry-run publish/shadow recompute against demo parcels, recently active tenant scenarios, and high-risk parcels near constraints; compare output deltas to QA thresholds.
+- Use dataset canary rollout where new versions are enabled for internal tenants or a small rollout cohort before broad production defaulting.
+- Define promotion gates: canary scenario success rate, acreage delta distribution, support ticket rate, worker cost, tile generation success, and synthetic monitor health.
+- Define rollback criteria/stop conditions: unexpected acreage deltas, geometry failure spike, slow-query regression, support escalation, or SME/legal objection.
+- Limit blast radius by keeping old dataset versions selectable, making cache keys dataset-versioned, and rolling forward only the published-version pointer.
+- Dataset rollout decisions are recorded with comparison reports, approver, cohort, timestamps, and rollback threshold outcome.
+
 ## 12. Geometry Algorithm
 For a scenario:
 1. Load parcel geometry and validate it.
