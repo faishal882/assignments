@@ -255,6 +255,32 @@ Techniques:
 
 Expected strain points: countywide parcel datasets with millions of features, very complex floodplain/wetland geometries, and repeated ad-hoc union/difference operations without caching. If traffic grows, split ingestion workers and analysis workers independently, add read replicas, and precompute common layer masks by county/tile.
 
+Cache invalidation uses dataset version + parcel id + setback config + manual edit hashes as the cache key. Publishing or disabling a dataset version invalidates affected tile metadata and prevents stale scenario reuse, while historical scenarios still reference their original immutable inputs.
+
+### Spatial SQL hot path example
+```sql
+CREATE INDEX CONCURRENTLY IF NOT EXISTS constraint_feature_geom_gix
+  ON constraint_feature USING GIST (geom);
+
+EXPLAIN ANALYZE
+SELECT id, layer, ST_Intersection(geom, :parcel_geom) AS clipped_geom
+FROM constraint_feature
+WHERE layer = ANY(:enabled_layers)
+  AND geom && ST_Expand(:parcel_geom, :max_setback_m)
+  AND ST_Intersects(geom, ST_Expand(:parcel_geom, :max_setback_m));
+```
+Use `EXPLAIN ANALYZE` in staging with real county data before adding new layers to confirm index selectivity and row counts.
+
+### Performance test matrix
+| Load profile | Benchmark scenario | Target |
+|---|---|---|
+| Smoke | 1 user, demo parcel, wetlands only | complete < 3 s |
+| Normal | 25 concurrent users, parcels under 500 vertices | p95 < 3 s, error rate < 1% |
+| Heavy geometry | 10 users, floodplain + wetlands + buildings, >10k candidate features | async accepted < 500 ms, job completes < 60 s |
+| Edit burst | 20 users repeatedly drawing carve/restore polygons | no lost updates; 409 conflicts handled |
+| Soak test | 4 hours mixed reads/writes | no memory growth; queue drains |
+| Stress test | increase users until p95 doubles | identify CPU/IO bottleneck and scaling trigger |
+
 ## 19. Correctness and Testing Strategy
 - Unit tests for area conversion, rounding policy, setback config validation, priority breakdown math.
 - Geometry golden tests with hand-drawn parcels where expected buildable/excluded areas are known.
