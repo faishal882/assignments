@@ -237,7 +237,15 @@ Expected strain points: countywide parcel datasets with millions of features, ve
 - CSP, secure headers, dependency scanning, and container image scanning.
 - Avoid storing unnecessary owner PII; redact or exclude owner fields from parcel imports unless required.
 
-## 18. Observability and Operations
+## 18. Tenancy, Permissions, and Collaboration
+Production should model an **organization/workspace tenant** so consulting teams, developers, or internal analysts can share scenarios safely.
+- Roles: owner, admin, analyst, read-only reviewer.
+- RBAC controls scenario create/edit/export/delete and dataset administration.
+- Every scenario, manual edit, and export stores `tenant_id`, creator, and audit timestamps.
+- Tenant quotas protect shared infrastructure: maximum active jobs, stored exports, and request rate.
+- Public demo parcels are separated from tenant data to avoid accidental leakage.
+
+## 19. Observability and Operations
 - Structured JSON logs with request id, scenario id, dataset version, and job id.
 - OpenTelemetry traces around API request, spatial query, buffer/union/difference, and serialization.
 - Metrics: request latency, job duration, cache hit rate, spatial query rows scanned, geometry vertex counts, failed ingestion rows, scenario failure reason.
@@ -245,15 +253,29 @@ Expected strain points: countywide parcel datasets with millions of features, ve
 - Alerts for job queue backlog, PostGIS CPU/IO saturation, high invalid-geometry failure rate, tile generation failures, and disk usage.
 - Runbook covers rollback, dataset version disablement, database restore, and queue drain.
 
-## 19. Deployment Architecture
+## 20. Deployment Architecture
 - Docker Compose for local development: API, worker, PostGIS, Redis, frontend.
 - Production: containerized FastAPI/worker/frontend behind a managed load balancer.
 - Managed PostgreSQL with PostGIS if available; otherwise hardened VM Postgres with backups.
 - Object storage for raw datasets, generated tiles, and exports.
-- CI/CD: lint, typecheck, tests, migration dry-run, container build, security scan, deploy to staging, smoke tests, promote to production.
+- CI/CD: lint, typecheck, tests, Alembic migration dry-run, container build, security scan, deploy to staging, smoke tests, promote to production.
 - Infrastructure as code with Terraform or Pulumi once environment is selected.
 
-## 20. Backup, Restore, and Data Lifecycle
+## 21. Schema Migrations and Compatibility
+- Use Alembic for database schema migrations and version every API contract in OpenAPI.
+- Prefer expand/contract migrations: add nullable columns or new tables first, deploy code that writes both, backfill, then remove old fields later.
+- Spatial index creation on large tables runs concurrently or during maintenance windows.
+- Dataset schema mappings are versioned separately from app schema migrations.
+- Scenario result schemas include a version so old exports remain readable after model changes.
+
+## 22. Cost, Capacity, and Quota Controls
+- Start with one API replica, one worker pool, managed PostGIS, Redis, and object storage; scale workers independently when ingestion or analysis grows.
+- Budget alerts on database storage, object storage, tile egress, and CPU-heavy worker queues.
+- Per-tenant quotas and job concurrency limits prevent one customer from exhausting capacity.
+- Cache hot scenario results and tiles to reduce repeated PostGIS work.
+- Capacity planning inputs: parcels per county, constraint feature density, average vertices per analysis, and p95 manual-edit frequency.
+
+## 23. Backup, Restore, and Data Lifecycle
 - Nightly database backups plus point-in-time recovery.
 - Immutable raw source files retained by checksum.
 - Generated tiles and scenario exports can be regenerated from source data and scenario config.
@@ -297,14 +319,22 @@ Expected strain points: countywide parcel datasets with millions of features, ve
 - Add more counties and jurisdiction-specific setback profiles.
 - Improve export/reporting and scenario sharing.
 
-## 23. README / Local Run Expectations
+## 26. README / Local Run Expectations
 The repository should include:
 - `README.md` with prerequisites, `docker compose up`, dataset download/import commands, and demo parcel id.
 - `.env.example` with database, Redis, object storage, and auth settings.
 - `make ingest-demo`, `make test`, `make load-test-smoke`, and `make seed-demo`.
 - A short architecture decision record explaining MapLibre vs ArcGIS and PostGIS vs pure in-memory processing.
 
-## 24. Approach Writeup and Calls Made
+## 27. Architecture Decision Records / Decision Log
+Maintain ADRs for decisions that affect operability or correctness:
+- ADR-001: PostGIS as canonical spatial engine rather than browser-only Turf.js.
+- ADR-002: MapLibre and vector tiles/PMTiles for open-source map rendering.
+- ADR-003: Scenario-based immutable outputs for auditability.
+- ADR-004: Assignment-compatible EPSG:3857 area policy separated from production authoritative reporting.
+- ADR-005: Queue-backed async geoprocessing for large parcels and imports.
+
+## 28. Approach Writeup and Calls Made
 The writeup should explain:
 - Why PostGIS is the source of truth for reproducible spatial operations.
 - Why MapLibre is chosen for open-source interactive mapping and vector tile compatibility.

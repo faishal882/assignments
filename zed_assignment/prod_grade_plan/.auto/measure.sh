@@ -43,6 +43,12 @@ require "runbook" 'runbook|rollback|backup|restore|incident' 5
 require "phases" 'phase 0|phase 1|milestone|delivery plan|vertical slice' 5
 require "risks" 'risk register|failure mode|mitigation' 5
 require "writeup" 'approach writeup|decisions|calls made|tradeoffs' 4
+require "tenancy and permissions" 'tenant|workspace|role-based|rbac|organization' 4
+require "schema migrations" 'alembic|migration|backward compatible|expand.*contract|schema version' 4
+require "data quality gates" 'data quality|quarantine|checksum|lineage|validation report|acceptance threshold' 5
+require "tile pipeline" 'vector tile|pmtiles|tippecanoe|tilejson|tile generation' 4
+require "cost controls" 'cost|budget|quota|autoscal|capacity' 3
+require "decision records" 'adr|architecture decision record|decision log' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
