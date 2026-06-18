@@ -56,6 +56,9 @@ require "admin operations" 'admin|operator|dataset publish|disable.*dataset|feat
 require "accessibility" 'accessibility|wcag|keyboard|screen reader|color contrast' 4
 require "frontend performance" 'frontend performance|web worker|debounce|virtualize|bundle|render budget' 4
 require "browser resilience" 'offline|retry|network error|error boundary|recoverable' 3
+require "precision and slivers" 'precision grid|snap|sliver|st_snap|st_reduceprecision|tolerance' 5
+require "manual edit policy" 'restore policy|carve-out policy|outside parcel|cannot restore|edit policy' 4
+require "large geometry handling" 'st_subdivide|vertex count|simplif|generaliz|pathological geometry' 4
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
