@@ -86,6 +86,9 @@ require "ux empty loading states" 'empty state|loading state|skeleton|progress i
 require "slo error budget" 'error budget|slo|sla|availability target|service level' 4
 require "incident playbooks" 'incident playbook|triage|escalation|postmortem|severity' 4
 require "data rollback" 'data rollback|rollback dataset|disable.*version|revert dataset|bad data' 4
+require "limitations disclaimer" 'not legal advice|planning analysis|professional review|survey-grade|limitations' 4
+require "uncertainty confidence" 'uncertainty|confidence|data quality score|completeness|coverage gap' 4
+require "explainability" 'explainability|why removed|explanation|reason code|evidence' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi

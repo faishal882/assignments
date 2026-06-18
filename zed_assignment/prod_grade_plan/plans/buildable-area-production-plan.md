@@ -504,3 +504,16 @@ The writeup should explain:
 - Given overlapping constraints, when results are shown, then exclusive breakdown totals add up under deterministic priority rules.
 - Given invalid geometries or oversized edits, when submitted, then the API returns recoverable validation errors without crashing.
 - Given production deployment, then observability, backup/restore, security, performance, data lineage, and runbooks are in place.
+
+## 40. Limitations, Uncertainty, and Explainability
+This product is a planning analysis tool, not legal advice, a survey-grade determination, or a substitute for professional civil/environmental review. Every report and export should state this limitation clearly.
+
+Explainability requirements:
+- Each removed polygon has a reason code, source dataset, source feature id when available, setback distance, priority rank, and whether it was regulatory data, physical data, or a user manual edit.
+- The UI can answer “why was this area removed?” on click with evidence: layer name, source date, rule profile, geometry operation, and acreage contribution.
+- Overlap handling is transparent: show exclusive acreage used for totals and optional gross overlap diagnostics for expert review.
+
+Uncertainty and confidence signals:
+- Compute a data quality score per scenario from dataset freshness, geometry validation errors, source coverage, rule-profile confidence, and whether assumptions were overridden.
+- Warn when source coverage is incomplete, when constraints are outside their expected refresh cadence, or when a selected parcel has suspicious geometry.
+- Reports include unresolved assumptions and coverage gaps so users know where human due diligence is still required.
