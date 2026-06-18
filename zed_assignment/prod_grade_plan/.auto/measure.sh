@@ -125,6 +125,9 @@ require "export provenance" 'export provenance|report metadata|watermark|citatio
 require "unit policy" 'unit policy|unit conversion|acres|square feet|hectare|measurement units' 4
 require "localization" 'localization|i18n|locale|timezone|date format|number format' 3
 require "numeric precision" 'decimal precision|rounding mode|significant digits|precision policy|acreage precision' 4
+require "scenario branching" 'scenario branch|clone scenario|what-if|compare scenarios|version timeline' 4
+require "edit history" 'edit history|undo|redo|edit log|revision history' 4
+require "collaboration conflicts" 'collaboration|concurrent edit|conflict resolution|merge|presence' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
