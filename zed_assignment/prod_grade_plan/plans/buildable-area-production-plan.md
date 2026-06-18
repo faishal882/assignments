@@ -420,6 +420,14 @@ Use `EXPLAIN ANALYZE` in staging with real county data before adding new layers 
 - CSP, secure headers, dependency scanning, and container image scanning.
 - Avoid storing unnecessary owner PII; redact or exclude owner fields from parcel imports unless required.
 
+Encryption and storage security:
+- Enforce TLS/HTTPS for all browser, API, webhook, and admin traffic; use HSTS and modern certificate automation.
+- Use encryption at rest for PostGIS, Redis persistence if enabled, object storage, backups, and generated exports; prefer KMS-backed keys and document customer-managed key options if enterprise tenants require them.
+- Object storage buckets are private by default with public access blocked; access is via scoped service roles, signed URLs, or CDN origin access controls.
+- Separate raw source-data buckets, private scenario geometry, public/static tiles, exports, and backups with least-privilege bucket policies.
+- Rotate encryption keys and webhook signing secrets under the same emergency rotation process as application credentials.
+- Consider mTLS for internal service-to-service traffic or private networking when deployed in a regulated enterprise environment.
+
 Legal and compliance posture:
 - Publish terms of use, acceptable use policy, privacy policy, and explicit liability disclaimer before external production access.
 - Tenant agreements should clarify that acreage outputs are planning estimates, not legal determinations or survey-grade measurements.

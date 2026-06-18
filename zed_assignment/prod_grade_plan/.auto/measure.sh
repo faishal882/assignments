@@ -143,6 +143,9 @@ require "constraint confidence" 'constraint confidence|confidence score|source c
 require "dataset canary rollout" 'dataset canary|canary publish|rollout cohort|limited rollout|blast radius' 4
 require "shadow recompute" 'shadow recompute|shadow analysis|parallel run|compare output|dry-run publish' 4
 require "rollback criteria" 'rollback criteria|abort rollout|promotion gate|rollback threshold|stop condition' 3
+require "encryption at rest" 'encryption at rest|encrypted at rest|kms|customer-managed key|disk encryption' 4
+require "encryption in transit" 'tls|https|encryption in transit|mtls|certificate' 4
+require "object storage security" 'object storage policy|bucket policy|private bucket|signed url|public access block' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
