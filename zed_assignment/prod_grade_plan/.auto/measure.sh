@@ -137,6 +137,9 @@ require "event taxonomy" 'domain event|event taxonomy|scenario.*completed|datase
 require "parcel identity lifecycle" 'parcel identity|apn normalization|parcel split|parcel merge|parcel lifecycle|assessor id' 4
 require "address search normalization" 'address normalization|geocoding|situs|search ranking|fuzzy search' 3
 require "parcel lineage" 'parcel lineage|predecessor|successor|historic parcel|parcel version' 4
+require "constraint taxonomy" 'constraint taxonomy|constraint classification|layer taxonomy|reason taxonomy|constraint type' 4
+require "attribute normalization" 'attribute normalization|normalized attribute|class mapping|source attribute|attribute crosswalk' 4
+require "constraint confidence" 'constraint confidence|confidence score|source confidence|evidence strength|uncertain constraint' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi

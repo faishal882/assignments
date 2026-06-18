@@ -159,6 +159,14 @@ Candidate public layers:
 
 Every dataset is stored with URL, download timestamp, checksum, license, transformation script version, and schema mapping.
 
+Constraint taxonomy and attribute normalization:
+- Maintain a canonical constraint taxonomy: regulatory exclusion, physical obstruction, environmental sensitivity, infrastructure/easement, advisory risk, and user manual edit.
+- For each source layer, define an attribute crosswalk from source-specific fields to normalized attributes such as constraint type, subtype, confidence score, evidence strength, regulatory/advisory status, and default reason code.
+- NWI wetlands, FEMA flood zones, HIFLD transmission lines, building footprints, and protected-area layers each need layer-specific class mapping rules rather than a generic polygon-is-exclusion assumption.
+- Constraint confidence is part of the result: authoritative regulatory polygon, inferred public-data feature, assumed easement width, stale source, or user-drawn geometry are displayed differently and exported for review.
+- If source attributes are missing or ambiguous, the ingestion pipeline assigns an uncertain constraint classification, surfaces warnings, and may require human review before the layer is enabled by default.
+- The breakdown reason taxonomy is versioned so historical reports keep their original reason labels while new scenarios benefit from improved classification.
+
 ## 8. Multi-County Rollout and Source Mapping Registry
 Scaling beyond the first Texas county needs a repeatable onboarding path rather than one-off imports.
 - County onboarding checklist: confirm source portal, license, refresh cadence, parcel identifier, geometry CRS, attribute completeness, demo parcels, and fallback download path.
