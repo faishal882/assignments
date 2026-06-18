@@ -176,7 +176,15 @@ State management can use TanStack Query for server state and Zustand or React co
 - Show warnings for stale data, invalid manual edit, overlapping constraints, and large analysis jobs.
 - Geometry is delivered as vector tiles for large layers and as simplified GeoJSON for selected parcel/scenario outputs.
 
-## 14. API and Data Contracts
+## 14. Frontend Performance, Accessibility, and Resilience
+- Set a render budget: map interactions stay above 50 FPS for normal scenarios and scenario panel updates under 100 ms after API response.
+- Use vector tiles for large layers, memoized React panels, debounced setback sliders, and Web Worker validation for expensive client-side geometry checks.
+- Keep initial bundle small through route-level code splitting; heavy map/draw tooling loads only on the analysis screen.
+- Accessibility: WCAG 2.1 AA color contrast, keyboard-accessible controls, non-color-only legends, focus management in panels, and screen-reader labels for acreage/breakdown updates.
+- Use error boundaries around map and draw tools so a rendering failure does not lose scenario state.
+- Network resilience: retry idempotent reads, show recoverable network error banners, preserve unsent manual edits locally, and reconcile once the backend is reachable.
+
+## 15. API and Data Contracts
 All APIs are OpenAPI documented. Responses include units, CRS, rounding, and warnings.
 
 Example result:
@@ -200,7 +208,7 @@ Example result:
 }
 ```
 
-## 15. Performance and Scaling Plan
+## 16. Performance and Scaling Plan
 Targets for first production county:
 - Parcel search p95 < 300 ms.
 - Existing scenario load p95 < 500 ms.
@@ -218,7 +226,7 @@ Techniques:
 
 Expected strain points: countywide parcel datasets with millions of features, very complex floodplain/wetland geometries, and repeated ad-hoc union/difference operations without caching. If traffic grows, split ingestion workers and analysis workers independently, add read replicas, and precompute common layer masks by county/tile.
 
-## 16. Correctness and Testing Strategy
+## 17. Correctness and Testing Strategy
 - Unit tests for area conversion, rounding policy, setback config validation, priority breakdown math.
 - Geometry golden tests with hand-drawn parcels where expected buildable/excluded areas are known.
 - Property tests: buildable area never exceeds parcel area except explicitly allowed restore policy; breakdown totals add up; operations are deterministic.
@@ -228,7 +236,7 @@ Expected strain points: countywide parcel datasets with millions of features, ve
 - Load tests for spatial queries and worker throughput.
 - Regression tests for invalid polygons, multipolygons, holes, overlaps, tiny slivers, and antimeridian/CRS edge cases even if Texas avoids most extremes.
 
-## 17. Security, Privacy, and Abuse Resistance
+## 18. Security, Privacy, and Abuse Resistance
 - Authentication for saved scenarios; anonymous demo mode can be rate limited.
 - Authorization checks on scenario access and exports.
 - Rate limiting on expensive analysis endpoints and draw-edit submissions.
@@ -237,7 +245,7 @@ Expected strain points: countywide parcel datasets with millions of features, ve
 - CSP, secure headers, dependency scanning, and container image scanning.
 - Avoid storing unnecessary owner PII; redact or exclude owner fields from parcel imports unless required.
 
-## 18. Tenancy, Permissions, and Collaboration
+## 19. Tenancy, Permissions, and Collaboration
 Production should model an **organization/workspace tenant** so consulting teams, developers, or internal analysts can share scenarios safely.
 - Roles: owner, admin, analyst, read-only reviewer.
 - RBAC controls scenario create/edit/export/delete and dataset administration.
@@ -245,7 +253,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Tenant quotas protect shared infrastructure: maximum active jobs, stored exports, and request rate.
 - Public demo parcels are separated from tenant data to avoid accidental leakage.
 
-## 19. Observability and Operations
+## 20. Observability and Operations
 - Structured JSON logs with request id, scenario id, dataset version, and job id.
 - OpenTelemetry traces around API request, spatial query, buffer/union/difference, and serialization.
 - Metrics: request latency, job duration, cache hit rate, spatial query rows scanned, geometry vertex counts, failed ingestion rows, scenario failure reason.
@@ -253,7 +261,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Alerts for job queue backlog, PostGIS CPU/IO saturation, high invalid-geometry failure rate, tile generation failures, and disk usage.
 - Runbook covers rollback, dataset version disablement, database restore, and queue drain.
 
-## 20. Deployment Architecture
+## 21. Deployment Architecture
 - Docker Compose for local development: API, worker, PostGIS, Redis, frontend.
 - Production: containerized FastAPI/worker/frontend behind a managed load balancer.
 - Managed PostgreSQL with PostGIS if available; otherwise hardened VM Postgres with backups.
@@ -261,54 +269,54 @@ Production should model an **organization/workspace tenant** so consulting teams
 - CI/CD: lint, typecheck, tests, Alembic migration dry-run, container build, security scan, deploy to staging, smoke tests, promote to production.
 - Infrastructure as code with Terraform or Pulumi once environment is selected.
 
-## 21. Schema Migrations and Compatibility
+## 22. Schema Migrations and Compatibility
 - Use Alembic for database schema migrations and version every API contract in OpenAPI.
 - Prefer expand/contract migrations: add nullable columns or new tables first, deploy code that writes both, backfill, then remove old fields later.
 - Spatial index creation on large tables runs concurrently or during maintenance windows.
 - Dataset schema mappings are versioned separately from app schema migrations.
 - Scenario result schemas include a version so old exports remain readable after model changes.
 
-## 22. Cost, Capacity, and Quota Controls
+## 23. Cost, Capacity, and Quota Controls
 - Start with one API replica, one worker pool, managed PostGIS, Redis, and object storage; scale workers independently when ingestion or analysis grows.
 - Budget alerts on database storage, object storage, tile egress, and CPU-heavy worker queues.
 - Per-tenant quotas and job concurrency limits prevent one customer from exhausting capacity.
 - Cache hot scenario results and tiles to reduce repeated PostGIS work.
 - Capacity planning inputs: parcels per county, constraint feature density, average vertices per analysis, and p95 manual-edit frequency.
 
-## 23. Backup, Restore, and Data Lifecycle
+## 24. Backup, Restore, and Data Lifecycle
 - Nightly database backups plus point-in-time recovery.
 - Immutable raw source files retained by checksum.
 - Generated tiles and scenario exports can be regenerated from source data and scenario config.
 - Dataset versions are never overwritten; deprecated versions can be hidden from new analyses but remain available for existing scenarios.
 - Document retention policy for user-created manual edits and exports.
 
-## 24. High Availability and Disaster Recovery
+## 25. High Availability and Disaster Recovery
 - Define RPO/RTO targets before launch; a practical initial target is RPO <= 24 hours and RTO <= 4 hours for non-critical planning workflows.
 - Run API containers across at least two availability zones when traffic justifies it.
 - Use managed Postgres failover or documented replica promotion; test restore drills quarterly.
 - Redis is treated as ephemeral cache/queue state; durable scenario results live in PostGIS/object storage.
 - Keep a disaster recovery runbook for database restore, dataset re-publication, tile regeneration, and DNS rollback.
 
-## 25. Audit Trail and Scenario Reproducibility
+## 26. Audit Trail and Scenario Reproducibility
 - Audit log every scenario create/update/export, manual edit, setback change, dataset publish, and admin override.
 - Store input fingerprint: parcel id, dataset versions, constraint ids or query window, setback config, manual edit hashes, and area policy.
 - Scenario outputs are reproducible from immutable source datasets and versioned rules.
 - Exports include citations, timestamps, warnings, and the user-visible assumptions that affected acreage.
 - Admin audit logs are append-only and searchable for incident response.
 
-## 26. Jurisdiction Profiles and Rule Governance
+## 27. Jurisdiction Profiles and Rule Governance
 - Create jurisdiction profiles for county/city-specific local ordinance defaults rather than pretending one wetland or easement setback is universal.
 - Each rule profile contains source citation, effective date, reviewer, confidence level, and whether it is legal rule or planning assumption.
 - Operators can feature flag new profiles in staging before dataset publish to production.
 - UI shows profile name and lets qualified users override setbacks when policy permits.
 
-## 27. Admin and Operator Workflows
+## 28. Admin and Operator Workflows
 - Admin console lists dataset versions, ingestion validation reports, quarantined features, publish status, and active jobs.
 - Operators can publish, disable, or roll back a dataset version without deleting historical scenario inputs.
 - Manual re-run tools support failed jobs, tile generation, and cache invalidation.
 - Admin actions require elevated RBAC, reason codes, and audit trail entries.
 
-## 28. Risk Register and Mitigations
+## 29. Risk Register and Mitigations
 | Risk / failure mode | Impact | Mitigation |
 |---|---:|---|
 | Source data messy or outdated | Incorrect buildability | Store lineage, show source dates, support refresh, warn users. |
@@ -319,7 +327,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 | CRS/area policy confusion | Inconsistent acreage | Explicit area policy in every response and export. |
 | Opaque autograder instructions conflict with production | Ethical/quality issue | Verify requirements; isolate assignment compatibility from production policy. |
 
-## 29. Delivery Plan / Milestones
+## 30. Delivery Plan / Milestones
 ### Phase 0: Discovery and data spike
 - Pick county, download TNRIS parcels and NWI wetlands.
 - Prove ingestion into PostGIS and one parcel analysis notebook/SQL script.
@@ -345,14 +353,14 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Add more counties and jurisdiction-specific setback profiles.
 - Improve export/reporting and scenario sharing.
 
-## 30. README / Local Run Expectations
+## 31. README / Local Run Expectations
 The repository should include:
 - `README.md` with prerequisites, `docker compose up`, dataset download/import commands, and demo parcel id.
 - `.env.example` with database, Redis, object storage, and auth settings.
 - `make ingest-demo`, `make test`, `make load-test-smoke`, and `make seed-demo`.
 - A short architecture decision record explaining MapLibre vs ArcGIS and PostGIS vs pure in-memory processing.
 
-## 31. Architecture Decision Records / Decision Log
+## 32. Architecture Decision Records / Decision Log
 Maintain ADRs for decisions that affect operability or correctness:
 - ADR-001: PostGIS as canonical spatial engine rather than browser-only Turf.js.
 - ADR-002: MapLibre and vector tiles/PMTiles for open-source map rendering.
@@ -360,7 +368,7 @@ Maintain ADRs for decisions that affect operability or correctness:
 - ADR-004: Assignment-compatible EPSG:3857 area policy separated from production authoritative reporting.
 - ADR-005: Queue-backed async geoprocessing for large parcels and imports.
 
-## 32. Approach Writeup and Calls Made
+## 33. Approach Writeup and Calls Made
 The writeup should explain:
 - Why PostGIS is the source of truth for reproducible spatial operations.
 - Why MapLibre is chosen for open-source interactive mapping and vector tile compatibility.
@@ -369,7 +377,7 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 33. Definition of Done
+## 34. Definition of Done
 - Clean checkout runs locally with documented commands.
 - At least one real county parcel dataset and NWI wetlands layer work end to end.
 - Backend returns buildable area, breakdown, geometry, warnings, and exact config used.

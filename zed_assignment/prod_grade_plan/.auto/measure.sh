@@ -53,6 +53,9 @@ require "auditability" 'audit trail|audit log|immutable|input fingerprint|reprod
 require "jurisdiction profiles" 'jurisdiction profile|local ordinance|ordinance|county profile|rule profile' 4
 require "ha dr" 'high availability|disaster recovery|rpo|rto|failover' 4
 require "admin operations" 'admin|operator|dataset publish|disable.*dataset|feature flag' 3
+require "accessibility" 'accessibility|wcag|keyboard|screen reader|color contrast' 4
+require "frontend performance" 'frontend performance|web worker|debounce|virtualize|bundle|render budget' 4
+require "browser resilience" 'offline|retry|network error|error boundary|recoverable' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
