@@ -282,7 +282,33 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Dataset versions are never overwritten; deprecated versions can be hidden from new analyses but remain available for existing scenarios.
 - Document retention policy for user-created manual edits and exports.
 
-## 24. Risk Register and Mitigations
+## 24. High Availability and Disaster Recovery
+- Define RPO/RTO targets before launch; a practical initial target is RPO <= 24 hours and RTO <= 4 hours for non-critical planning workflows.
+- Run API containers across at least two availability zones when traffic justifies it.
+- Use managed Postgres failover or documented replica promotion; test restore drills quarterly.
+- Redis is treated as ephemeral cache/queue state; durable scenario results live in PostGIS/object storage.
+- Keep a disaster recovery runbook for database restore, dataset re-publication, tile regeneration, and DNS rollback.
+
+## 25. Audit Trail and Scenario Reproducibility
+- Audit log every scenario create/update/export, manual edit, setback change, dataset publish, and admin override.
+- Store input fingerprint: parcel id, dataset versions, constraint ids or query window, setback config, manual edit hashes, and area policy.
+- Scenario outputs are reproducible from immutable source datasets and versioned rules.
+- Exports include citations, timestamps, warnings, and the user-visible assumptions that affected acreage.
+- Admin audit logs are append-only and searchable for incident response.
+
+## 26. Jurisdiction Profiles and Rule Governance
+- Create jurisdiction profiles for county/city-specific local ordinance defaults rather than pretending one wetland or easement setback is universal.
+- Each rule profile contains source citation, effective date, reviewer, confidence level, and whether it is legal rule or planning assumption.
+- Operators can feature flag new profiles in staging before dataset publish to production.
+- UI shows profile name and lets qualified users override setbacks when policy permits.
+
+## 27. Admin and Operator Workflows
+- Admin console lists dataset versions, ingestion validation reports, quarantined features, publish status, and active jobs.
+- Operators can publish, disable, or roll back a dataset version without deleting historical scenario inputs.
+- Manual re-run tools support failed jobs, tile generation, and cache invalidation.
+- Admin actions require elevated RBAC, reason codes, and audit trail entries.
+
+## 28. Risk Register and Mitigations
 | Risk / failure mode | Impact | Mitigation |
 |---|---:|---|
 | Source data messy or outdated | Incorrect buildability | Store lineage, show source dates, support refresh, warn users. |
@@ -293,7 +319,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 | CRS/area policy confusion | Inconsistent acreage | Explicit area policy in every response and export. |
 | Opaque autograder instructions conflict with production | Ethical/quality issue | Verify requirements; isolate assignment compatibility from production policy. |
 
-## 25. Delivery Plan / Milestones
+## 29. Delivery Plan / Milestones
 ### Phase 0: Discovery and data spike
 - Pick county, download TNRIS parcels and NWI wetlands.
 - Prove ingestion into PostGIS and one parcel analysis notebook/SQL script.
@@ -319,14 +345,14 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Add more counties and jurisdiction-specific setback profiles.
 - Improve export/reporting and scenario sharing.
 
-## 26. README / Local Run Expectations
+## 30. README / Local Run Expectations
 The repository should include:
 - `README.md` with prerequisites, `docker compose up`, dataset download/import commands, and demo parcel id.
 - `.env.example` with database, Redis, object storage, and auth settings.
 - `make ingest-demo`, `make test`, `make load-test-smoke`, and `make seed-demo`.
 - A short architecture decision record explaining MapLibre vs ArcGIS and PostGIS vs pure in-memory processing.
 
-## 27. Architecture Decision Records / Decision Log
+## 31. Architecture Decision Records / Decision Log
 Maintain ADRs for decisions that affect operability or correctness:
 - ADR-001: PostGIS as canonical spatial engine rather than browser-only Turf.js.
 - ADR-002: MapLibre and vector tiles/PMTiles for open-source map rendering.
@@ -334,7 +360,7 @@ Maintain ADRs for decisions that affect operability or correctness:
 - ADR-004: Assignment-compatible EPSG:3857 area policy separated from production authoritative reporting.
 - ADR-005: Queue-backed async geoprocessing for large parcels and imports.
 
-## 28. Approach Writeup and Calls Made
+## 32. Approach Writeup and Calls Made
 The writeup should explain:
 - Why PostGIS is the source of truth for reproducible spatial operations.
 - Why MapLibre is chosen for open-source interactive mapping and vector tile compatibility.
@@ -343,7 +369,7 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 29. Definition of Done
+## 33. Definition of Done
 - Clean checkout runs locally with documented commands.
 - At least one real county parcel dataset and NWI wetlands layer work end to end.
 - Backend returns buildable area, breakdown, geometry, warnings, and exact config used.

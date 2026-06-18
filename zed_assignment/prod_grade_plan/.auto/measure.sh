@@ -49,6 +49,10 @@ require "data quality gates" 'data quality|quarantine|checksum|lineage|validatio
 require "tile pipeline" 'vector tile|pmtiles|tippecanoe|tilejson|tile generation' 4
 require "cost controls" 'cost|budget|quota|autoscal|capacity' 3
 require "decision records" 'adr|architecture decision record|decision log' 3
+require "auditability" 'audit trail|audit log|immutable|input fingerprint|reproducible' 5
+require "jurisdiction profiles" 'jurisdiction profile|local ordinance|ordinance|county profile|rule profile' 4
+require "ha dr" 'high availability|disaster recovery|rpo|rto|failover' 4
+require "admin operations" 'admin|operator|dataset publish|disable.*dataset|feature flag' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
