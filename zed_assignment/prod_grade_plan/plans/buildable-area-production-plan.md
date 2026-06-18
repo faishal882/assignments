@@ -223,6 +223,9 @@ State management can use TanStack Query for server state and Zustand or React co
 - Accessibility: WCAG 2.1 AA color contrast, keyboard-accessible controls, non-color-only legends, focus management in panels, and screen-reader labels for acreage/breakdown updates.
 - Use error boundaries around map and draw tools so a rendering failure does not lose scenario state.
 - Network resilience: retry idempotent reads, show recoverable network error banners, preserve unsent manual edits locally, and reconcile once the backend is reachable.
+- Responsive design: desktop-first for analysis productivity, but tablet/mobile viewports can search parcels, review results, and use touch-friendly layer controls; complex drawing may show guidance on small screens.
+- Browser compatibility target: current Chrome, Firefox, Safari, and Edge; automated smoke tests cover WebGL availability and graceful fallback when map rendering is unsupported.
+- UX states: empty state before parcel selection, skeleton/loading state for scenario fetch, progress indicator for queued/running jobs, and status banners for partial outages or stale data.
 
 ## 17. API and Data Contracts
 All APIs are OpenAPI documented. Responses include units, CRS, rounding, and warnings.
