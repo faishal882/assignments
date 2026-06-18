@@ -111,12 +111,21 @@ Use PostgreSQL + PostGIS as the canonical spatial store.
 
 Tables:
 - `source_dataset(id, name, provider, source_url, license, fetched_at, checksum, srid, notes)`.
-- `parcel(id, county, apn, owner_redacted, source_dataset_id, geom geometry(MultiPolygon, 3857), geom_native, bbox, area_m2_3857)`.
+- `parcel(id, county, apn, normalized_apn, owner_redacted, source_dataset_id, geom geometry(MultiPolygon, 3857), geom_native, bbox, area_m2_3857)`.
+- `parcel_identity(id, county, normalized_apn, assessor_id, situs_address_normalized, first_seen_dataset_id, last_seen_dataset_id, status)`.
+- `parcel_lineage(id, predecessor_parcel_identity_id, successor_parcel_identity_id, relationship_type, dataset_id, confidence)` for split/merge/renumber events.
 - `constraint_feature(id, layer, source_dataset_id, class, subtype, properties jsonb, geom geometry(Geometry, 3857))`.
 - `constraint_rule(layer, default_setback_m, priority, exclusion_policy, citation_url, enabled_default)`.
 - `scenario(id, parcel_id, status, config jsonb, created_by, created_at, input_fingerprint)`.
 - `manual_edit(id, scenario_id, edit_type, geom geometry(Polygon, 3857), client_metadata jsonb)`.
 - `scenario_result(scenario_id, buildable_geom, excluded_geom, breakdown jsonb, area_m2, acreage_rounded, warnings jsonb)`.
+
+Parcel identity and search:
+- Normalize APN/assessor id formats per county and keep the raw source value for audit.
+- Support address normalization for situs search and fuzzy ranking without treating geocoding as authoritative parcel selection.
+- Track parcel lifecycle across dataset refreshes: unchanged, geometry changed, split, merge, retired, or renumbered.
+- Historical scenarios pin the exact parcel version used; when users open an old scenario, show whether a successor parcel exists and offer clone-on-latest-parcel.
+- Split/merge detection combines normalized APN, assessor ids, geometry overlap, area deltas, and source metadata; low-confidence lineage requires human review before publishing.
 
 Indexes:
 - GiST indexes on all geometry columns.

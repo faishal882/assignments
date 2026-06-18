@@ -134,6 +134,9 @@ require "schema mapping registry" 'schema mapping|field mapping|crosswalk|mappin
 require "transactional outbox" 'transactional outbox|outbox table|exactly-once|at-least-once|event delivery' 4
 require "webhooks integrations" 'webhook|integration|external system|callback|subscription event' 4
 require "event taxonomy" 'domain event|event taxonomy|scenario.*completed|dataset.*published|event schema' 3
+require "parcel identity lifecycle" 'parcel identity|apn normalization|parcel split|parcel merge|parcel lifecycle|assessor id' 4
+require "address search normalization" 'address normalization|geocoding|situs|search ranking|fuzzy search' 3
+require "parcel lineage" 'parcel lineage|predecessor|successor|historic parcel|parcel version' 4
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
