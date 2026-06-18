@@ -116,6 +116,9 @@ require "autoscaling strategy" 'autoscaling|scale up|scale down|horizontal pod a
 require "legal terms" 'terms of use|privacy policy|acceptable use|disclaimer|liability' 4
 require "data subject requests" 'data subject request|dsr|delete account|export data|right to deletion|privacy request' 3
 require "compliance artifacts" 'accessibility conformance|vp[ao]t|soc 2|compliance artifact|security questionnaire|dpa' 3
+require "usage metering" 'usage metering|metered|usage record|billing|chargeback|cost attribution' 4
+require "queue fairness" 'fair queue|priority queue|tenant fairness|starvation|noisy neighbor|weighted' 4
+require "entitlements" 'entitlement|plan limit|feature access|quota tier|subscription|billing plan' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi

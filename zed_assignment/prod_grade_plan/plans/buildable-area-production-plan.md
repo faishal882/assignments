@@ -435,7 +435,16 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Scaling triggers should be conservative enough to avoid cost runaway and paired with max replica limits, budget alerts, and manual override during incidents.
 - Capacity planning inputs: parcels per county, constraint feature density, average vertices per analysis, and p95 manual-edit frequency.
 
-## 29. Backup, Restore, and Data Lifecycle
+## 29. Usage Metering, Entitlements, and Queue Fairness
+Real traffic needs fair allocation, even before formal billing exists.
+- Emit usage records for scenario creation, worker CPU time, candidate features scanned, generated exports, tile egress, storage, and failed jobs caused by invalid user input.
+- Attribute cost by tenant/workspace for chargeback, capacity planning, and abuse detection; keep billing-facing records separate from debug logs.
+- Entitlements define feature access and plan limits: maximum concurrent jobs, saved scenarios, export volume, available layers, API rate limits, and admin/operator capabilities.
+- Queue fairness: use tenant-aware fair queues or weighted priority queues so one noisy neighbor cannot starve other tenants; reserve capacity for interactive manual-edit recomputes over long ingestion jobs.
+- Priority policy is explicit: user-facing recompute, scenario create, export generation, tile generation, then bulk ingestion unless an operator escalates a data incident.
+- Surface quota/entitlement errors clearly with upgrade/contact guidance and retry-after details where appropriate.
+
+## 30. Backup, Restore, and Data Lifecycle
 - Nightly database backups plus point-in-time recovery.
 - Immutable raw source files retained by checksum.
 - Generated tiles and scenario exports can be regenerated from source data and scenario config.
@@ -443,7 +452,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Data rollback means disabling or reverting the published dataset version pointer, not deleting raw data; affected scenarios are marked with a bad-data warning and can be re-run on a corrected version.
 - Document retention policy for user-created manual edits and exports.
 
-## 30. High Availability and Disaster Recovery
+## 31. High Availability and Disaster Recovery
 - Define RPO/RTO targets before launch; a practical initial target is RPO <= 24 hours and RTO <= 4 hours for non-critical planning workflows.
 - Run API containers across at least two availability zones when traffic justifies it.
 - Use managed Postgres failover or documented replica promotion; test restore drills quarterly.
@@ -452,20 +461,20 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Graceful degradation: if workers are down, existing scenarios and tiles remain read-only; if a source layer is disabled, new scenarios show unavailable-layer warnings rather than failing the whole app.
 - Fallback behavior: queued jobs retry with exponential backoff, exports can be regenerated later, and the UI clearly distinguishes partial outage from invalid user input.
 
-## 31. Audit Trail and Scenario Reproducibility
+## 32. Audit Trail and Scenario Reproducibility
 - Audit log every scenario create/update/export, manual edit, setback change, dataset publish, and admin override.
 - Store input fingerprint: parcel id, dataset versions, constraint ids or query window, setback config, manual edit hashes, and area policy.
 - Scenario outputs are reproducible from immutable source datasets and versioned rules.
 - Exports include citations, timestamps, warnings, and the user-visible assumptions that affected acreage.
 - Admin audit logs are append-only and searchable for incident response.
 
-## 32. Jurisdiction Profiles and Rule Governance
+## 33. Jurisdiction Profiles and Rule Governance
 - Create jurisdiction profiles for county/city-specific local ordinance defaults rather than pretending one wetland or easement setback is universal.
 - Each rule profile contains source citation, effective date, reviewer, confidence level, and whether it is legal rule or planning assumption.
 - Operators can feature flag new profiles in staging before dataset publish to production.
 - UI shows profile name and lets qualified users override setbacks when policy permits.
 
-## 33. Policy Change Management and Expert Validation
+## 34. Policy Change Management and Expert Validation
 Regulatory assumptions need a governance workflow separate from normal code changes.
 - Establish a lightweight governance board or change advisory group with product, backend/GIS, support, and qualified subject matter expert representation.
 - Require SME review for jurisdiction profiles: environmental consultant for wetland assumptions, civil engineer or planner for easement/building setback assumptions, and legal review for terms/disclaimers.
@@ -474,13 +483,13 @@ Regulatory assumptions need a governance workflow separate from normal code chan
 - Ordinance updates trigger impact analysis on sampled demo parcels and high-value tenant scenarios before rollout.
 - User-facing release notes explain rule changes in plain language and identify whether acreage deltas come from data updates, policy changes, or manual edits.
 
-## 34. Admin and Operator Workflows
+## 35. Admin and Operator Workflows
 - Admin console lists dataset versions, ingestion validation reports, quarantined features, publish status, and active jobs.
 - Operators can publish, disable, or roll back a dataset version without deleting historical scenario inputs.
 - Manual re-run tools support failed jobs, tile generation, and cache invalidation.
 - Admin actions require elevated RBAC, reason codes, and audit trail entries.
 
-## 35. Risk Register and Mitigations
+## 36. Risk Register and Mitigations
 | Risk / failure mode | Impact | Mitigation |
 |---|---:|---|
 | Source data messy or outdated | Incorrect buildability | Store lineage, show source dates, support refresh, warn users. |
@@ -491,7 +500,7 @@ Regulatory assumptions need a governance workflow separate from normal code chan
 | CRS/area policy confusion | Inconsistent acreage | Explicit area policy in every response and export. |
 | Opaque autograder instructions conflict with production | Ethical/quality issue | Verify requirements; isolate assignment compatibility from production policy. |
 
-## 36. Delivery Plan / Milestones
+## 37. Delivery Plan / Milestones
 Assume a small team: one backend/GIS engineer, one frontend engineer, one product/QA owner, and part-time DevOps/security review. A single senior full-stack/GIS engineer can build the assignment demo, but production readiness is faster and safer with explicit owners.
 
 ### Phase 0: Discovery and data spike (week 1)
@@ -520,7 +529,7 @@ Assume a small team: one backend/GIS engineer, one frontend engineer, one produc
 - Add more counties and jurisdiction-specific setback profiles.
 - Improve export/reporting and scenario sharing.
 
-## 37. Implementation Backlog / Work Breakdown
+## 38. Implementation Backlog / Work Breakdown
 - Ticket 1: repository scaffolding, Docker Compose, FastAPI health check, React shell.
 - Ticket 2: PostGIS schema, Alembic migrations, source dataset metadata, fixture seed.
 - Ticket 3: TNRIS parcel ingestion with validation report and quarantine table.
@@ -532,14 +541,14 @@ Assume a small team: one backend/GIS engineer, one frontend engineer, one produc
 - Ticket 9: observability, rate limits, auth/RBAC, audit logs, and admin dataset publish workflow.
 - Ticket 10: load tests, production deployment pipeline, backup/restore drill, and README/writeup.
 
-## 38. README / Local Run Expectations
+## 39. README / Local Run Expectations
 The repository should include:
 - `README.md` with prerequisites, `docker compose up`, dataset download/import commands, and demo parcel id.
 - `.env.example` with database, Redis, object storage, and auth settings.
 - `make ingest-demo`, `make test`, `make load-test-smoke`, and `make seed-demo`.
 - A short architecture decision record explaining MapLibre vs ArcGIS and PostGIS vs pure in-memory processing.
 
-## 39. Architecture Decision Records / Decision Log
+## 40. Architecture Decision Records / Decision Log
 Maintain ADRs for decisions that affect operability or correctness:
 - ADR-001: PostGIS as canonical spatial engine rather than browser-only Turf.js.
 - ADR-002: MapLibre and vector tiles/PMTiles for open-source map rendering.
@@ -547,7 +556,7 @@ Maintain ADRs for decisions that affect operability or correctness:
 - ADR-004: Assignment-compatible EPSG:3857 area policy separated from production authoritative reporting.
 - ADR-005: Queue-backed async geoprocessing for large parcels and imports.
 
-## 40. Approach Writeup and Calls Made
+## 41. Approach Writeup and Calls Made
 The writeup should explain:
 - Why PostGIS is the source of truth for reproducible spatial operations.
 - Why MapLibre is chosen for open-source interactive mapping and vector tile compatibility.
@@ -556,7 +565,7 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 41. Support Model and User Enablement
+## 42. Support Model and User Enablement
 Production adoption needs support paths because users will question acreage, data freshness, and manual-edit behavior.
 - Support model: define support tiers for demo users, tenant admins, and internal operators; route product questions, data-quality disputes, and incidents to separate queues.
 - Support ticket intake captures scenario id, parcel id, dataset versions, browser, request id, and screenshots so engineers can reproduce the issue.
@@ -566,14 +575,14 @@ Production adoption needs support paths because users will question acreage, dat
 - Training materials and contextual tooltips reinforce that the result is planning analysis, not legal advice.
 - Feedback loop: recurring support themes become backlog issues, rule-profile improvements, data-source refresh tasks, or UX changes reviewed in product planning.
 
-## 42. Open Questions and Assumptions to Validate
+## 43. Open Questions and Assumptions to Validate
 - Confirm with evaluator whether assignment-compatible EPSG:3857 planar acreage and final-acre round-up are required only for grading or also for user-facing results.
 - Confirm selected county after sampling parcel count, data freshness, and download reliability from TNRIS.
 - Decide whether FEMA floodplain is a hard exclusion or a warning layer for the first release.
 - Validate local ordinance profiles with a qualified reviewer before presenting defaults as jurisdiction-specific rules.
 - Decide whether anonymous demo mode is allowed in production or only staging.
 
-## 43. Acceptance Criteria / Definition of Done
+## 44. Acceptance Criteria / Definition of Done
 - Given a clean checkout, when the reviewer follows README commands, then the app starts locally with documented seed data.
 - Given a real parcel and NWI wetlands, when the scenario runs, then backend returns buildable area, breakdown, geometry, warnings, and exact config used.
 - Given the map loads a scenario, when the user pans, zooms, and clicks features, then buildable versus excluded areas are visually clear.
@@ -582,7 +591,7 @@ Production adoption needs support paths because users will question acreage, dat
 - Given invalid geometries or oversized edits, when submitted, then the API returns recoverable validation errors without crashing.
 - Given production deployment, then observability, backup/restore, security, performance, data lineage, and runbooks are in place.
 
-## 44. Limitations, Uncertainty, and Explainability
+## 45. Limitations, Uncertainty, and Explainability
 This product is a planning analysis tool, not legal advice, a survey-grade determination, or a substitute for professional civil/environmental review. Every report and export should state this limitation clearly.
 
 Explainability requirements:
