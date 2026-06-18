@@ -357,6 +357,13 @@ Use `EXPLAIN ANALYZE` in staging with real county data before adding new layers 
 - CSP, secure headers, dependency scanning, and container image scanning.
 - Avoid storing unnecessary owner PII; redact or exclude owner fields from parcel imports unless required.
 
+Legal and compliance posture:
+- Publish terms of use, acceptable use policy, privacy policy, and explicit liability disclaimer before external production access.
+- Tenant agreements should clarify that acreage outputs are planning estimates, not legal determinations or survey-grade measurements.
+- Provide a data processing agreement (DPA) when customers store user accounts, saved scenarios, exports, or other personal/business data.
+- Implement privacy request workflows for account export, delete account, data subject requests (DSR), and retention exceptions while preserving legally required audit records.
+- Maintain compliance artifacts for enterprise review: security questionnaire answers, architecture diagram, data-flow diagram, subprocessors list, backup policy, incident response summary, and accessibility conformance/VPAT-style notes.
+
 ## 22. Threat Model
 Use a lightweight STRIDE threat model before production launch:
 - Spoofing: protect login/session flows, require MFA for admins, and verify tenant membership on every scenario access.
