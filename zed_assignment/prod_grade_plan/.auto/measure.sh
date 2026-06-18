@@ -98,6 +98,9 @@ require "human approval workflow" 'approval workflow|human review|reviewer sign-
 require "api versioning" 'api version|/v1|versioned api|semantic version|backward compatible' 4
 require "deprecation policy" 'deprecation|sunset|migration window|breaking change|compatibility window' 4
 require "contract testing" 'contract test|consumer-driven|openapi diff|schema compatibility|client compatibility' 4
+require "database operations" 'vacuum|analyze|autovacuum|connection pool|pgbouncer|query timeout' 4
+require "partitioning archival" 'partition|archive|retention|cold storage|table bloat|maintenance window' 3
+require "query safeguards" 'statement timeout|query budget|slow query|kill.*query|resource limit' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi

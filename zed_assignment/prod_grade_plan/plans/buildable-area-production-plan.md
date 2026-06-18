@@ -108,6 +108,13 @@ Indexes:
 - B-tree on `county`, `apn`, layer and source version.
 - Optional `ST_Subdivide` materialized table for very large polygons.
 
+Database operations for real traffic:
+- Use PgBouncer or managed connection pooling so API and worker bursts do not exhaust Postgres connections.
+- Set statement timeouts and per-job query budgets for expensive spatial operations; slow queries emit structured diagnostics and can be cancelled safely.
+- Monitor table bloat, GiST index growth, autovacuum health, and `VACUUM/ANALYZE` cadence after large dataset imports.
+- Partition or archive old scenario/job/audit tables by tenant and time when retention volume grows; keep immutable source datasets in object storage cold tiers when appropriate.
+- Run heavy index builds, clustering, or materialized-view refreshes in maintenance windows or on staging before production publish.
+
 ## 7. Data Sources and Layer Choices
 Initial county: choose a manageable Texas county from TNRIS, e.g. Hays, Bastrop, or Williamson after sampling feature count and file size.
 
