@@ -110,6 +110,9 @@ require "tile security" 'signed tile|tile url|referer restriction|token|hotlink'
 require "governance board" 'governance board|steering committee|review board|change advisory|approval board' 3
 require "expert validation" 'subject matter expert|sme|licensed professional|legal review|environmental consultant|civil engineer' 4
 require "policy change management" 'policy change|rule change|ordinance update|effective date|change log|rule history' 4
+require "synthetic monitoring" 'synthetic monitor|synthetic check|heartbeat|probe|canary scenario' 4
+require "resilience drills" 'chaos|game day|failure injection|resilience drill|disaster drill' 4
+require "autoscaling strategy" 'autoscaling|scale up|scale down|horizontal pod autoscaler|queue depth|scaling trigger' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi

@@ -381,9 +381,15 @@ Production should model an **organization/workspace tenant** so consulting teams
 - SLO: 99.5% successful scenario creation excluding invalid user input; p95 normal analysis under 3 s.
 - Error budget: if monthly scenario-creation failures exceed the budget, pause non-critical feature releases and prioritize reliability work.
 - Alerts for job queue backlog, PostGIS CPU/IO saturation, high invalid-geometry failure rate, tile generation failures, and disk usage.
+- Synthetic monitoring: run scheduled canary scenarios against known demo parcels to verify parcel search, analysis jobs, tile fetch, export generation, and acreage regression thresholds from an external probe.
+- Heartbeat checks distinguish API health, worker liveness, queue drain, database read/write, object-storage access, and CDN tile availability.
 - Runbook covers rollback, dataset version disablement, database restore, and queue drain.
 
-### Incident playbooks
+### Resilience drills and incident playbooks
+- Quarterly resilience drills/game days simulate worker outage, Redis loss, bad dataset publish, basemap provider outage, and slow PostGIS queries.
+- Failure injection in staging verifies degraded read-only mode, retry/backoff behavior, alert routing, and recovery runbooks before production incidents.
+- Disaster drills restore PostGIS and regenerate tiles/exports from immutable source data to prove RPO/RTO assumptions.
+
 - Severity 1: API unavailable or database write failures. Triage load balancer, API health, PostGIS failover, and recent deploys; escalate to on-call owner and start incident notes.
 - Severity 2: analyses failing or queue not draining. Check worker logs, Redis/queue depth, bad dataset versions, and geometry failure spike.
 - Bad data incident: disable the suspect dataset version, invalidate affected caches, notify impacted tenants, and provide a postmortem with affected scenario ids.
@@ -418,6 +424,8 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Budget alerts on database storage, object storage, tile egress, and CPU-heavy worker queues.
 - Per-tenant quotas and job concurrency limits prevent one customer from exhausting capacity.
 - Cache hot scenario results and tiles to reduce repeated PostGIS work.
+- Autoscaling strategy: scale API replicas on request latency/CPU, scale workers on queue depth and job age, and scale tile generation workers separately from user-facing analysis workers.
+- Scaling triggers should be conservative enough to avoid cost runaway and paired with max replica limits, budget alerts, and manual override during incidents.
 - Capacity planning inputs: parcels per county, constraint feature density, average vertices per analysis, and p95 manual-edit frequency.
 
 ## 29. Backup, Restore, and Data Lifecycle
