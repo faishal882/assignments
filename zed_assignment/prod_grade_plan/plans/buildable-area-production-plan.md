@@ -41,7 +41,15 @@ Browser (React + MapLibre)
   -> Worker queue (RQ/Celery) for ingestion and expensive analysis
   -> Object storage (raw source files, generated PMTiles/GeoJSON exports)
   -> Redis (job state, response cache, tile metadata)
+  -> CDN/edge cache for static frontend, public basemap assets, and generated vector tiles
 ```
+
+Tile and basemap delivery:
+- Serve generated PMTiles/vector tiles from object storage through a CDN with explicit `Cache-Control`, ETags, and dataset-versioned URLs.
+- Use signed URLs or tenant-scoped tile tokens for private scenario geometry so tile URLs cannot be hotlinked or guessed across tenants.
+- Apply referer/origin restrictions for browser tile access where supported, but treat them as defense-in-depth rather than primary authorization.
+- Basemap resilience: prefer a provider/license that allows production use, define a fallback map style or cached low-detail offline tiles for provider outage, and show a clear degraded-mode banner if basemap tiles fail while analysis results remain available.
+- Invalidate tile metadata by dataset version rather than purging all edge cache content; historical tiles remain addressable for reproducible scenarios.
 
 Primary request flow / sequence diagram:
 ```

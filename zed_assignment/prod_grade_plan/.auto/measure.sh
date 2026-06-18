@@ -104,6 +104,9 @@ require "query safeguards" 'statement timeout|query budget|slow query|kill.*quer
 require "support model" 'support model|support tier|help desk|support queue|customer support|on-call handoff' 4
 require "user documentation" 'user guide|operator guide|training|tooltip|documentation' 3
 require "feedback loop" 'feedback loop|user feedback|issue intake|feature request|support ticket|triage' 3
+require "cdn edge caching" 'cdn|edge cache|cache-control|signed url|tile cache' 4
+require "basemap resilience" 'basemap|tile provider|fallback map|offline tiles|provider outage' 4
+require "tile security" 'signed tile|tile url|referer restriction|token|hotlink' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
