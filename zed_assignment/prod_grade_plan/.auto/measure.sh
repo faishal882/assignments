@@ -128,6 +128,9 @@ require "numeric precision" 'decimal precision|rounding mode|significant digits|
 require "scenario branching" 'scenario branch|clone scenario|what-if|compare scenarios|version timeline' 4
 require "edit history" 'edit history|undo|redo|edit log|revision history' 4
 require "collaboration conflicts" 'collaboration|concurrent edit|conflict resolution|merge|presence' 3
+require "county onboarding" 'county onboarding|new county|county rollout|onboarding checklist|source mapping' 4
+require "regional partitioning" 'regional partition|county partition|geographic shard|multi-county|jurisdiction boundary' 4
+require "schema mapping registry" 'schema mapping|field mapping|crosswalk|mapping registry|attribute normalization' 3
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
