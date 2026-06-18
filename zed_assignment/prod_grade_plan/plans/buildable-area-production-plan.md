@@ -294,6 +294,13 @@ Example result:
 }
 ```
 
+Export and report integrity:
+- PDF/CSV/GeoJSON exports include report metadata: scenario id, tenant/workspace, generated at timestamp, area policy, dataset versions, rule profile versions, setback overrides, manual edit hashes, and source citations.
+- Generated reports are tamper-evident: include a report checksum and optional signed report manifest so recipients can verify that acreage, geometry links, and assumptions were not changed after export.
+- User-facing reports include a watermark or label for demo/staging scenarios and for assignment-compatible EPSG:3857 calculations.
+- Share links are explicit resources with owner, recipient, permission scope, expiration time, revocation status, and audit events for create/open/revoke.
+- Public or external share links never expose private vector tile URLs directly; they resolve through authorization-aware export or viewer endpoints.
+
 ## 19. Performance and Scaling Plan
 Targets for first production county:
 - Parcel search p95 < 300 ms.
