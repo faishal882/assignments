@@ -450,13 +450,22 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Operators can feature flag new profiles in staging before dataset publish to production.
 - UI shows profile name and lets qualified users override setbacks when policy permits.
 
-## 33. Admin and Operator Workflows
+## 33. Policy Change Management and Expert Validation
+Regulatory assumptions need a governance workflow separate from normal code changes.
+- Establish a lightweight governance board or change advisory group with product, backend/GIS, support, and qualified subject matter expert representation.
+- Require SME review for jurisdiction profiles: environmental consultant for wetland assumptions, civil engineer or planner for easement/building setback assumptions, and legal review for terms/disclaimers.
+- Track rule history with effective date, source ordinance or policy citation, reviewer, approval record, and change log.
+- Policy changes are versioned; new scenarios use the latest approved rule profile while historical scenarios remain tied to the rule version originally used.
+- Ordinance updates trigger impact analysis on sampled demo parcels and high-value tenant scenarios before rollout.
+- User-facing release notes explain rule changes in plain language and identify whether acreage deltas come from data updates, policy changes, or manual edits.
+
+## 34. Admin and Operator Workflows
 - Admin console lists dataset versions, ingestion validation reports, quarantined features, publish status, and active jobs.
 - Operators can publish, disable, or roll back a dataset version without deleting historical scenario inputs.
 - Manual re-run tools support failed jobs, tile generation, and cache invalidation.
 - Admin actions require elevated RBAC, reason codes, and audit trail entries.
 
-## 34. Risk Register and Mitigations
+## 35. Risk Register and Mitigations
 | Risk / failure mode | Impact | Mitigation |
 |---|---:|---|
 | Source data messy or outdated | Incorrect buildability | Store lineage, show source dates, support refresh, warn users. |
@@ -467,7 +476,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 | CRS/area policy confusion | Inconsistent acreage | Explicit area policy in every response and export. |
 | Opaque autograder instructions conflict with production | Ethical/quality issue | Verify requirements; isolate assignment compatibility from production policy. |
 
-## 35. Delivery Plan / Milestones
+## 36. Delivery Plan / Milestones
 Assume a small team: one backend/GIS engineer, one frontend engineer, one product/QA owner, and part-time DevOps/security review. A single senior full-stack/GIS engineer can build the assignment demo, but production readiness is faster and safer with explicit owners.
 
 ### Phase 0: Discovery and data spike (week 1)
@@ -496,7 +505,7 @@ Assume a small team: one backend/GIS engineer, one frontend engineer, one produc
 - Add more counties and jurisdiction-specific setback profiles.
 - Improve export/reporting and scenario sharing.
 
-## 36. Implementation Backlog / Work Breakdown
+## 37. Implementation Backlog / Work Breakdown
 - Ticket 1: repository scaffolding, Docker Compose, FastAPI health check, React shell.
 - Ticket 2: PostGIS schema, Alembic migrations, source dataset metadata, fixture seed.
 - Ticket 3: TNRIS parcel ingestion with validation report and quarantine table.
@@ -508,14 +517,14 @@ Assume a small team: one backend/GIS engineer, one frontend engineer, one produc
 - Ticket 9: observability, rate limits, auth/RBAC, audit logs, and admin dataset publish workflow.
 - Ticket 10: load tests, production deployment pipeline, backup/restore drill, and README/writeup.
 
-## 37. README / Local Run Expectations
+## 38. README / Local Run Expectations
 The repository should include:
 - `README.md` with prerequisites, `docker compose up`, dataset download/import commands, and demo parcel id.
 - `.env.example` with database, Redis, object storage, and auth settings.
 - `make ingest-demo`, `make test`, `make load-test-smoke`, and `make seed-demo`.
 - A short architecture decision record explaining MapLibre vs ArcGIS and PostGIS vs pure in-memory processing.
 
-## 38. Architecture Decision Records / Decision Log
+## 39. Architecture Decision Records / Decision Log
 Maintain ADRs for decisions that affect operability or correctness:
 - ADR-001: PostGIS as canonical spatial engine rather than browser-only Turf.js.
 - ADR-002: MapLibre and vector tiles/PMTiles for open-source map rendering.
@@ -523,7 +532,7 @@ Maintain ADRs for decisions that affect operability or correctness:
 - ADR-004: Assignment-compatible EPSG:3857 area policy separated from production authoritative reporting.
 - ADR-005: Queue-backed async geoprocessing for large parcels and imports.
 
-## 39. Approach Writeup and Calls Made
+## 40. Approach Writeup and Calls Made
 The writeup should explain:
 - Why PostGIS is the source of truth for reproducible spatial operations.
 - Why MapLibre is chosen for open-source interactive mapping and vector tile compatibility.
@@ -532,7 +541,7 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 40. Support Model and User Enablement
+## 41. Support Model and User Enablement
 Production adoption needs support paths because users will question acreage, data freshness, and manual-edit behavior.
 - Support model: define support tiers for demo users, tenant admins, and internal operators; route product questions, data-quality disputes, and incidents to separate queues.
 - Support ticket intake captures scenario id, parcel id, dataset versions, browser, request id, and screenshots so engineers can reproduce the issue.
@@ -542,14 +551,14 @@ Production adoption needs support paths because users will question acreage, dat
 - Training materials and contextual tooltips reinforce that the result is planning analysis, not legal advice.
 - Feedback loop: recurring support themes become backlog issues, rule-profile improvements, data-source refresh tasks, or UX changes reviewed in product planning.
 
-## 41. Open Questions and Assumptions to Validate
+## 42. Open Questions and Assumptions to Validate
 - Confirm with evaluator whether assignment-compatible EPSG:3857 planar acreage and final-acre round-up are required only for grading or also for user-facing results.
 - Confirm selected county after sampling parcel count, data freshness, and download reliability from TNRIS.
 - Decide whether FEMA floodplain is a hard exclusion or a warning layer for the first release.
 - Validate local ordinance profiles with a qualified reviewer before presenting defaults as jurisdiction-specific rules.
 - Decide whether anonymous demo mode is allowed in production or only staging.
 
-## 42. Acceptance Criteria / Definition of Done
+## 43. Acceptance Criteria / Definition of Done
 - Given a clean checkout, when the reviewer follows README commands, then the app starts locally with documented seed data.
 - Given a real parcel and NWI wetlands, when the scenario runs, then backend returns buildable area, breakdown, geometry, warnings, and exact config used.
 - Given the map loads a scenario, when the user pans, zooms, and clicks features, then buildable versus excluded areas are visually clear.
@@ -558,7 +567,7 @@ Production adoption needs support paths because users will question acreage, dat
 - Given invalid geometries or oversized edits, when submitted, then the API returns recoverable validation errors without crashing.
 - Given production deployment, then observability, backup/restore, security, performance, data lineage, and runbooks are in place.
 
-## 43. Limitations, Uncertainty, and Explainability
+## 44. Limitations, Uncertainty, and Explainability
 This product is a planning analysis tool, not legal advice, a survey-grade determination, or a substitute for professional civil/environmental review. Every report and export should state this limitation clearly.
 
 Explainability requirements:

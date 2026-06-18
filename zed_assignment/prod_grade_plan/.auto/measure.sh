@@ -107,6 +107,9 @@ require "feedback loop" 'feedback loop|user feedback|issue intake|feature reques
 require "cdn edge caching" 'cdn|edge cache|cache-control|signed url|tile cache' 4
 require "basemap resilience" 'basemap|tile provider|fallback map|offline tiles|provider outage' 4
 require "tile security" 'signed tile|tile url|referer restriction|token|hotlink' 3
+require "governance board" 'governance board|steering committee|review board|change advisory|approval board' 3
+require "expert validation" 'subject matter expert|sme|licensed professional|legal review|environmental consultant|civil engineer' 4
+require "policy change management" 'policy change|rule change|ordinance update|effective date|change log|rule history' 4
 # Reward sufficient detail; cap to discourage giant unfocused docs.
 if (( words >= 2500 )); then score=$((score+10)); elif (( words >= 1500 )); then score=$((score+5)); fi
 if (( sections >= 20 )); then score=$((score+5)); elif (( sections >= 12 )); then score=$((score+3)); fi
