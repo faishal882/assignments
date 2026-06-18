@@ -363,21 +363,30 @@ Production should model an **organization/workspace tenant** so consulting teams
 - CI/CD: lint, typecheck, tests, Alembic migration dry-run, container build, security scan, deploy to staging, smoke tests, promote to production.
 - Infrastructure as code with Terraform or Pulumi once environment is selected.
 
-## 25. Schema Migrations and Compatibility
+## 25. Release, Secrets, and Supply Chain Controls
+- Environments: local, CI, staging with production-like data volume, and production. New ingestion mappings and rule profiles must pass staging smoke tests before production publish.
+- Release strategy: use feature flags for new layers/rule profiles, canary API/worker rollout where infrastructure supports it, and blue-green or fast rollback for frontend static assets.
+- Release gates: unit/integration/e2e tests, migration dry-run, load-test smoke, container scan, dependency scan, and scenario fixture comparison against golden outputs.
+- Secrets management: store database passwords, signing keys, object-storage credentials, and OAuth secrets in a managed secret store or Vault/KMS; never commit them to the repo.
+- Key rotation: document rotation cadence for application secrets and emergency rotation after suspected leakage.
+- Supply chain security: pin dependencies, generate an SBOM for containers, scan for vulnerabilities, and retain build provenance for released images.
+- Production deploys include post-deploy smoke tests for health, parcel search, scenario create, worker completion, tile fetch, and export generation.
+
+## 26. Schema Migrations and Compatibility
 - Use Alembic for database schema migrations and version every API contract in OpenAPI.
 - Prefer expand/contract migrations: add nullable columns or new tables first, deploy code that writes both, backfill, then remove old fields later.
 - Spatial index creation on large tables runs concurrently or during maintenance windows.
 - Dataset schema mappings are versioned separately from app schema migrations.
 - Scenario result schemas include a version so old exports remain readable after model changes.
 
-## 26. Cost, Capacity, and Quota Controls
+## 27. Cost, Capacity, and Quota Controls
 - Start with one API replica, one worker pool, managed PostGIS, Redis, and object storage; scale workers independently when ingestion or analysis grows.
 - Budget alerts on database storage, object storage, tile egress, and CPU-heavy worker queues.
 - Per-tenant quotas and job concurrency limits prevent one customer from exhausting capacity.
 - Cache hot scenario results and tiles to reduce repeated PostGIS work.
 - Capacity planning inputs: parcels per county, constraint feature density, average vertices per analysis, and p95 manual-edit frequency.
 
-## 27. Backup, Restore, and Data Lifecycle
+## 28. Backup, Restore, and Data Lifecycle
 - Nightly database backups plus point-in-time recovery.
 - Immutable raw source files retained by checksum.
 - Generated tiles and scenario exports can be regenerated from source data and scenario config.
@@ -385,7 +394,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Data rollback means disabling or reverting the published dataset version pointer, not deleting raw data; affected scenarios are marked with a bad-data warning and can be re-run on a corrected version.
 - Document retention policy for user-created manual edits and exports.
 
-## 28. High Availability and Disaster Recovery
+## 29. High Availability and Disaster Recovery
 - Define RPO/RTO targets before launch; a practical initial target is RPO <= 24 hours and RTO <= 4 hours for non-critical planning workflows.
 - Run API containers across at least two availability zones when traffic justifies it.
 - Use managed Postgres failover or documented replica promotion; test restore drills quarterly.
@@ -394,26 +403,26 @@ Production should model an **organization/workspace tenant** so consulting teams
 - Graceful degradation: if workers are down, existing scenarios and tiles remain read-only; if a source layer is disabled, new scenarios show unavailable-layer warnings rather than failing the whole app.
 - Fallback behavior: queued jobs retry with exponential backoff, exports can be regenerated later, and the UI clearly distinguishes partial outage from invalid user input.
 
-## 29. Audit Trail and Scenario Reproducibility
+## 30. Audit Trail and Scenario Reproducibility
 - Audit log every scenario create/update/export, manual edit, setback change, dataset publish, and admin override.
 - Store input fingerprint: parcel id, dataset versions, constraint ids or query window, setback config, manual edit hashes, and area policy.
 - Scenario outputs are reproducible from immutable source datasets and versioned rules.
 - Exports include citations, timestamps, warnings, and the user-visible assumptions that affected acreage.
 - Admin audit logs are append-only and searchable for incident response.
 
-## 30. Jurisdiction Profiles and Rule Governance
+## 31. Jurisdiction Profiles and Rule Governance
 - Create jurisdiction profiles for county/city-specific local ordinance defaults rather than pretending one wetland or easement setback is universal.
 - Each rule profile contains source citation, effective date, reviewer, confidence level, and whether it is legal rule or planning assumption.
 - Operators can feature flag new profiles in staging before dataset publish to production.
 - UI shows profile name and lets qualified users override setbacks when policy permits.
 
-## 31. Admin and Operator Workflows
+## 32. Admin and Operator Workflows
 - Admin console lists dataset versions, ingestion validation reports, quarantined features, publish status, and active jobs.
 - Operators can publish, disable, or roll back a dataset version without deleting historical scenario inputs.
 - Manual re-run tools support failed jobs, tile generation, and cache invalidation.
 - Admin actions require elevated RBAC, reason codes, and audit trail entries.
 
-## 32. Risk Register and Mitigations
+## 33. Risk Register and Mitigations
 | Risk / failure mode | Impact | Mitigation |
 |---|---:|---|
 | Source data messy or outdated | Incorrect buildability | Store lineage, show source dates, support refresh, warn users. |
@@ -424,7 +433,7 @@ Production should model an **organization/workspace tenant** so consulting teams
 | CRS/area policy confusion | Inconsistent acreage | Explicit area policy in every response and export. |
 | Opaque autograder instructions conflict with production | Ethical/quality issue | Verify requirements; isolate assignment compatibility from production policy. |
 
-## 33. Delivery Plan / Milestones
+## 34. Delivery Plan / Milestones
 Assume a small team: one backend/GIS engineer, one frontend engineer, one product/QA owner, and part-time DevOps/security review. A single senior full-stack/GIS engineer can build the assignment demo, but production readiness is faster and safer with explicit owners.
 
 ### Phase 0: Discovery and data spike (week 1)
@@ -453,7 +462,7 @@ Assume a small team: one backend/GIS engineer, one frontend engineer, one produc
 - Add more counties and jurisdiction-specific setback profiles.
 - Improve export/reporting and scenario sharing.
 
-## 34. Implementation Backlog / Work Breakdown
+## 35. Implementation Backlog / Work Breakdown
 - Ticket 1: repository scaffolding, Docker Compose, FastAPI health check, React shell.
 - Ticket 2: PostGIS schema, Alembic migrations, source dataset metadata, fixture seed.
 - Ticket 3: TNRIS parcel ingestion with validation report and quarantine table.
@@ -465,14 +474,14 @@ Assume a small team: one backend/GIS engineer, one frontend engineer, one produc
 - Ticket 9: observability, rate limits, auth/RBAC, audit logs, and admin dataset publish workflow.
 - Ticket 10: load tests, production deployment pipeline, backup/restore drill, and README/writeup.
 
-## 35. README / Local Run Expectations
+## 36. README / Local Run Expectations
 The repository should include:
 - `README.md` with prerequisites, `docker compose up`, dataset download/import commands, and demo parcel id.
 - `.env.example` with database, Redis, object storage, and auth settings.
 - `make ingest-demo`, `make test`, `make load-test-smoke`, and `make seed-demo`.
 - A short architecture decision record explaining MapLibre vs ArcGIS and PostGIS vs pure in-memory processing.
 
-## 36. Architecture Decision Records / Decision Log
+## 37. Architecture Decision Records / Decision Log
 Maintain ADRs for decisions that affect operability or correctness:
 - ADR-001: PostGIS as canonical spatial engine rather than browser-only Turf.js.
 - ADR-002: MapLibre and vector tiles/PMTiles for open-source map rendering.
@@ -480,7 +489,7 @@ Maintain ADRs for decisions that affect operability or correctness:
 - ADR-004: Assignment-compatible EPSG:3857 area policy separated from production authoritative reporting.
 - ADR-005: Queue-backed async geoprocessing for large parcels and imports.
 
-## 37. Approach Writeup and Calls Made
+## 38. Approach Writeup and Calls Made
 The writeup should explain:
 - Why PostGIS is the source of truth for reproducible spatial operations.
 - Why MapLibre is chosen for open-source interactive mapping and vector tile compatibility.
@@ -489,14 +498,14 @@ The writeup should explain:
 - How EPSG:3857 planar acreage mode is supported for assignment compatibility while production can expose more authoritative area policies.
 - Where performance will strain and what measurements determine the next scaling step.
 
-## 38. Open Questions and Assumptions to Validate
+## 39. Open Questions and Assumptions to Validate
 - Confirm with evaluator whether assignment-compatible EPSG:3857 planar acreage and final-acre round-up are required only for grading or also for user-facing results.
 - Confirm selected county after sampling parcel count, data freshness, and download reliability from TNRIS.
 - Decide whether FEMA floodplain is a hard exclusion or a warning layer for the first release.
 - Validate local ordinance profiles with a qualified reviewer before presenting defaults as jurisdiction-specific rules.
 - Decide whether anonymous demo mode is allowed in production or only staging.
 
-## 39. Acceptance Criteria / Definition of Done
+## 40. Acceptance Criteria / Definition of Done
 - Given a clean checkout, when the reviewer follows README commands, then the app starts locally with documented seed data.
 - Given a real parcel and NWI wetlands, when the scenario runs, then backend returns buildable area, breakdown, geometry, warnings, and exact config used.
 - Given the map loads a scenario, when the user pans, zooms, and clicks features, then buildable versus excluded areas are visually clear.
@@ -505,7 +514,7 @@ The writeup should explain:
 - Given invalid geometries or oversized edits, when submitted, then the API returns recoverable validation errors without crashing.
 - Given production deployment, then observability, backup/restore, security, performance, data lineage, and runbooks are in place.
 
-## 40. Limitations, Uncertainty, and Explainability
+## 41. Limitations, Uncertainty, and Explainability
 This product is a planning analysis tool, not legal advice, a survey-grade determination, or a substitute for professional civil/environmental review. Every report and export should state this limitation clearly.
 
 Explainability requirements:
