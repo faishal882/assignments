@@ -1,8 +1,19 @@
-SAMPLE = {
-    "parcel": {
+import json
+from pathlib import Path
+
+REAL_PAIR = json.loads(
+    (Path(__file__).resolve().parents[1] / "data" / "travis_real_pair.json").read_text()
+)
+
+PARCELS = {
+    "TCAD-0315310103": REAL_PAIR["parcel"],
+    "TRAVIS-DEMO-001": {
         "type": "Feature",
         "properties": {
-            "name": "Sample Travis County-style parcel",
+            "id": "TRAVIS-DEMO-001",
+            "name": "Colorado Bend demo parcel",
+            "address": "100 Demo Tract, Austin, TX",
+            "county": "Travis",
             "source_note": "Demo fixture shaped to exercise public-data workflows; replace with TNRIS county parcels for production runs.",
         },
         "geometry": {
@@ -17,14 +28,12 @@ SAMPLE = {
                 ]
             ],
         },
-    },
-    "constraints": [
-        {
-            "id": "wetlands",
-            "label": "NWI wetlands",
-            "reason": "Wetlands and a default 30 m review buffer.",
-            "setback_m": 30,
-            "features": [
+    }
+}
+
+SOURCE_FEATURES = {
+    "wetlands": [
+                REAL_PAIR["wetland"],
                 {
                     "type": "Feature",
                     "properties": {"source": "USFWS NWI"},
@@ -42,14 +51,8 @@ SAMPLE = {
                         ],
                     },
                 }
-            ],
-        },
-        {
-            "id": "floodplain",
-            "label": "FEMA 100-year floodplain",
-            "reason": "Modeled as flood-prone land with no extra default setback.",
-            "setback_m": 0,
-            "features": [
+    ],
+    "floodplain": [
                 {
                     "type": "Feature",
                     "properties": {"source": "FEMA NFHL"},
@@ -67,38 +70,8 @@ SAMPLE = {
                         ],
                     },
                 }
-            ],
-        },
-        {
-            "id": "buildings",
-            "label": "Existing buildings",
-            "reason": "Existing structures with a 10 m construction clearance.",
-            "setback_m": 10,
-            "features": [
-                {
-                    "type": "Feature",
-                    "properties": {"source": "Microsoft US building footprints"},
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [
-                                [-97.7412, 30.2790],
-                                [-97.7399, 30.2790],
-                                [-97.7399, 30.2801],
-                                [-97.7412, 30.2801],
-                                [-97.7412, 30.2790],
-                            ]
-                        ],
-                    },
-                }
-            ],
-        },
-        {
-            "id": "transmission",
-            "label": "Transmission easement",
-            "reason": "Transmission corridor using a 30 m easement half-width.",
-            "setback_m": 30,
-            "features": [
+    ],
+    "transmission": [
                 {
                     "type": "Feature",
                     "properties": {"source": "HIFLD electric power transmission lines"},
@@ -107,7 +80,20 @@ SAMPLE = {
                         "coordinates": [[-97.7421, 30.2722], [-97.7265, 30.2806]],
                     },
                 }
-            ],
-        },
+    ],
+}
+
+# Backward-compatible fixture for direct geometry-engine consumers.
+SAMPLE = {
+    "parcel": PARCELS["TRAVIS-DEMO-001"],
+    "constraints": [
+        {
+            "id": layer_id,
+            "label": layer_id.title(),
+            "reason": "Synthetic test fixture",
+            "setback_m": 0,
+            "features": features,
+        }
+        for layer_id, features in SOURCE_FEATURES.items()
     ],
 }
