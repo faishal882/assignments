@@ -1,0 +1,78 @@
+{
+  "config_version": "2026.06.1",
+  "jurisdiction": "Texas preliminary site screening",
+  "disclaimer": "Screening assumptions only. Confirm jurisdictional determinations, local ordinances, floodplain permits, surveys, title instruments, and utility easements before design or acquisition.",
+  "default_profile": "screening",
+  "profiles": [
+    {
+      "id": "screening",
+      "label": "Planning screen",
+      "description": "Conservative early feasibility assumptions where parcel-specific instruments are not yet available.",
+      "setbacks_m": {
+        "wetlands": 15.24,
+        "floodplain": 0,
+        "transmission": 30.48
+      }
+    },
+    {
+      "id": "footprint-only",
+      "label": "Mapped footprints",
+      "description": "Excludes mapped features only. Use for comparison, not as a regulatory conclusion.",
+      "setbacks_m": {
+        "wetlands": 0,
+        "floodplain": 0,
+        "transmission": 0
+      }
+    }
+  ],
+  "layers": [
+    {
+      "id": "wetlands",
+      "label": "NWI wetlands",
+      "reason": "Mapped wetland footprint plus an adjustable planning review buffer.",
+      "geometry_basis": "Buffer outward from the mapped polygon edge.",
+      "default_setback_m": 15.24,
+      "min_setback_m": 0,
+      "max_setback_m": 152.4,
+      "step_m": 1.524,
+      "units": "m",
+      "basis": "The 50 ft default is an early-screening assumption, not a federal rule. Federal Section 404 regulates certain discharges; state and local programs may impose different buffers.",
+      "verification": "Obtain a current delineation and jurisdictional review, then apply the governing local ordinance or permit condition.",
+      "source": "USFWS National Wetlands Inventory",
+      "source_url": "https://www.fws.gov/program/national-wetlands-inventory/wetlands-data",
+      "guidance_url": "https://www.epa.gov/cwa-404/clean-water-laws-regulations-and-executive-orders-related-section-404"
+    },
+    {
+      "id": "floodplain",
+      "label": "FEMA 1% annual-chance flood hazard",
+      "reason": "Mapped high-risk flood hazard area; no additional lateral setback is assumed.",
+      "geometry_basis": "Exclude the mapped polygon; freeboard is vertical and is not represented by a planar buffer.",
+      "default_setback_m": 0,
+      "min_setback_m": 0,
+      "max_setback_m": 152.4,
+      "step_m": 1.524,
+      "units": "m",
+      "basis": "The mapped boundary is used for screening. Floodway development can require a no-rise analysis, and local ordinances may exceed NFIP minimums.",
+      "verification": "Confirm the effective FIRM/FIS, zone and floodway status with the local floodplain administrator and evaluate elevation requirements separately.",
+      "source": "FEMA National Flood Hazard Layer",
+      "source_url": "https://www.fema.gov/flood-maps/national-flood-hazard-layer",
+      "guidance_url": "https://www.fema.gov/sites/default/files/documents/fema_floodway-analysis-mapping_112019.pdf"
+    },
+    {
+      "id": "transmission",
+      "label": "Transmission corridor",
+      "reason": "Adjustable planning corridor measured from the mapped line centerline.",
+      "geometry_basis": "Buffer each side of the line centerline; the configured value is half the total assumed corridor width.",
+      "default_setback_m": 30.48,
+      "min_setback_m": 0,
+      "max_setback_m": 152.4,
+      "step_m": 1.524,
+      "units": "m",
+      "basis": "A 100 ft half-width represents the upper end of FERC's typical 100-200 ft total right-of-way range for relevant projects. Actual rights and restrictions come from the recorded easement and utility requirements.",
+      "verification": "Review title, survey the easement, identify line voltage and operator, and obtain the operator's current structure and vegetation restrictions.",
+      "source": "HIFLD Electric Power Transmission Lines",
+      "source_url": "https://hifld-geoplatform.opendata.arcgis.com/",
+      "guidance_url": "https://www.ferc.gov/electric-transmission-facilities-permit-process"
+    }
+  ]
+}

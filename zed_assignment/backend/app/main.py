@@ -1,38 +1,55 @@
 from __future__ import annotations
 
-from typing import Any
+from datetime import datetime, timezone
+from typing import Any, Literal
+from uuid import uuid4
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from .area import analyze_buildable_area
-from .sample_data import SAMPLE
+from .repository import repository
 
 
-class ConstraintLayer(BaseModel):
+class LayerSelection(BaseModel):
     id: str
-    label: str
-    reason: str
-    setback_m: float = Field(default=0, ge=0, le=1000)
-    features: list[dict[str, Any]]
+    enabled: bool = True
+    setback_m: float | None = Field(default=None, ge=0, le=1609.344)
+
+
+class ManualEdit(BaseModel):
+    id: str
+    label: str = Field(min_length=1, max_length=80)
+    geometry: dict[str, Any]
+    kind: Literal["carve-out", "restore"]
 
 
 class AnalysisRequest(BaseModel):
-    parcel: dict[str, Any]
-    constraints: list[ConstraintLayer]
-    manual_exclusions: list[dict[str, Any]] = []
-    manual_restores: list[dict[str, Any]] = []
+    parcel_id: str | None = None
+    parcel: dict[str, Any] | None = None
+    layers: list[LayerSelection] | None = None
+    manual_edits: list[ManualEdit] = Field(default_factory=list)
+    policy_profile: str | None = Field(default=None, max_length=50)
+
+    @model_validator(mode="after")
+    def require_one_parcel(self):
+        if bool(self.parcel_id) == bool(self.parcel):
+            raise ValueError("Provide exactly one of parcel_id or parcel")
+        return self
 
 
-app = FastAPI(title="Buildable Land Analysis", version="0.1.0")
-
+app = FastAPI(
+    title="Buildable Area Analysis API",
+    version="1.0.0",
+    description="Parcel-scale planning analysis. Results are not survey or legal determinations.",
+)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
 
 
@@ -41,16 +58,57 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.get("/api/sample")
-def sample() -> dict[str, Any]:
-    return SAMPLE
+@app.get("/api/layers")
+def layers() -> dict[str, Any]:
+    return {"layers": repository.layer_metadata(), **repository.policy_metadata()}
+
+
+@app.get("/api/parcels/search")
+def search_parcels(
+    q: str = Query(default="", max_length=100),
+    bbox: str | None = Query(default=None, description="west,south,east,north"),
+    limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+) -> dict[str, Any]:
+    try:
+        parsed_bbox = tuple(float(value) for value in bbox.split(",")) if bbox else None
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail="bbox must contain four numbers") from exc
+    if parsed_bbox and len(parsed_bbox) != 4:
+        raise HTTPException(status_code=422, detail="bbox must contain four numbers")
+    parcels, total = repository.search_parcels(q, parsed_bbox, limit, offset)
+    return {
+        "parcels": parcels,
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "featured_parcel_id": repository.featured_parcel_id(),
+    }
+
+
+@app.get("/api/parcels/{parcel_id}")
+def parcel(parcel_id: str) -> dict[str, Any]:
+    found = repository.get_parcel(parcel_id)
+    if not found:
+        raise HTTPException(status_code=404, detail="Parcel not found")
+    return found
 
 
 @app.post("/api/analyze")
 def analyze(request: AnalysisRequest) -> dict[str, Any]:
-    return analyze_buildable_area(
-        parcel=request.parcel,
-        constraints=[constraint.model_dump() for constraint in request.constraints],
-        manual_exclusions=request.manual_exclusions,
-        manual_restores=request.manual_restores,
-    )
+    parcel_feature = request.parcel or repository.get_parcel(request.parcel_id or "")
+    if not parcel_feature:
+        raise HTTPException(status_code=404, detail="Parcel not found")
+    try:
+        constraints = repository.resolve_layers(request.layers, parcel_feature, request.policy_profile)
+        carve_outs = [edit.geometry for edit in request.manual_edits if edit.kind == "carve-out"]
+        restores = [edit.geometry for edit in request.manual_edits if edit.kind == "restore"]
+        result = analyze_buildable_area(parcel_feature, constraints, carve_outs, restores)
+        result["analysis_id"] = str(uuid4())
+        result["analyzed_at"] = datetime.now(timezone.utc).isoformat()
+        result["policy"] = repository.analysis_policy(request.policy_profile, constraints)
+        return result
+    except KeyError as exc:
+        raise HTTPException(status_code=422, detail=f"Unknown layer: {exc.args[0]}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
