@@ -1,10 +1,12 @@
-# Buildable Land Analysis
+# Buildable Area Analysis
 
-Small full-stack app for estimating buildable acreage after parcel constraints, setbacks, and manual map edits.
+A parcel-scale planning tool that subtracts buffered wetlands, floodplain, and transmission constraints, then applies review-driven carve-outs and restores. The API owns all geometry math; the MapLibre client renders its GeoJSON result.
 
-## Run
+> Planning estimate only. Results are not a survey, title opinion, permit decision, or legal determination.
 
-Backend:
+## Run from a clean checkout
+
+Prerequisites: Python 3.11+ and Node 20+.
 
 ```bash
 cd backend
@@ -14,46 +16,83 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Frontend:
+In another terminal:
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
-Open `http://localhost:5173`. The frontend expects the API at `http://localhost:8000`; override with `VITE_API_BASE` if needed.
+Open `http://localhost:5173`. The checked-in spatial catalog contains 363 real Bell County parcels from the TxGIO/TNRIS standardized parcel program. Search by address, legal description, or generated catalog ID. `TRAVIS-DEMO-001` remains available through the API as a deterministic overlap fixture. Set `VITE_API_BASE` if the API is not at `http://localhost:8000`.
 
-## Test
-
-```bash
-cd backend
-pytest
-```
+## Verify
 
 ```bash
-cd frontend
-npm run build
+cd backend && .venv/bin/pytest -q
+cd frontend && npm run build
 ```
 
-## What It Does
+## Configuration and API
 
-- Loads a sample parcel and constraint layers.
-- Buffers each constraint by its configurable setback distance.
-- Computes buildable, excluded, and per-layer removed acreage.
-- Lets a user draw manual carve-outs and manual restores on the map.
-- Re-runs the backend calculation whenever setbacks or drawn edits change.
+Versioned policy profiles, layer bounds, units, geometry interpretation, rationale, verification steps, and citations live in `backend/config.json`. Select a profile, override it per request through `POST /api/analyze`, or edit it live in the UI; no source-code change is required. The API validates every override against layer-specific bounds and returns an immutable policy snapshot with each result.
 
-The authoritative area calculation is in `backend/app/area.py`. GeoJSON inputs are assumed to be WGS84, transformed to EPSG:3857, then measured with a planar area formula. The final displayed buildable acreage is rounded up to the nearest whole acre.
+The built-in profiles are:
 
-## Data
+- `screening`: 50 ft wetland review buffer, mapped FEMA polygon with no extra lateral buffer, and 100 ft on each side of a transmission centerline.
+- `footprint-only`: mapped geometries only, useful as a comparison baseline rather than a regulatory conclusion.
 
-The checked-in sample is intentionally small so the repo runs immediately. It models the data sources the app is designed to ingest:
+These are feasibility assumptions, not universal legal setbacks. Wetland requirements depend on jurisdictional determinations and governing programs; floodway work may require hydraulic no-rise certification; transmission restrictions come from the recorded easement and operator. Update the version whenever policy values or reasoning change.
 
-- Parcels: TNRIS county parcel downloads, `https://data.tnris.org`
-- Wetlands: USFWS National Wetlands Inventory, `https://www.fws.gov/program/national-wetlands-inventory/wetlands-data`
-- Floodplain: FEMA National Flood Hazard Layer
-- Transmission corridors: HIFLD electric power transmission lines
-- Building footprints: Microsoft US building footprints
+- `GET /api/layers`: config-driven policy profiles and layer metadata.
+- `GET /api/parcels/search?q=&bbox=`: parcel summaries.
+- `GET /api/parcels/{parcel_id}`: parcel GeoJSON.
+- `POST /api/analyze`: parcel ID or raw polygon, layer toggles/setbacks, and manual edits.
+- `GET /docs`: generated OpenAPI explorer.
 
-For a production import, convert county source data to GeoJSON or serve it from PostGIS, then POST the selected parcel and nearby constraint features to `/api/analyze`.
+Example:
+
+```bash
+curl -X POST http://localhost:8000/api/analyze \
+  -H 'Content-Type: application/json' \
+  -d '{"parcel_id":"TRAVIS-DEMO-001","policy_profile":"screening","layers":[{"id":"wetlands","setback_m":30.48},{"id":"floodplain"},{"id":"transmission","setback_m":22.86}]}'
+```
+
+Each analysis response includes a unique `analysis_id`, UTC `analyzed_at`, `policy.config_version`, `policy.profile_id`, the exact setback applied to each enabled layer, source links, rationale, geometry basis, and field-verification requirements. Persist those fields alongside any exported decision record.
+
+## Data and ingestion
+
+The checked-in `backend/data/catalog.sqlite` is a reproducible, bounded acquisition around Bell County (`-97.45,31.06,-97.43,31.08`). It contains 363 TxGIO/TNRIS standardized parcel polygons and a locally clipped USFWS NWI Version 2 riverine feature. The bounded sample keeps a clean checkout small while exercising real duplicate IDs, missing addresses, multipart geometry, and spatial overlap.
+
+Rebuild a catalog from downloaded GeoJSON:
+
+```bash
+python ingestion/build_catalog.py \
+  --database backend/data/catalog.sqlite \
+  --parcels raw/bell-parcels.geojson \
+  --wetlands raw/bell-wetlands.geojson \
+  --clip -97.45 31.06 -97.43 31.08
+```
+
+`ingestion/fetch_arcgis.py` pages bounded ArcGIS FeatureServer layers without loading a statewide response into memory. For a full county deployment, point it at the current TxGIO service or normalize the county ZIP from DataHub, then build the catalog. SQLite R-tree indexes support this sample and a moderate county; use PostGIS, bulk COPY, GiST indexes, vector tiles, and background analysis jobs for multi-county operation.
+
+Authoritative source starting points:
+
+- TNRIS county parcels: <https://data.tnris.org>
+- TxGIO parcel program: <https://www.tnris.org/stratmap/land-parcels.html>
+- TxGIO parcel service: <https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer>
+- USFWS National Wetlands Inventory: <https://www.fws.gov/program/national-wetlands-inventory/wetlands-data>
+- FEMA National Flood Hazard Layer: <https://www.fema.gov/flood-maps/national-flood-hazard-layer>
+- HIFLD transmission lines: <https://hifld-geoplatform.opendata.arcgis.com/>
+
+Convert downloaded shapefiles to GeoJSON with `ogr2ogr`, then normalize and validate them with the source-specific scripts:
+
+```bash
+python ingestion/ingest_wetlands.py raw/wetlands.geojson data/wetlands.geojson --source-crs EPSG:4326
+```
+
+Each script reports written, repaired, and skipped feature counts. Production loading should filter NWI uplands and FEMA zones outside A/AE/AO/AH/VE before inserting normalized geometries into indexed PostGIS tables.
+
+## Correctness model
+
+GeoJSON stays in EPSG:4326 for transport. The engine chooses the parcel centroid’s local UTM zone, then repairs, buffers, unions, differences, and measures there. It never measures in EPSG:3857. Layer `removed_acres` values are ordered exclusive contributions and can be summed; `gross_acres` and `overlap_acres` are diagnostics and must not be summed. Restores are always clipped to the parcel.
