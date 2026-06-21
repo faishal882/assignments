@@ -26,6 +26,14 @@ npm run dev
 
 Open `http://localhost:5173`. The checked-in spatial catalog contains 363 real Bell County parcels from the TxGIO/TNRIS standardized parcel program. Search by address, legal description, or generated catalog ID. `TRAVIS-DEMO-001` remains available through the API as a deterministic overlap fixture. Set `VITE_API_BASE` if the API is not at `http://localhost:8000`.
 
+## Use the workspace
+
+The app opens on a featured parcel so the first analysis is immediately visible. Hover a colored constraint to inspect its source layer and applied setback. Adjust a setback with its slider or numeric input; the value changes immediately, requests are debounced, and the previous buildable boundary remains briefly as a dashed comparison outline.
+
+Use **Carve out** to remove land and **Restore** to add land back. Add at least three map points and finish the polygon; restore vertices snap to a nearby parcel edge. Manual changes support undo, redo, deletion, and keyboard recovery (`Ctrl/Command+Z`, `Ctrl/Command+Shift+Z`, and `Escape`). Totals can be displayed in acres, square feet, or hectares.
+
+**Share** copies a URL containing the parcel, policy, setback, units, and manual edits. **Export** downloads a PNG containing the map, totals, attribution, overlap note, and disclaimer. On smaller screens the map and controls stack vertically, and the panel control switches between the map-first and full-workspace views.
+
 ## Verify
 
 ```bash
