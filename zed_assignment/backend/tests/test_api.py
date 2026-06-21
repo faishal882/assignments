@@ -86,3 +86,29 @@ def test_policy_profiles_and_layer_bounds_are_enforced():
         "layers": [{"id": "wetlands", "setback_m": 200}],
     })
     assert excessive.status_code == 422
+
+
+def test_outline_preview_cache_and_compressed_analysis_contracts():
+    parcel_id = client.get("/api/parcels/search", params={"limit": 1}).json()["parcels"][0]["id"]
+    outline = client.get(f"/api/parcels/{parcel_id}/outline")
+    assert outline.status_code == 200
+    assert outline.json()["properties"]["id"] == parcel_id
+
+    preview = client.post("/api/analyze/preview", json={
+        "parcel_id": parcel_id,
+        "layers": [{"id": "wetlands", "setback_m": 15.24}],
+    })
+    assert preview.status_code == 200
+    assert preview.json()["id"] == "wetlands"
+    assert "candidate_count" in preview.json()
+    assert "duration_ms" in preview.json()
+
+    analysis = client.post(
+        "/api/analyze",
+        json={"parcel_id": "TRAVIS-DEMO-001"},
+        headers={"Accept-Encoding": "gzip"},
+    )
+    assert analysis.status_code == 200
+    assert analysis.headers["content-encoding"] == "gzip"
+    assert "duration_ms" in analysis.json()
+    assert "buffer_cache" in analysis.json()["performance"]

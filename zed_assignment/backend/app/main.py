@@ -1,14 +1,16 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from time import perf_counter
 from typing import Any, Literal
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, model_validator
+from starlette.middleware.gzip import GZipMiddleware
 
-from .area import analyze_buildable_area
+from .area import analyze_buildable_area, buffer_cache, preview_constraint_layer
 from .repository import repository
 
 
@@ -51,6 +53,7 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
 )
+app.add_middleware(GZipMiddleware, minimum_size=1000, compresslevel=6)
 
 
 @app.get("/health")
@@ -94,11 +97,44 @@ def parcel(parcel_id: str) -> dict[str, Any]:
     return found
 
 
+@app.get("/api/parcels/{parcel_id}/outline")
+def parcel_outline(parcel_id: str) -> dict[str, Any]:
+    found = repository.get_parcel_outline(parcel_id)
+    if not found:
+        raise HTTPException(status_code=404, detail="Parcel not found")
+    return found
+
+
+@app.post("/api/analyze/preview")
+def analyze_preview(request: AnalysisRequest) -> dict[str, Any]:
+    if not request.layers or len(request.layers) != 1:
+        raise HTTPException(status_code=422, detail="Preview requires exactly one layer")
+    parcel_feature = request.parcel or repository.get_parcel(request.parcel_id or "")
+    if not parcel_feature:
+        raise HTTPException(status_code=404, detail="Parcel not found")
+    started = perf_counter()
+    try:
+        constraints = repository.resolve_layers(
+            request.layers, parcel_feature, request.policy_profile
+        )
+        if not constraints:
+            raise ValueError("Preview layer must be enabled")
+        constraint = constraints[0]
+        result = preview_constraint_layer(parcel_feature, constraint)
+        result["duration_ms"] = round((perf_counter() - started) * 1000, 2)
+        return result
+    except KeyError as exc:
+        raise HTTPException(status_code=422, detail=f"Unknown layer: {exc.args[0]}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
 @app.post("/api/analyze")
 def analyze(request: AnalysisRequest) -> dict[str, Any]:
     parcel_feature = request.parcel or repository.get_parcel(request.parcel_id or "")
     if not parcel_feature:
         raise HTTPException(status_code=404, detail="Parcel not found")
+    started = perf_counter()
     try:
         constraints = repository.resolve_layers(request.layers, parcel_feature, request.policy_profile)
         carve_outs = [edit.geometry for edit in request.manual_edits if edit.kind == "carve-out"]
@@ -107,8 +143,18 @@ def analyze(request: AnalysisRequest) -> dict[str, Any]:
         result["analysis_id"] = str(uuid4())
         result["analyzed_at"] = datetime.now(timezone.utc).isoformat()
         result["policy"] = repository.analysis_policy(request.policy_profile, constraints)
+        result["duration_ms"] = round((perf_counter() - started) * 1000, 2)
         return result
     except KeyError as exc:
         raise HTTPException(status_code=422, detail=f"Unknown layer: {exc.args[0]}") from exc
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@app.get("/api/performance/cache")
+def cache_performance() -> dict[str, Any]:
+    return {
+        "buffer_cache": buffer_cache.stats(),
+        "ttl_seconds": buffer_cache.ttl_seconds,
+        "max_entries": buffer_cache.max_entries,
+    }
