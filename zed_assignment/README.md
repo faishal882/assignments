@@ -4,27 +4,51 @@ A parcel-scale planning tool that subtracts buffered wetlands, floodplain, and t
 
 > Planning estimate only. Results are not a survey, title opinion, permit decision, or legal determination.
 
-## Run from a clean checkout
+## Quick start
 
-Prerequisites: Python 3.11+ and Node 20+.
+Prerequisites:
 
-```bash
-cd backend
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
+- Node.js 20+ with npm.
+- Python 3.11+ with the `venv` module.
 
-In another terminal:
+From the repository root:
 
 ```bash
-cd frontend
 npm ci
 npm run dev
 ```
 
-Open `http://localhost:5173`. The checked-in spatial catalog contains 363 real Bell County parcels from the TxGIO/TNRIS standardized parcel program. Search by address, legal description, or generated catalog ID. `TRAVIS-DEMO-001` remains available through the API as a deterministic overlap fixture. Set `VITE_API_BASE` if the API is not at `http://localhost:8000`.
+`npm ci` is the single installation command. It:
+
+- Installs the React frontend workspace from the root `package-lock.json`.
+- Creates `backend/.venv` when it does not exist.
+- Installs `backend/requirements.txt` into that virtual environment.
+
+`npm run dev` is the single application command. It starts both development services and watches for source changes:
+
+- Frontend: <http://127.0.0.1:5173>
+- Backend API: <http://127.0.0.1:8000>
+- OpenAPI documentation: <http://127.0.0.1:8000/docs>
+
+Press `Ctrl+C` once in the root terminal to stop both services and their reload processes.
+
+The checked-in spatial catalog contains 363 real Bell County parcels from the TxGIO/TNRIS standardized parcel program. Search by address, legal description, or generated catalog ID. `TRAVIS-DEMO-001` remains available through the API as a deterministic overlap fixture. Set `VITE_API_BASE` before `npm run dev` if the API is hosted elsewhere.
+
+### Root commands
+
+| Command | Purpose |
+| --- | --- |
+| `npm ci` | Install frontend packages and provision the backend virtual environment. |
+| `npm run dev` | Start the frontend and backend together. |
+| `npm test` | Run frontend unit tests and the backend pytest suite. |
+| `npm run build` | Create the production frontend bundle. |
+
+### Setup troubleshooting
+
+- If Python is not detected, run `PYTHON=/path/to/python3 npm ci`.
+- On Debian or Ubuntu, install the venv module with the package matching your Python version, such as `python3-venv`.
+- If port `5173` or `8000` is already occupied, stop the existing process before running `npm run dev`.
+- If Python requirements change, rerun `npm ci`; it updates the existing `backend/.venv` without deleting it.
 
 ## Use the workspace
 
@@ -37,9 +61,11 @@ Use **Carve out** to remove land and **Restore** to add land back. Add at least 
 ## Verify
 
 ```bash
-cd backend && .venv/bin/pytest -q
-cd frontend && npm run build
+npm test
+npm run build
 ```
+
+The root test command runs both the frontend export tests and all backend API, geometry, and spatial-store tests.
 
 ## Configuration and API
 
