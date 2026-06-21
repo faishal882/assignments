@@ -24,6 +24,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./styles.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8000";
+const CONSTRAINT_PMTILES_URL = import.meta.env.VITE_CONSTRAINT_PMTILES_URL;
 const EMPTY_COLLECTION = { type: "FeatureCollection", features: [] };
 const LAYER_COLORS = {
   wetlands: "#326f68",
@@ -33,18 +34,39 @@ const LAYER_COLORS = {
   "manual-restores": "#25845a",
 };
 
-const BASE_STYLE = {
-  version: 8,
-  sources: {
+function baseStyle() {
+  const style = {
+    version: 8,
+    sources: {
     osm: {
       type: "raster",
       tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
       tileSize: 256,
       attribution: "© OpenStreetMap contributors",
     },
-  },
-  layers: [{ id: "osm", type: "raster", source: "osm" }],
-};
+    },
+    layers: [{ id: "osm", type: "raster", source: "osm" }],
+  };
+  if (CONSTRAINT_PMTILES_URL) {
+    style.sources["county-constraints"] = {
+      type: "vector",
+      url: `pmtiles://${CONSTRAINT_PMTILES_URL}`,
+      attribution: "Constraint source agencies",
+    };
+    ["wetlands", "floodplain", "transmission"].forEach((layerId) => {
+      style.layers.push({
+        id: `browse-${layerId}`,
+        type: layerId === "transmission" ? "line" : "fill",
+        source: "county-constraints",
+        "source-layer": layerId,
+        paint: layerId === "transmission"
+          ? { "line-color": LAYER_COLORS[layerId], "line-width": 1.5, "line-opacity": 0.55 }
+          : { "fill-color": LAYER_COLORS[layerId], "fill-opacity": 0.22 },
+      });
+    });
+  }
+  return style;
+}
 
 function asCollection(value) {
   if (!value) return EMPTY_COLLECTION;
@@ -105,7 +127,7 @@ function addAnalysisLayers(map) {
     map.addSource(id, { type: "geojson", data: EMPTY_COLLECTION });
   });
   map.addLayer({ id: "excluded-fill", type: "fill", source: "excluded", paint: { "fill-color": "#b94752", "fill-opacity": 0.2 } });
-  map.addLayer({ id: "buildable-fill", type: "fill", source: "buildable", paint: { "fill-color": "#2d8a5d", "fill-opacity": 0.58 } });
+  map.addLayer({ id: "buildable-fill", type: "fill", source: "buildable", paint: { "fill-color": "#2d8a5d", "fill-opacity": 0.58, "fill-opacity-transition": { duration: 250, delay: 0 } } });
   map.addLayer({ id: "ghost-line", type: "line", source: "ghost", paint: { "line-color": "#ffffff", "line-opacity": 0.8, "line-width": 3, "line-dasharray": [1.5, 1.5] } });
   map.addLayer({ id: "constraint-fill", type: "fill", source: "constraints", paint: { "fill-color": colorExpression(), "fill-opacity": ["case", ["boolean", ["feature-state", "hover"], false], 0.66, 0.42] } });
   map.addLayer({ id: "constraint-line", type: "line", source: "constraints", paint: { "line-color": colorExpression(), "line-width": ["case", ["boolean", ["feature-state", "hover"], false], 3, 1.5] } });
@@ -162,7 +184,7 @@ class MapErrorBoundary extends React.Component {
   }
 }
 
-function MapView({ parcel, result, ghostBuildable, mode, setDraftPoints, draftPoints, manualEdits, pending, onExportReady }) {
+function MapView({ parcel, result, previewConstraints, ghostBuildable, mode, setDraftPoints, draftPoints, manualEdits, pending, onExportReady }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const modeRef = useRef(mode);
@@ -171,62 +193,78 @@ function MapView({ parcel, result, ghostBuildable, mode, setDraftPoints, draftPo
   const popupRef = useRef(null);
   const hoveredIdRef = useRef(null);
   const [mapReady, setMapReady] = useState(false);
+  const [mapFailed, setMapFailed] = useState(false);
 
   useEffect(() => { modeRef.current = mode; }, [mode]);
   useEffect(() => { parcelRef.current = parcel; }, [parcel]);
 
   useEffect(() => {
-    const map = new maplibregl.Map({
-      container: containerRef.current,
-      style: BASE_STYLE,
-      center: [-97.7342, 30.2755],
-      zoom: 14,
-      preserveDrawingBuffer: true,
-      cooperativeGestures: false,
-    });
-    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
-    map.on("load", () => {
-      addAnalysisLayers(map);
-      setMapReady(true);
-      onExportReady({
-        snapshot: () => map.getCanvas().toDataURL("image/png"),
-        focus: () => {
-          const bounds = boundsFor(parcelRef.current);
-          if (bounds) map.fitBounds(bounds, { padding: 56, duration: 450 });
-        },
+    let map;
+    let cancelled = false;
+    const initialize = async () => {
+      if (CONSTRAINT_PMTILES_URL) {
+        const { Protocol } = await import("pmtiles");
+        if (cancelled) return;
+        const protocol = new Protocol();
+        maplibregl.addProtocol("pmtiles", protocol.tile);
+      }
+      map = new maplibregl.Map({
+        container: containerRef.current,
+        style: baseStyle(),
+        center: [-97.7342, 30.2755],
+        zoom: 14,
+        preserveDrawingBuffer: true,
+        cooperativeGestures: false,
       });
-    });
-    map.on("click", (event) => {
-      if (!modeRef.current) return;
-      const point = modeRef.current === "restore" ? snappedPoint(map, event.lngLat, parcelRef.current) : event.lngLat;
-      setDraftPoints((points) => [...points, point]);
-    });
-    map.on("mousemove", "constraint-fill", (event) => {
-      if (modeRef.current || !event.features?.[0]) return;
-      const feature = event.features[0];
-      if (hoveredIdRef.current !== null) map.setFeatureState({ source: "constraints", id: hoveredIdRef.current }, { hover: false });
-      hoveredIdRef.current = feature.id;
-      if (feature.id !== undefined) map.setFeatureState({ source: "constraints", id: feature.id }, { hover: true });
-      const properties = feature.properties;
-      const content = document.createElement("div");
-      content.className = "map-tooltip";
-      const title = document.createElement("strong");
-      title.textContent = properties.label;
-      const detail = document.createElement("span");
-      detail.textContent = `${Number(properties.setback_m).toFixed(1)} m setback`;
-      content.append(title, detail);
-      if (!popupRef.current) popupRef.current = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12 });
-      popupRef.current.setLngLat(event.lngLat).setDOMContent(content).addTo(map);
-      map.getCanvas().style.cursor = "pointer";
-    });
-    map.on("mouseleave", "constraint-fill", () => {
-      if (hoveredIdRef.current !== null) map.setFeatureState({ source: "constraints", id: hoveredIdRef.current }, { hover: false });
-      hoveredIdRef.current = null;
-      popupRef.current?.remove();
-      map.getCanvas().style.cursor = modeRef.current ? "crosshair" : "";
-    });
-    mapRef.current = map;
-    return () => map.remove();
+      map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
+      map.on("load", () => {
+        addAnalysisLayers(map);
+        setMapReady(true);
+        onExportReady({
+          snapshot: () => map.getCanvas().toDataURL("image/png"),
+          focus: () => {
+            const bounds = boundsFor(parcelRef.current);
+            if (bounds) map.fitBounds(bounds, { padding: 56, duration: 450 });
+          },
+        });
+      });
+      map.on("click", (event) => {
+        if (!modeRef.current) return;
+        const point = modeRef.current === "restore" ? snappedPoint(map, event.lngLat, parcelRef.current) : event.lngLat;
+        setDraftPoints((points) => [...points, point]);
+      });
+      map.on("mousemove", "constraint-fill", (event) => {
+        if (modeRef.current || !event.features?.[0]) return;
+        const feature = event.features[0];
+        if (hoveredIdRef.current !== null) map.setFeatureState({ source: "constraints", id: hoveredIdRef.current }, { hover: false });
+        hoveredIdRef.current = feature.id;
+        if (feature.id !== undefined) map.setFeatureState({ source: "constraints", id: feature.id }, { hover: true });
+        const properties = feature.properties;
+        const content = document.createElement("div");
+        content.className = "map-tooltip";
+        const title = document.createElement("strong");
+        title.textContent = properties.label;
+        const detail = document.createElement("span");
+        detail.textContent = `${Number(properties.setback_m).toFixed(1)} m setback`;
+        content.append(title, detail);
+        if (!popupRef.current) popupRef.current = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12 });
+        popupRef.current.setLngLat(event.lngLat).setDOMContent(content).addTo(map);
+        map.getCanvas().style.cursor = "pointer";
+      });
+      map.on("mouseleave", "constraint-fill", () => {
+        if (hoveredIdRef.current !== null) map.setFeatureState({ source: "constraints", id: hoveredIdRef.current }, { hover: false });
+        hoveredIdRef.current = null;
+        popupRef.current?.remove();
+        map.getCanvas().style.cursor = modeRef.current ? "crosshair" : "";
+      });
+      mapRef.current = map;
+    };
+    initialize().catch(() => setMapFailed(true));
+    return () => {
+      cancelled = true;
+      map?.remove();
+      if (CONSTRAINT_PMTILES_URL) maplibregl.removeProtocol("pmtiles");
+    };
   }, [onExportReady, setDraftPoints]);
 
   useEffect(() => {
@@ -237,20 +275,10 @@ function MapView({ parcel, result, ghostBuildable, mode, setDraftPoints, draftPo
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!mapReady || !map || !result || !map.getSource("parcel")) return;
-    const constraints = {
-      ...result.features.constraints,
-      features: result.features.constraints.features.map((feature, index) => ({ ...feature, id: feature.properties.id ?? index })),
-    };
-    map.getSource("parcel").setData(asCollection(result.features.parcel));
-    map.getSource("buildable").setData(asCollection(result.features.buildable));
-    map.getSource("ghost").setData(asCollection(ghostBuildable));
-    map.getSource("excluded").setData(asCollection(result.features.excluded));
-    map.getSource("constraints").setData(constraints);
-    map.getSource("draft").setData(draftGeoJSON(draftPoints));
-    map.getSource("manual").setData({
-      type: "FeatureCollection",
-      features: manualEdits.map((edit) => ({ type: "Feature", properties: { kind: edit.kind, pending }, geometry: edit.geometry })),
+    if (!mapReady || !map || !map.getSource("parcel")) return;
+    map.getSource("parcel").setData(asCollection(parcel));
+    ["wetlands", "floodplain", "transmission"].forEach((layerId) => {
+      if (map.getLayer(`browse-${layerId}`)) map.setLayoutProperty(`browse-${layerId}`, "visibility", parcel ? "none" : "visible");
     });
     const parcelId = parcel?.properties?.id;
     if (parcelId && fittedParcelRef.current !== parcelId) {
@@ -258,8 +286,34 @@ function MapView({ parcel, result, ghostBuildable, mode, setDraftPoints, draftPo
       if (bounds) map.fitBounds(bounds, { padding: 56, duration: 500 });
       fittedParcelRef.current = parcelId;
     }
-  }, [parcel, result, ghostBuildable, draftPoints, manualEdits, pending, mapReady]);
+  }, [parcel, mapReady]);
 
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!mapReady || !map || !map.getSource("constraints")) return;
+    const sourceConstraints = previewConstraints ?? result?.features?.constraints ?? EMPTY_COLLECTION;
+    const constraints = {
+      ...sourceConstraints,
+      features: sourceConstraints.features.map((feature, index) => ({ ...feature, id: feature.properties.id ?? index })),
+    };
+    if (result) {
+      map.setPaintProperty("buildable-fill", "fill-opacity", 0.32);
+      map.getSource("buildable").setData(asCollection(result.features.buildable));
+      window.requestAnimationFrame(() => map.setPaintProperty("buildable-fill", "fill-opacity", 0.58));
+      map.getSource("excluded").setData(asCollection(result.features.excluded));
+    }
+    map.getSource("ghost").setData(asCollection(ghostBuildable));
+    map.getSource("constraints").setData(constraints);
+    map.getSource("draft").setData(draftGeoJSON(draftPoints));
+    map.getSource("manual").setData({
+      type: "FeatureCollection",
+      features: manualEdits.map((edit) => ({ type: "Feature", properties: { kind: edit.kind, pending }, geometry: edit.geometry })),
+    });
+  }, [result, previewConstraints, ghostBuildable, draftPoints, manualEdits, pending, mapReady]);
+
+  if (mapFailed) {
+    return <div className="map-fallback" role="alert"><strong>Map unavailable</strong><span>This browser could not start WebGL. The analysis controls and totals remain available.</span></div>;
+  }
   return <div ref={containerRef} className="map" role="application" aria-label="Interactive buildable area map" />;
 }
 
@@ -335,12 +389,15 @@ function App() {
   const [policyProfile, setPolicyProfile] = useState("screening");
   const [customizedPolicy, setCustomizedPolicy] = useState(false);
   const [result, setResult] = useState(null);
+  const [layerPreviews, setLayerPreviews] = useState({});
+  const [layerStates, setLayerStates] = useState({});
   const [ghostBuildable, setGhostBuildable] = useState(null);
   const { edits: manualEdits, canUndo, canRedo, commit: commitEdits, undo, redo, reset: resetEdits } = useEditHistory();
   const [mode, setMode] = useState(null);
   const [draftPoints, setDraftPoints] = useState([]);
   const [status, setStatus] = useState("Loading analysis data…");
   const [pending, setPending] = useState(false);
+  const [complexityMessage, setComplexityMessage] = useState(false);
   const [units, setUnits] = useState("acres");
   const [panelOpen, setPanelOpen] = useState(true);
   const [detailsOpen, setDetailsOpen] = useState(true);
@@ -374,7 +431,7 @@ function App() {
       setParcelTotal(parcelData.total ?? parcelData.parcels.length);
       const initialParcelId = shared?.parcelId ?? parcelData.featured_parcel_id ?? parcelData.parcels[0]?.id;
       if (initialParcelId) {
-        const feature = await fetch(`${API_BASE}/api/parcels/${initialParcelId}`).then((response) => response.json());
+        const feature = await fetch(`${API_BASE}/api/parcels/${initialParcelId}/outline`).then((response) => response.json());
         setParcel(feature);
       }
     }).catch(() => setStatus("Could not connect to the analysis API."));
@@ -398,32 +455,76 @@ function App() {
     manual_edits: manualEdits,
   } : null, [parcel, policyProfile, layers, manualEdits]);
 
+  const previewConstraints = useMemo(() => {
+    if (!Object.keys(layerPreviews).length) return null;
+    const featuresById = new Map(
+      (result?.features?.constraints?.features ?? []).map((feature) => [feature.properties.id, feature])
+    );
+    Object.entries(layerPreviews).forEach(([id, preview]) => featuresById.set(id, preview.feature));
+    const enabledIds = new Set(layers.filter((layer) => layer.enabled).map((layer) => layer.id));
+    return {
+      type: "FeatureCollection",
+      features: [...featuresById.entries()].filter(([id]) => enabledIds.has(id)).map(([, feature]) => feature),
+    };
+  }, [layerPreviews, layers, result]);
+
   useEffect(() => {
     if (!requestBody || !layers.length) return undefined;
     const controller = new AbortController();
     setPending(true);
+    setLayerPreviews({});
+    setComplexityMessage(false);
     setStatus("Updating…");
+    const enabledLayers = layers.filter((layer) => layer.enabled);
+    setLayerStates(Object.fromEntries(enabledLayers.map((layer) => [layer.id, { status: "loading" }])));
+    const slowTimer = window.setTimeout(() => setComplexityMessage(true), 1500);
     const timer = window.setTimeout(() => {
       setGhostBuildable(result?.features?.buildable ?? null);
-      fetch(`${API_BASE}/api/analyze`, {
+      const previews = enabledLayers.map((layer) => fetch(`${API_BASE}/api/analyze/preview`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          parcel_id: requestBody.parcel_id,
+          policy_profile: requestBody.policy_profile,
+          layers: [{ id: layer.id, enabled: true, setback_m: layer.setback_m }],
+        }),
+        signal: controller.signal,
+      }).then(async (response) => {
+        if (!response.ok) throw new Error((await response.json()).detail ?? "Layer preview failed");
+        return response.json();
+      }).then((preview) => {
+        setLayerPreviews((current) => ({ ...current, [layer.id]: preview }));
+        setLayerStates((current) => ({ ...current, [layer.id]: { status: preview.empty ? "empty" : "ready", duration_ms: preview.duration_ms } }));
+      }).catch((error) => {
+        if (error.name !== "AbortError") setLayerStates((current) => ({ ...current, [layer.id]: { status: "error", message: error.message } }));
+      }));
+      Promise.allSettled(previews).then(() => fetch(`${API_BASE}/api/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
         signal: controller.signal,
-      }).then(async (response) => {
+      })).then(async (response) => {
         if (!response.ok) throw new Error((await response.json()).detail ?? "Analysis failed");
         return response.json();
       }).then((data) => {
         setResult(data);
+        setLayerPreviews({});
         setPending(false);
+        setComplexityMessage(false);
         setStatus("Current");
+        window.clearTimeout(slowTimer);
         window.clearTimeout(ghostTimerRef.current);
         ghostTimerRef.current = window.setTimeout(() => setGhostBuildable(null), 1100);
       }).catch((error) => {
-        if (error.name !== "AbortError") { setPending(false); setStatus(error.message); }
+        if (error.name !== "AbortError") {
+          window.clearTimeout(slowTimer);
+          setPending(false);
+          setComplexityMessage(false);
+          setStatus(error.message);
+        }
       });
     }, 350);
-    return () => { window.clearTimeout(timer); controller.abort(); };
+    return () => { window.clearTimeout(timer); window.clearTimeout(slowTimer); controller.abort(); };
   }, [requestBody, layers.length]);
 
   useEffect(() => () => window.clearTimeout(ghostTimerRef.current), []);
@@ -437,6 +538,7 @@ function App() {
         event.preventDefault();
         if (event.shiftKey) redo(); else undo();
       }
+      if (!typing && !event.metaKey && !event.ctrlKey && event.key.toLowerCase() === "z") undo();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -444,7 +546,9 @@ function App() {
 
   const chooseParcel = async (id) => {
     setStatus("Loading parcel…");
-    const feature = await fetch(`${API_BASE}/api/parcels/${id}`).then((response) => response.json());
+    setResult(null);
+    setLayerPreviews({});
+    const feature = await fetch(`${API_BASE}/api/parcels/${id}/outline`).then((response) => response.json());
     setParcel(feature);
     resetEdits();
     setDraftPoints([]);
@@ -471,6 +575,13 @@ function App() {
   const choosePolicyProfile = (profileId) => {
     const profile = policyProfiles.find((item) => item.id === profileId);
     setPolicyProfile(profileId);
+    setCustomizedPolicy(false);
+    setLayers((items) => items.map((item) => ({ ...item, enabled: true, setback_m: profile.setbacks_m[item.id] })));
+  };
+
+  const resetPolicyDefaults = () => {
+    const profile = policyProfiles.find((item) => item.id === policyProfile);
+    if (!profile) return;
     setCustomizedPolicy(false);
     setLayers((items) => items.map((item) => ({ ...item, enabled: true, setback_m: profile.setbacks_m[item.id] })));
   };
@@ -602,11 +713,11 @@ function App() {
           </label>
         </section>
 
-        {result && <section className="summary" aria-label="Analysis totals">
+        <section className={`summary ${result ? "" : "summary-loading"}`} aria-label="Analysis totals" aria-busy={!result}>
           <div className="summary-heading"><h2>Land balance</h2><div className="unit-toggle" aria-label="Area units">
             {[['acres', 'Ac'], ['sqft', 'Ft²'], ['ha', 'Ha']].map(([id, label]) => <button key={id} className={units === id ? "active" : ""} onClick={() => setUnits(id)}>{label}</button>)}
           </div></div>
-          <div className="metrics">
+          {result ? <><div className="metrics">
             <div><span>Parcel</span><strong>{formatArea(result.parcel_acres, units)}</strong></div>
             <div><span>Excluded</span><strong>{formatArea(result.excluded_acres, units)}</strong></div>
             <div><span>Buildable</span><strong>{formatArea(result.buildable_acres, units)}</strong></div>
@@ -615,21 +726,29 @@ function App() {
             <i className="bar-buildable" style={{ width: `${buildableWidth}%` }} /><i className="bar-excluded" style={{ width: `${100 - buildableWidth}%` }} />
           </div>
           <div className="balance-labels"><span><i className="buildable-swatch" />{buildableWidth.toFixed(0)}% buildable</span><span><i className="excluded-swatch" />{(100 - buildableWidth).toFixed(0)}% excluded</span></div>
-        </section>}
+          </> : <div className="summary-skeleton" aria-label="Calculating land balance"><i /><i /><i /><span /></div>}
+        </section>
 
         <section>
           <div className="section-title"><h2>Constraint layers</h2><span className={status === "Current" ? "status current" : "status"}>{pending && <i className="spinner" />}{status}</span></div>
+          {complexityMessage && <div className="complexity-note">Still calculating. This parcel has more complex geometry.</div>}
           <label className="policy-select">Policy profile
             <select value={policyProfile} onChange={(event) => choosePolicyProfile(event.target.value)}>
               {policyProfiles.map((profile) => <option key={profile.id} value={profile.id}>{profile.label}</option>)}
             </select>
             <small>{customizedPolicy ? "Custom overrides applied" : policyProfiles.find((profile) => profile.id === policyProfile)?.description}</small>
           </label>
+          <button className="reset-policy" onClick={resetPolicyDefaults} disabled={!customizedPolicy}><RotateCcw size={13} /> Reset setbacks to profile defaults</button>
           <div className="setbacks">
             {layers.map((layer) => <div className={layer.enabled ? "layer-row" : "layer-row disabled"} key={layer.id}>
               <label className="layer-toggle"><input type="checkbox" checked={layer.enabled} onChange={(event) => updateLayer(layer.id, { enabled: event.target.checked })} /><i style={{ background: LAYER_COLORS[layer.id] }} /><span><strong>{layer.label}</strong><small>{layer.source}</small></span></label>
               <label className="setback-control"><span>Setback</span><input type="range" min={layer.min_setback_m} max={layer.max_setback_m} step={layer.step_m} disabled={!layer.enabled} value={layer.setback_m} onChange={(event) => updateLayer(layer.id, { setback_m: Number(event.target.value) })} /><input aria-label={`${layer.label} setback in metres`} type="number" min={layer.min_setback_m} max={layer.max_setback_m} step={layer.step_m} disabled={!layer.enabled} value={layer.setback_m} onChange={(event) => updateLayer(layer.id, { setback_m: Number(event.target.value) })} /><b>m</b></label>
-              <small className="layer-basis">{layer.geometry_basis}</small>
+              <small className={`layer-basis layer-state-${layerStates[layer.id]?.status ?? "idle"}`}>
+                {layerStates[layer.id]?.status === "empty" ? `No ${layer.label.toLowerCase()} data intersects this parcel's bounding box.`
+                  : layerStates[layer.id]?.status === "error" ? `Could not load ${layer.label.toLowerCase()}: ${layerStates[layer.id].message}`
+                    : layerStates[layer.id]?.status === "loading" ? "Checking this parcel…"
+                      : layer.geometry_basis}
+              </small>
             </div>)}
           </div>
         </section>
@@ -657,9 +776,10 @@ function App() {
           {detailsOpen && <>
             <div className="overlap-note"><Info size={14} /><span>Overlapping excluded areas are counted once in totals.</span></div>
             <div className="breakdown">
+              {!result && [1, 2, 3].map((item) => <div className="breakdown-row breakdown-skeleton" key={item}><i /><div><strong /><span /></div><b /></div>)}
               {result?.breakdown.map((row) => <div className="breakdown-row" key={row.id}>
                 <i style={{ background: LAYER_COLORS[row.id] ?? "#69756d" }} />
-                <div><strong>{row.label}</strong><span>{row.removed_acres < 0 ? "Restored" : "Exclusively removed"} · {formatArea(row.overlap_acres, units)} overlap</span></div>
+                <div><strong>{row.label}</strong><span>{row.empty ? "No features intersect this parcel" : `${row.removed_acres < 0 ? "Restored" : "Exclusively removed"} · ${formatArea(row.overlap_acres, units)} overlap`}</span></div>
                 <b>{formatArea(row.removed_acres, units)}</b>
               </div>)}
             </div>
@@ -670,14 +790,14 @@ function App() {
       </aside>
 
       <section className="map-panel" aria-label="Map workspace">
-        <MapErrorBoundary><MapView parcel={parcel} result={result} ghostBuildable={ghostBuildable} mode={mode} setDraftPoints={setDraftPoints} draftPoints={draftPoints} manualEdits={manualEdits} pending={pending} onExportReady={setMapActions} /></MapErrorBoundary>
+        <MapErrorBoundary><MapView parcel={parcel} result={result} previewConstraints={previewConstraints} ghostBuildable={ghostBuildable} mode={mode} setDraftPoints={setDraftPoints} draftPoints={draftPoints} manualEdits={manualEdits} pending={pending} onExportReady={setMapActions} /></MapErrorBoundary>
         <button className="panel-toggle" onClick={() => setPanelOpen((open) => !open)} title={panelOpen ? "Collapse controls" : "Open controls"} aria-label={panelOpen ? "Collapse controls" : "Open controls"}>{panelOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />}</button>
         <div className="legend" aria-label="Map legend">
           <span><i className="buildable" />Buildable</span>
           {layers.filter((layer) => layer.enabled).map((layer) => <span key={layer.id}><i style={{ background: LAYER_COLORS[layer.id] }} />{layer.label.replace("NWI ", "")}</span>)}
           <span><i className="manual" />Manual edit</span>
         </div>
-        {pending && <div className="map-pending"><i className="spinner" />Updating analysis</div>}
+        {pending && <div className="map-pending"><i className="spinner" />{complexityMessage ? "Complex geometry, still calculating" : "Updating analysis"}</div>}
         {tourStep !== null && <Walkthrough step={tourStep} onNext={() => setTourStep((step) => step + 1)} onClose={closeTour} />}
       </section>
     </main>
