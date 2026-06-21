@@ -32,7 +32,11 @@ def main() -> None:
     parser.add_argument("--database", type=Path, required=True)
     parser.add_argument("--parcels", type=Path, required=True)
     parser.add_argument("--wetlands", type=Path)
+    parser.add_argument("--floodplain", type=Path)
+    parser.add_argument("--transmission", type=Path)
     parser.add_argument("--clip", nargs=4, type=float, metavar=("WEST", "SOUTH", "EAST", "NORTH"))
+    parser.add_argument("--region-id", default="county", help="Stable county or acquisition-region identifier")
+    parser.add_argument("--display-tolerance", type=float, default=0.00001, help="WGS84 simplification tolerance for display copies")
     args = parser.parse_args()
 
     if args.database.exists():
@@ -40,10 +44,27 @@ def main() -> None:
     store = SpatialStore(args.database)
     store.initialize()
     parcel_features = list(read_clipped(args.parcels, args.clip))
-    wetland_features = list(read_clipped(args.wetlands, args.clip)) if args.wetlands else []
+    constraint_paths = {
+        "wetlands": args.wetlands,
+        "floodplain": args.floodplain,
+        "transmission": args.transmission,
+    }
+    constraint_features = {
+        layer_id: list(read_clipped(path, args.clip)) if path else []
+        for layer_id, path in constraint_paths.items()
+    }
     parcels = store.replace_parcels(parcel_features)
-    wetlands = store.replace_constraints("wetlands", wetland_features)
+    constraint_counts = {
+        layer_id: store.replace_constraints(
+            layer_id,
+            features,
+            region_id=args.region_id,
+            display_tolerance=args.display_tolerance,
+        )
+        for layer_id, features in constraint_features.items()
+    }
     featured_parcel_id = None
+    wetland_features = constraint_features["wetlands"]
     if wetland_features:
         wetland_union = shape(wetland_features[0]["geometry"])
         for feature in wetland_features[1:]:
@@ -62,10 +83,13 @@ def main() -> None:
                 ("parcel_source", "TxGIO/TNRIS standardized Bell County parcels"),
                 ("wetlands_source", "USFWS National Wetlands Inventory Version 2"),
                 ("clip_bounds", json.dumps(args.clip)),
+                ("region_id", args.region_id),
+                ("display_tolerance", str(args.display_tolerance)),
                 ("featured_parcel_id", featured_parcel_id or ""),
             ],
         )
-    print(f"catalog: {parcels} parcels, {wetlands} wetland features -> {args.database}")
+    counts = ", ".join(f"{count} {layer_id}" for layer_id, count in constraint_counts.items())
+    print(f"catalog: {parcels} parcels, {counts} -> {args.database}")
 
 
 if __name__ == "__main__":

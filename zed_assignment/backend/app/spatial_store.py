@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS parcels (
     county TEXT NOT NULL DEFAULT '',
     properties TEXT NOT NULL,
     geometry TEXT NOT NULL,
+    display_geometry TEXT,
     minx REAL NOT NULL, miny REAL NOT NULL, maxx REAL NOT NULL, maxy REAL NOT NULL
 );
 CREATE VIRTUAL TABLE IF NOT EXISTS parcel_rtree USING rtree(
@@ -26,6 +27,8 @@ CREATE TABLE IF NOT EXISTS constraints (
     layer_id TEXT NOT NULL,
     properties TEXT NOT NULL,
     geometry TEXT NOT NULL,
+    display_geometry TEXT,
+    region_id TEXT NOT NULL DEFAULT '',
     minx REAL NOT NULL, miny REAL NOT NULL, maxx REAL NOT NULL, maxy REAL NOT NULL
 );
 CREATE VIRTUAL TABLE IF NOT EXISTS constraint_rtree USING rtree(
@@ -39,6 +42,7 @@ CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 class SpatialStore:
     def __init__(self, path: Path):
         self.path = path
+        self._column_cache: dict[str, set[str]] = {}
 
     def connect(self) -> sqlite3.Connection:
         connection = sqlite3.connect(self.path)
@@ -50,7 +54,15 @@ class SpatialStore:
         with self.connect() as connection:
             connection.executescript(SCHEMA)
 
-    def replace_parcels(self, features: Iterable[dict[str, Any]]) -> int:
+    def _columns(self, table: str) -> set[str]:
+        if table not in self._column_cache:
+            with self.connect() as connection:
+                self._column_cache[table] = {
+                    row[1] for row in connection.execute(f"PRAGMA table_info({table})")
+                }
+        return self._column_cache[table]
+
+    def replace_parcels(self, features: Iterable[dict[str, Any]], display_tolerance: float = 0.000005) -> int:
         count = 0
         with self.connect() as connection:
             connection.execute("DELETE FROM parcel_rtree")
@@ -78,16 +90,23 @@ class SpatialStore:
                 legal_description = str(properties.get("LEGAL_DESC") or properties.get("legal_desc") or "").strip()
                 name = str(properties.get("name") or address or legal_description or f"{county} parcel {parcel_id}").strip()[:100]
                 minx, miny, maxx, maxy = geometry.bounds
+                display_geometry = geometry.simplify(display_tolerance, preserve_topology=True)
                 connection.execute(
-                    "INSERT INTO parcels VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (parcel_id, name, address, county, json.dumps(properties), json.dumps(mapping(geometry)), minx, miny, maxx, maxy),
+                    "INSERT INTO parcels VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (parcel_id, name, address, county, json.dumps(properties), json.dumps(mapping(geometry)), json.dumps(mapping(display_geometry)), minx, miny, maxx, maxy),
                 )
                 rowid = connection.execute("SELECT rowid FROM parcels WHERE id = ?", (parcel_id,)).fetchone()[0]
                 connection.execute("INSERT INTO parcel_rtree VALUES (?, ?, ?, ?, ?)", (rowid, minx, maxx, miny, maxy))
                 count += 1
         return count
 
-    def replace_constraints(self, layer_id: str, features: Iterable[dict[str, Any]]) -> int:
+    def replace_constraints(
+        self,
+        layer_id: str,
+        features: Iterable[dict[str, Any]],
+        region_id: str = "",
+        display_tolerance: float = 0.00001,
+    ) -> int:
         count = 0
         with self.connect() as connection:
             old_ids = [row[0] for row in connection.execute("SELECT id FROM constraints WHERE layer_id = ?", (layer_id,))]
@@ -98,18 +117,19 @@ class SpatialStore:
                 if geometry.is_empty:
                     continue
                 minx, miny, maxx, maxy = geometry.bounds
+                display_geometry = geometry.simplify(display_tolerance, preserve_topology=True)
                 cursor = connection.execute(
-                    "INSERT INTO constraints(layer_id, properties, geometry, minx, miny, maxx, maxy) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                    (layer_id, json.dumps(feature.get("properties", {})), json.dumps(mapping(geometry)), minx, miny, maxx, maxy),
+                    "INSERT INTO constraints(layer_id, properties, geometry, display_geometry, region_id, minx, miny, maxx, maxy) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (layer_id, json.dumps(feature.get("properties", {})), json.dumps(mapping(geometry)), json.dumps(mapping(display_geometry)), region_id, minx, miny, maxx, maxy),
                 )
                 connection.execute("INSERT INTO constraint_rtree VALUES (?, ?, ?, ?, ?)", (cursor.lastrowid, minx, maxx, miny, maxy))
                 count += 1
         return count
 
-    def get_parcel(self, parcel_id: str) -> dict[str, Any] | None:
+    def get_parcel(self, parcel_id: str, display: bool = False) -> dict[str, Any] | None:
         with self.connect() as connection:
             row = connection.execute("SELECT * FROM parcels WHERE id = ?", (parcel_id,)).fetchone()
-        return self._parcel_feature(row) if row else None
+        return self._parcel_feature(row, display) if row else None
 
     def search_parcels(self, query: str, bounds=None, limit: int = 50, offset: int = 0) -> tuple[list[dict[str, Any]], int]:
         filters = []
@@ -133,11 +153,13 @@ class SpatialStore:
             ).fetchall()
         return [self._parcel_summary(row) for row in rows], total
 
-    def constraints_for_bounds(self, layer_id: str, bounds) -> list[dict[str, Any]]:
+    def constraints_for_bounds(self, layer_id: str, bounds, display: bool = False) -> list[dict[str, Any]]:
         minx, miny, maxx, maxy = bounds
+        has_display = "display_geometry" in self._columns("constraints")
+        geometry_column = "c.display_geometry" if display and has_display else "c.geometry"
         with self.connect() as connection:
             rows = connection.execute(
-                """SELECT c.properties, c.geometry FROM constraints c
+                f"""SELECT c.properties, {geometry_column} AS geometry FROM constraints c
                 JOIN constraint_rtree r ON r.id = c.id
                 WHERE c.layer_id = ? AND r.minx <= ? AND r.maxx >= ?
                   AND r.miny <= ? AND r.maxy >= ?""",
@@ -153,11 +175,11 @@ class SpatialStore:
             row = connection.execute("SELECT value FROM metadata WHERE key = ?", (key,)).fetchone()
         return row[0] if row else None
 
-    @staticmethod
-    def _parcel_feature(row: sqlite3.Row) -> dict[str, Any]:
+    def _parcel_feature(self, row: sqlite3.Row, display: bool = False) -> dict[str, Any]:
         properties = json.loads(row["properties"])
         properties.update({"id": row["id"], "name": row["name"], "address": row["address"], "county": row["county"]})
-        return {"type": "Feature", "properties": properties, "geometry": json.loads(row["geometry"])}
+        geometry_key = "display_geometry" if display and "display_geometry" in self._columns("parcels") and row["display_geometry"] else "geometry"
+        return {"type": "Feature", "properties": properties, "geometry": json.loads(row[geometry_key])}
 
     @staticmethod
     def _parcel_summary(row: sqlite3.Row) -> dict[str, Any]:
