@@ -55,7 +55,10 @@ These are feasibility assumptions, not universal legal setbacks. Wetland require
 - `GET /api/layers`: config-driven policy profiles and layer metadata.
 - `GET /api/parcels/search?q=&bbox=`: parcel summaries.
 - `GET /api/parcels/{parcel_id}`: parcel GeoJSON.
+- `GET /api/parcels/{parcel_id}/outline`: ingestion-simplified parcel geometry for immediate map display.
+- `POST /api/analyze/preview`: one clipped, simplified constraint overlay for progressive rendering.
 - `POST /api/analyze`: parcel ID or raw polygon, layer toggles/setbacks, and manual edits.
+- `GET /api/performance/cache`: bounded buffer-cache diagnostics.
 - `GET /docs`: generated OpenAPI explorer.
 
 Example:
@@ -68,6 +71,8 @@ curl -X POST http://localhost:8000/api/analyze \
 
 Each analysis response includes a unique `analysis_id`, UTC `analyzed_at`, `policy.config_version`, `policy.profile_id`, the exact setback applied to each enabled layer, source links, rationale, geometry basis, and field-verification requirements. Persist those fields alongside any exported decision record.
 
+Responses larger than 1 KB are gzip-compressed when the client supports it. Projected layer buffers are cached for 120 seconds by parcel, layer, setback, and config version, capped at 256 entries. The final analysis still owns overlap attribution and acreage reconciliation; preview responses are display-only.
+
 ## Data and ingestion
 
 The checked-in `backend/data/catalog.sqlite` is a reproducible, bounded acquisition around Bell County (`-97.45,31.06,-97.43,31.08`). It contains 363 TxGIO/TNRIS standardized parcel polygons and a locally clipped USFWS NWI Version 2 riverine feature. The bounded sample keeps a clean checkout small while exercising real duplicate IDs, missing addresses, multipart geometry, and spatial overlap.
@@ -79,10 +84,27 @@ python ingestion/build_catalog.py \
   --database backend/data/catalog.sqlite \
   --parcels raw/bell-parcels.geojson \
   --wetlands raw/bell-wetlands.geojson \
+  --floodplain raw/bell-floodplain.geojson \
+  --transmission raw/bell-transmission.geojson \
+  --region-id bell-county \
   --clip -97.45 31.06 -97.43 31.08
 ```
 
-`ingestion/fetch_arcgis.py` pages bounded ArcGIS FeatureServer layers without loading a statewide response into memory. For a full county deployment, point it at the current TxGIO service or normalize the county ZIP from DataHub, then build the catalog. SQLite R-tree indexes support this sample and a moderate county; use PostGIS, bulk COPY, GiST indexes, vector tiles, and background analysis jobs for multi-county operation.
+Catalog ingestion clips each layer to the acquisition region once, creates R-tree indexes, and stores both full-precision geometry for measurement and a simplified display copy. Rebuild existing catalogs to opt into the dual-geometry schema.
+
+For county browsing, package normalized constraints with Tippecanoe and the PMTiles CLI:
+
+```bash
+python ingestion/build_vector_tiles.py \
+  --output frontend/public/data/bell-constraints.pmtiles \
+  --wetlands data/wetlands.geojson \
+  --floodplain data/floodplain.geojson \
+  --transmission data/transmission.geojson
+```
+
+Set `VITE_CONSTRAINT_PMTILES_URL=/data/bell-constraints.pmtiles`. The map uses vector tiles for county browsing, hides them when a parcel is selected, and then renders only clipped, simplified GeoJSON returned by the analysis API.
+
+`ingestion/fetch_arcgis.py` pages bounded ArcGIS FeatureServer layers without loading a statewide response into memory. For a full county deployment, point it at the current TxGIO service or normalize the county ZIP from DataHub, then build the catalog. SQLite R-tree indexes support this sample and a moderate county. A PostGIS deployment should use GiST indexes on every geometry column and a bounded application connection pool; those concerns do not apply to this file-backed runtime. Use bulk COPY and background analysis jobs for multi-county operation.
 
 Authoritative source starting points:
 
