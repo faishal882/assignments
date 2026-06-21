@@ -42,6 +42,8 @@ The checked-in spatial catalog contains 363 real Bell County parcels from the Tx
 | `npm run dev` | Start the frontend and backend together. |
 | `npm test` | Run frontend unit tests and the backend pytest suite. |
 | `npm run build` | Create the production frontend bundle. |
+| `npm run docker:up` | Build and start the production containers. |
+| `npm run docker:down` | Stop and remove the production containers. |
 
 ### Setup troubleshooting
 
@@ -49,6 +51,56 @@ The checked-in spatial catalog contains 363 real Bell County parcels from the Tx
 - On Debian or Ubuntu, install the venv module with the package matching your Python version, such as `python3-venv`.
 - If port `5173` or `8000` is already occupied, stop the existing process before running `npm run dev`.
 - If Python requirements change, rerun `npm ci`; it updates the existing `backend/.venv` without deleting it.
+
+## Docker
+
+Docker is the simplest way to run the complete application from a clean checkout. It starts the FastAPI backend and the production React frontend behind Nginx; local Node.js, Python, and `npm ci` are not required.
+
+Prerequisite: Docker Engine with Docker Compose v2.
+
+From the repository root, build and start both services:
+
+```bash
+docker compose up --build
+```
+
+Alternatively, when Node.js and npm are available, use the equivalent convenience command:
+
+```bash
+npm run docker:up
+```
+
+The containerized application is available at:
+
+- Application: <http://127.0.0.1:8080>
+- Backend API: <http://127.0.0.1:8000>
+- OpenAPI documentation through Nginx: <http://127.0.0.1:8080/docs>
+
+Nginx serves the production frontend and proxies API requests to FastAPI over the internal Compose network. The browser therefore uses same-origin `/api` requests rather than a Docker service hostname.
+
+To run the stack in the background, add `-d`:
+
+```bash
+docker compose up --build -d
+docker compose ps
+docker compose logs -f
+```
+
+Override either host port when it is already occupied:
+
+```bash
+FRONTEND_PORT=3000 BACKEND_PORT=9000 docker compose up --build
+```
+
+Stop and remove the containers:
+
+```bash
+docker compose down
+```
+
+`npm run docker:down` is the equivalent npm command.
+
+The images contain the checked-in SQLite catalog. Rebuild the backend image after changing `backend/config.json`, backend dependencies, application code, or catalog data.
 
 ## Use the workspace
 
