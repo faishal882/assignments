@@ -65,6 +65,9 @@ class Repository:
     def get_parcel(self, parcel_id: str) -> dict[str, Any] | None:
         return (self.store.get_parcel(parcel_id) if self.store else None) or PARCELS.get(parcel_id)
 
+    def get_parcel_outline(self, parcel_id: str) -> dict[str, Any] | None:
+        return (self.store.get_parcel(parcel_id, display=True) if self.store else None) or PARCELS.get(parcel_id)
+
     def search_parcels(self, query: str, bbox_values=None, limit=50, offset=0) -> tuple[list[dict[str, Any]], int]:
         if self.store:
             return self.store.search_parcels(query.strip(), bbox_values, limit, offset)
@@ -103,7 +106,9 @@ class Repository:
             features = self._feature_lists.get(selection.id, [])
             is_fixture = parcel and parcel.get("properties", {}).get("id") in PARCELS
             if self.store and parcel and not is_fixture:
-                parcel_bounds = shape(parcel["geometry"]).bounds
+                minx, miny, maxx, maxy = shape(parcel["geometry"]).bounds
+                margin = float(setback_m) / 100_000
+                parcel_bounds = (minx - margin, miny - margin, maxx + margin, maxy + margin)
                 features = self.store.constraints_for_bounds(selection.id, parcel_bounds)
             if (not self.store or is_fixture) and parcel and features:
                 # Geographic pre-filter only; exact clipping and all measurements
@@ -115,6 +120,8 @@ class Repository:
                 {
                     **metadata,
                     "setback_m": setback_m,
+                    "candidate_count": len(features),
+                    "cache_version": self.config["config_version"],
                     "features": features,
                 }
             )

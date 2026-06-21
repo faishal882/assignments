@@ -1,7 +1,7 @@
 from pyproj import Transformer
 from shapely.geometry import Polygon, mapping
 
-from app.area import SQM_PER_ACRE, analyze_buildable_area, area_acres
+from app.area import SQM_PER_ACRE, analyze_buildable_area, area_acres, buffer_cache
 from app.sample_data import PARCELS, REAL_PAIR
 
 
@@ -101,3 +101,33 @@ def test_real_public_parcel_and_nwi_pair_analyzes_without_topology_failure():
     assert abs(
         result["buildable_acres"] + result["excluded_acres"] - result["parcel_acres"]
     ) <= 0.01
+
+
+def test_empty_constraint_short_circuits_and_reports_specific_state():
+    parcel = utm_square_feature()
+    empty = {
+        "id": "empty",
+        "label": "Empty layer",
+        "reason": "No candidates",
+        "setback_m": 30,
+        "features": [],
+    }
+
+    result = analyze_buildable_area(parcel, [empty])
+
+    assert result["breakdown"][0]["empty"] is True
+    assert result["breakdown"][0]["candidate_count"] == 0
+    assert result["buildable_acres"] == result["parcel_acres"]
+
+
+def test_repeat_analysis_reuses_buffered_layer_geometry():
+    buffer_cache.clear()
+    parcel = PARCELS["TRAVIS-DEMO-001"]
+    constraints = [constraint("cached", parcel, setback_m=10)]
+
+    first = analyze_buildable_area(parcel, constraints)
+    second = analyze_buildable_area(parcel, constraints)
+
+    assert first["performance"]["buffer_cache_hits"] == 0
+    assert second["performance"]["buffer_cache_hits"] == 1
+    assert first["excluded_acres"] == second["excluded_acres"]

@@ -11,6 +11,9 @@ the API boundary while reconciliation uses full-precision projected areas.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from hashlib import sha256
+from threading import Lock
+from time import monotonic
 from typing import Any, Iterable
 
 from pyproj import CRS, Transformer
@@ -20,6 +23,51 @@ from shapely.validation import make_valid
 
 SQM_PER_ACRE = 4046.8564224
 GeoJSON = dict[str, Any]
+DISPLAY_TOLERANCE_M = 0.25
+CACHE_TTL_SECONDS = 120
+CACHE_MAX_ENTRIES = 256
+
+
+class BufferedGeometryCache:
+    def __init__(self, ttl_seconds: int = CACHE_TTL_SECONDS, max_entries: int = CACHE_MAX_ENTRIES):
+        self.ttl_seconds = ttl_seconds
+        self.max_entries = max_entries
+        self._items: dict[tuple[str, str, float, str], tuple[float, Any]] = {}
+        self._lock = Lock()
+        self.hits = 0
+        self.misses = 0
+
+    def get(self, key):
+        now = monotonic()
+        with self._lock:
+            cached = self._items.get(key)
+            if cached and cached[0] > now:
+                self.hits += 1
+                return cached[1]
+            if cached:
+                self._items.pop(key, None)
+            self.misses += 1
+        return None
+
+    def set(self, key, geometry) -> None:
+        with self._lock:
+            if len(self._items) >= self.max_entries:
+                oldest = min(self._items, key=lambda item: self._items[item][0])
+                self._items.pop(oldest, None)
+            self._items[key] = (monotonic() + self.ttl_seconds, geometry)
+
+    def stats(self) -> dict[str, int]:
+        with self._lock:
+            return {"entries": len(self._items), "hits": self.hits, "misses": self.misses}
+
+    def clear(self) -> None:
+        with self._lock:
+            self._items.clear()
+            self.hits = 0
+            self.misses = 0
+
+
+buffer_cache = BufferedGeometryCache()
 
 
 @dataclass(frozen=True)
@@ -77,12 +125,63 @@ def area_acres(geometry) -> float:
     return max(0.0, geometry.area / SQM_PER_ACRE)
 
 
-def _feature(geometry, projection: AnalysisProjection, properties=None) -> GeoJSON:
-    wgs84 = transform(projection.inverse, _polygonal(geometry))
+def _feature(geometry, projection: AnalysisProjection, properties=None, simplify=True) -> GeoJSON:
+    display_geometry = geometry.simplify(DISPLAY_TOLERANCE_M, preserve_topology=True) if simplify else geometry
+    wgs84 = transform(projection.inverse, _polygonal(display_geometry))
     return {
         "type": "Feature",
         "properties": properties or {},
         "geometry": mapping(wgs84),
+    }
+
+
+def _parcel_cache_key(parcel: GeoJSON) -> str:
+    parcel_id = parcel.get("properties", {}).get("id")
+    if parcel_id:
+        return str(parcel_id)
+    return sha256(str(parcel.get("geometry", {})).encode()).hexdigest()[:20]
+
+
+def _buffered_constraint(parcel_geometry, projection, parcel_key: str, constraint):
+    features = constraint.get("features", [])
+    if not features:
+        return GeometryCollection(), False
+    setback_m = float(constraint.get("setback_m", 0) or 0)
+    cache_key = (
+        parcel_key,
+        constraint["id"],
+        setback_m,
+        str(constraint.get("cache_version", "")),
+    )
+    cached = buffer_cache.get(cache_key)
+    if cached is not None:
+        return cached, True
+    raw = _union(features, projection)
+    clipped = _polygonal(raw.buffer(setback_m).intersection(parcel_geometry))
+    buffer_cache.set(cache_key, clipped)
+    return clipped, False
+
+
+def preview_constraint_layer(parcel: GeoJSON, constraint: dict[str, Any]) -> dict[str, Any]:
+    parcel_wgs84 = _polygonal(_geometry(parcel))
+    projection = _projection_for(parcel_wgs84)
+    parcel_geometry = _polygonal(transform(projection.forward, parcel_wgs84))
+    clipped, cache_hit = _buffered_constraint(
+        parcel_geometry, projection, _parcel_cache_key(parcel), constraint
+    )
+    return {
+        "id": constraint["id"],
+        "label": constraint["label"],
+        "setback_m": float(constraint.get("setback_m", 0) or 0),
+        "candidate_count": len(constraint.get("features", [])),
+        "empty": clipped.is_empty,
+        "cache_hit": cache_hit,
+        "feature": _feature(clipped, projection, {
+            "id": constraint["id"],
+            "label": constraint["label"],
+            "reason": constraint["reason"],
+            "setback_m": float(constraint.get("setback_m", 0) or 0),
+        }),
     }
 
 
@@ -105,20 +204,20 @@ def analyze_buildable_area(
 
     projection = _projection_for(parcel_wgs84)
     parcel_geometry = _polygonal(transform(projection.forward, parcel_wgs84))
-    buildable = parcel_geometry
+    parcel_key = _parcel_cache_key(parcel)
     attributed_union = GeometryCollection()
     breakdown: list[dict[str, Any]] = []
     constraint_features: list[GeoJSON] = []
     clipped_layers = []
+    cache_hits = 0
 
     for constraint in constraints:
-        raw = _union(constraint.get("features", []), projection)
         setback_m = float(constraint.get("setback_m", 0) or 0)
-        clipped = _polygonal(raw.buffer(setback_m).intersection(parcel_geometry))
+        clipped, cache_hit = _buffered_constraint(parcel_geometry, projection, parcel_key, constraint)
+        cache_hits += int(cache_hit)
         incremental = _polygonal(clipped.difference(attributed_union))
         overlap = _polygonal(clipped.intersection(attributed_union))
         attributed_union = _polygonal(attributed_union.union(clipped))
-        buildable = _polygonal(buildable.difference(clipped))
         clipped_layers.append(clipped)
 
         row = {
@@ -129,11 +228,15 @@ def analyze_buildable_area(
             "removed_acres": round(area_acres(incremental), 2),
             "gross_acres": round(area_acres(clipped), 2),
             "overlap_acres": round(area_acres(overlap), 2),
+            "candidate_count": len(constraint.get("features", [])),
+            "empty": clipped.is_empty,
+            "cache_hit": cache_hit,
         }
         breakdown.append(row)
         constraint_features.append(_feature(clipped, projection, row))
 
     automatic_union = _polygonal(unary_union(clipped_layers)) if clipped_layers else GeometryCollection()
+    buildable = _polygonal(parcel_geometry.difference(automatic_union))
     gross_sum = sum(area_acres(item) for item in clipped_layers)
     duplicate_overlap = max(0.0, gross_sum - area_acres(automatic_union))
 
@@ -185,6 +288,11 @@ def analyze_buildable_area(
             "automatic_union_acres": round(area_acres(automatic_union), 2),
             "duplicate_overlap_acres": round(duplicate_overlap, 2),
             "note": "Gross and overlap values are diagnostic; sum only removed_acres.",
+        },
+        "performance": {
+            "buffer_cache_hits": cache_hits,
+            "buffer_cache": buffer_cache.stats(),
+            "display_tolerance_m": DISPLAY_TOLERANCE_M,
         },
         "features": {
             "parcel": _feature(parcel_geometry, projection, {"kind": "parcel"}),
