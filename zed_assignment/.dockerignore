@@ -1,0 +1,17 @@
+.git
+.gitignore
+.gstack
+.pytest_cache
+**/.pytest_cache
+**/__pycache__
+**/*.pyc
+**/.venv
+**/node_modules
+**/dist
+**/.vite
+*.log
+.env
+.env.*
+graphify-out
+prod_grade_plan
+raw
