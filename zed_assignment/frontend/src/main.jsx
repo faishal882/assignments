@@ -24,7 +24,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./styles.css";
 import { captureMapCanvas, MAP_CANVAS_CONTEXT_ATTRIBUTES } from "./mapExport.js";
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 const CONSTRAINT_PMTILES_URL = import.meta.env.VITE_CONSTRAINT_PMTILES_URL;
 const EMPTY_COLLECTION = { type: "FeatureCollection", features: [] };
 const LAYER_COLORS = {
