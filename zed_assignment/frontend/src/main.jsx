@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./styles.css";
+import { captureMapCanvas, MAP_CANVAS_CONTEXT_ATTRIBUTES } from "./mapExport.js";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8000";
 const CONSTRAINT_PMTILES_URL = import.meta.env.VITE_CONSTRAINT_PMTILES_URL;
@@ -213,7 +214,7 @@ function MapView({ parcel, result, previewConstraints, ghostBuildable, mode, set
         style: baseStyle(),
         center: [-97.7342, 30.2755],
         zoom: 14,
-        preserveDrawingBuffer: true,
+        canvasContextAttributes: MAP_CANVAS_CONTEXT_ATTRIBUTES,
         cooperativeGestures: false,
       });
       map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
@@ -221,7 +222,7 @@ function MapView({ parcel, result, previewConstraints, ghostBuildable, mode, set
         addAnalysisLayers(map);
         setMapReady(true);
         onExportReady({
-          snapshot: () => map.getCanvas().toDataURL("image/png"),
+          snapshot: () => captureMapCanvas(map),
           focus: () => {
             const bounds = boundsFor(parcelRef.current);
             if (bounds) map.fitBounds(bounds, { padding: 56, duration: 450 });
@@ -628,7 +629,7 @@ function App() {
     context.fillRect(0, 0, canvas.width, canvas.height);
     try {
       const image = new Image();
-      image.src = mapActionsRef.current.snapshot();
+      image.src = await mapActionsRef.current.snapshot();
       await image.decode();
       context.drawImage(image, 0, 0, 980, 900);
     } catch {
