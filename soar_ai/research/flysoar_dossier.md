@@ -2,6 +2,14 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## Outreach package index
+
+- ✅ Created `research/README.md` to make the artifact set usable in sequence: read dossier, send first-contact message, follow with teardown, use portfolio positioning for background, use objection handling for challenges, and use sources for evidence boundaries. Source: research/README.md
+- ✅ Recommended outreach sequence is short DM → one-page teardown → 48-hour work-trial offer → portfolio proof stack, because Henry’s public profile suggests a speed-biased builder who likely will not read a giant dossier first. Source: https://x.com/henrylangmack
+- ✅ The package index warns not to send everything at once; the full dossier is for preparation, while `first_contact_messages.md` and `henry_followup_teardown.md` are the actual outbound artifacts. Source: research/first_contact_messages.md
+- ✅ The package index’s best pitch is: Soar’s hidden hard problem is booking-state reliability and internal tooling around a social/deal-link funnel, not generic flight search. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ The package index repeats the evidence boundary: public Soar technical claims are hypotheses from public site/legal/X/client-route signals, not claims about private backend architecture. Source: https://flysoar.ai/terms
+
 ## Product: what Soar does
 
 - ✅ Soar's public title/meta positions it as “Find and Book Cheap Flights”; description says users can search live airfare, compare airlines, get price alerts, and manage booked trips from one web app. Source: https://flysoar.ai/
