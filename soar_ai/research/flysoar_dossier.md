@@ -103,6 +103,15 @@
 - ✅ Prototype option B: build a tiny event-schema document and PostHog-style dashboard spec for the deal-link funnel, leveraging Faishal’s prior outreach analytics work. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/06-Product Analytics/Outreach Analytics Coverage.md
 - ✅ Prototype option C: build a booking-state-machine sketch with retry/idempotency tables, leveraging Faishal’s Tailorec agent-run/state-machine experience. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/04-Job Agent/Archive/Agent Plan V1.md
 
+## Standalone follow-up artifact
+
+- ✅ Created `research/henry_followup_teardown.md` as a one-page artifact Faishal can send after Henry replies; it frames Soar as a reliability + growth-loop problem, not a generic flight-search clone. Source: research/henry_followup_teardown.md
+- ✅ The teardown’s funnel starts with `@SoarAI` deal posts and prefilled flight URLs, then maps landing/offer, hold, verification/payment, booking submission, progress polling, ticket/result, and support. Source: https://x.com/SoarAI
+- ✅ The teardown’s proposed state machine names specific states to validate: deal clicked, landing loaded, search stream started, offer selected, hold created, traveler verified, payment authorized, booking submitted, ticket confirmed, and support needed. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ The teardown’s internal-console MVP covers User, Offer/Hold, Duffel Order, Payment, Verification, Timeline, Support Notes, and Fraud Signals — matched to data/vendors Soar publicly says it handles. Source: https://flysoar.ai/privacy
+- ✅ The teardown’s metric tree separates activation, intent, conversion, trust, and growth so Henry can see Faishal thinks beyond code into operating metrics. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ The teardown explicitly says it is based only on public site/legal/client-route signals and must be validated against Soar’s actual backend before production work, avoiding fake insider certainty. Source: https://flysoar.ai/terms
+
 ## Quick cheat sheet
 
 - ✅ One-line product read: Soar is trying to make live flight search/booking feel social, fast, mobile-native, and Uber-simple, not like a legacy OTA. Source: https://flysoar.ai/
