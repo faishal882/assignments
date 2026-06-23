@@ -47,7 +47,11 @@
 
 ## Competitors landscape
 
-- ✅ Direct flight metasearch/OTA competitors: Google Flights, Skyscanner, Kayak, Momondo, Expedia, Hopper, Priceline, Kiwi, CheapOair, and airline direct booking. Source: https://flysoar.ai/terms
+- ✅ Direct flight metasearch/OTA competitors: Google Flights (https://www.google.com/travel/flights), Skyscanner (https://www.skyscanner.com/), Kayak (https://www.kayak.com/), Momondo (https://www.momondo.com/), Expedia (https://www.expedia.com/), Hopper (https://www.hopper.com/), Priceline (https://www.priceline.com/), Kiwi (https://www.kiwi.com/), CheapOair (https://www.cheapoair.com/), and airline direct booking. Source: https://flysoar.ai/terms
+- ✅ Google Flights is the benchmark for fast search/filtering and broad consumer trust, but it generally hands booking off or routes users into partner/airline flows rather than feeling like a social one-tap app. Source: https://www.google.com/travel/flights
+- ✅ Skyscanner/Kayak/Momondo are metasearch marketplaces; their strength is breadth and price comparison, while their weakness for Soar to exploit is fragmented handoff/checkout experience. Source: https://www.skyscanner.com/
+- ✅ Hopper is the most direct mobile-native comparison: it built consumer habit around price prediction, watch alerts, and in-app fintech/travel products. Source: https://www.hopper.com/
+- ✅ Expedia/Priceline win on OTA scale, bundles, loyalty, and supplier relationships; Soar should avoid competing head-on there and instead emphasize speed, youth-oriented deal distribution, and delightful checkout. Source: https://www.expedia.com/
 - ✅ Soar’s likely wedge is not “more inventory” alone; Duffel inventory is accessible to others. The wedge is speed, consumer UX, social/deal distribution, mobile-web installability, and making checkout feel like Uber. Source: https://x.com/SoarAI
 - ✅ Hopper competes on price prediction/alerts/mobile booking; Google Flights competes on search breadth; Skyscanner/Kayak compete on metasearch; Expedia/Priceline compete on bundled OTA scale; airline-direct competes on trust and servicing. Source: https://flysoar.ai/
 - 🟨 Soar can win a youth/creator-growth segment by making fare discovery shareable: X posts already encode prefilled direct offer links, which is closer to “deal feed → one-tap booking” than classic form-heavy OTA search. Source: https://x.com/SoarAI
