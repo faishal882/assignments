@@ -88,6 +88,10 @@
 ## Technical: how it appears to work internally
 
 - ✅ Frontend is a Next.js app: HTML references `/_next/static/...` chunks and app routes. Source: https://flysoar.ai/
+- ✅ Response headers for the public home page include `x-powered-by: Next.js`, confirming the framework signal from the HTML chunks. Source: https://flysoar.ai/
+- ✅ Public response headers show `Server: cloudflare`, `cf-cache-status: DYNAMIC`, and `alt-svc: h3=\":443\"`, indicating Cloudflare sits in front of the app for edge/proxy delivery. Source: https://flysoar.ai/
+- ✅ Public response headers include `x-render-origin-server: Render` and `rndr-id`, which is a concrete signal that Render is involved in origin hosting/infrastructure. Source: https://flysoar.ai/
+- ✅ The home page response uses `Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate`, consistent with a dynamic app surface rather than a fully static marketing page. Source: https://flysoar.ai/
 - ✅ The HTML advertises `/manifest.webmanifest`, favicon/icon assets, and an Apple touch icon link, reinforcing that the product is optimized for installable mobile-web behavior rather than only desktop search. Source: https://flysoar.ai/
 - ✅ The client bundle includes search, booking, account, friends, passkeys, billing, and analytics API paths including `/api/search/stream`, `/api/book`, `/api/book/hold`, `/api/book/result`, `/api/offers`, `/api/price-calendar`, `/api/places`, `/api/duffel/seat-maps`, `/api/duffel/bag-services`, `/api/passkeys/*`, `/api/billing/*`, `/api/me/friends`, and `/api/feedback`. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
 - ✅ Public code strings include “duffel” and terms name Duffel as the IATA-accredited booking provider, strongly indicating Duffel supplies flight offers/bookings plus ancillaries like seats/bags. Source: https://flysoar.ai/terms
@@ -97,7 +101,7 @@
 - ✅ Analytics/attribution stack includes Microsoft Clarity ID `wtn939cgi1`, X/Twitter ads pixel default `rcozq`, UTM/twclid capture, page-view events, and internal endpoints `/api/israel` and `/api/dog`. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
 - ✅ The frontend captures platform, device type, viewport, locale, timezone, referrer, landing path, app version, build env, and session/anonymous IDs for analytics. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
 - ✅ Privacy policy names Twilio for SMS/identity verification and mentions airlines, payment processors, cloud infrastructure providers, analytics/observability vendors, and fraud-prevention services. Source: https://flysoar.ai/privacy
-- 🟨 Architecture inference: likely Vercel/Next.js frontend + API routes/serverless or Node backend, Duffel flight API, Stripe payments, Twilio verification, WebAuthn passkeys, Clarity/X ads analytics, and a database for accounts/bookings/friends/invoices; exact backend/cloud database is not public. Source: https://flysoar.ai/
+- 🟨 Architecture inference: likely Next.js on/behind Render + Cloudflare, with Duffel flight API, Stripe-like payments, Twilio verification, WebAuthn passkeys, Clarity/X ads analytics, and a database for accounts/bookings/friends/invoices; exact backend/database is not public. Source: https://flysoar.ai/
 
 ## Founder: Henry Langmack
 

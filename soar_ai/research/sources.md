@@ -2,7 +2,7 @@
 
 ## Public sources
 
-- https://flysoar.ai/ — public landing page, meta tags, PWA prompt, UI labels.
+- https://flysoar.ai/ — public landing page, meta tags, PWA prompt, UI labels, and response headers (`x-powered-by`, Cloudflare, Render origin signals).
 - https://flysoar.ai/terms — legal/service role, Duffel, airline/booking disclaimers.
 - https://flysoar.ai/privacy — data collected, vendors/categories including Duffel, Twilio, payments, analytics, cloud, fraud.
 - https://flysoar.ai/sitemap.xml — public pages and recency.
