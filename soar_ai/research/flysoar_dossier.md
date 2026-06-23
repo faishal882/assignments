@@ -111,3 +111,15 @@ Henry — I dug into Soar and it feels like the interesting problem is not “an
 I’ve built a similar complexity product solo: Tailorec — Next.js + FastAPI + agent/browser runtime + analytics + AWS ops — and scaled it to meaningful real traffic. I also built a 32-bit OS from scratch, so I’m comfortable going low-level when needed.
 
 One concrete thing I’d love to help with: tighten the X/deal-link loop into a measurable funnel from shared fare → landing → hold → ticketed booking, plus internal tools for booking/support toil. If useful, I can send a short teardown with the first 3 things I’d ship.
+
+## Five-minute call script
+
+- ✅ First 30 seconds: “I studied Soar’s public site and routes; it looks like the real system is already a complete booking workflow — streamed search, offer pages, holds, booking progress/results, Duffel seats/bags, passkeys, friends/invites, and attribution — not just a landing page.” Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Founder-specific hook: “Your tweet about Cal AI growing fast because of internal tools stood out; my first instinct would be to build the internal console that makes booking/support/fraud work 10x faster.” Source: https://x.com/henrylangmack
+- ✅ Product insight: “The X account is already behaving like a deal-distribution engine: posted fare/deal URLs encode origin, destination, selected airline, carrier, flight, departure, arrival, duration, stops, and bags.” Source: https://x.com/SoarAI
+- ✅ Engineering insight: “Duffel can supply booking inventory, but the company moat is reliability, speed, trust, and servicing around that workflow — hold state, idempotency, payment verification, schedule changes, refunds, and support tooling.” Source: https://flysoar.ai/terms
+- ✅ Fit proof: “My Tailorec work is relevant because I had to own the same type of complex external-provider workflow: Next.js UI, FastAPI backend, agent runtime, browser automation, event streams, analytics, and AWS deployment.” Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
+- ✅ Systems-depth proof: “Separately, I built a 32-bit OS from scratch with drivers, memory management, multitasking, and FAT32, so I can debug below the framework when needed.” Source: vault:/home/faishal/Documents/Obsidian Vault/Applications/YC  APPLICATION.md
+- ✅ Diagnostic question 1: “Where is the biggest current bottleneck: search latency/quality, hold-to-ticket conversion, payment/verification failures, or post-booking support?” Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Diagnostic question 2: “Are you optimizing more for paid acquisition, organic deal sharing, or repeat-booking retention right now?” Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ Close: “If I joined, I’d want to own one measurable loop in week one: shared fare → landing → offer → hold → paid/ticketed, with a support/admin tool behind it.” Source: https://x.com/SoarAI
