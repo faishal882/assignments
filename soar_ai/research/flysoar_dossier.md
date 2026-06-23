@@ -36,7 +36,11 @@
 - ✅ Henry publicly hires for speed and learning: Cal AI hiring requirements included expert TypeScript/Node and “Rapid speed of learning new...” Source: https://x.com/henrylangmack
 - ✅ Henry publicly likes builders with side projects: the Cal AI hiring tweet says “Side projects WELCOME.” Source: https://x.com/henrylangmack
 - ✅ Henry publicly works late/fast: “forgot how fun building @ 4am is” and “back to work 😁.” Source: https://x.com/henrylangmack
-- ✅ Henry publicly cares about app product growth/paywalls/testing: tweets mention first app charting on the App Store, paywall variants, testing, SwiftUI, React, internal tools, Render, and offline sync/backend choices. Source: https://x.com/henrylangmack
+- ✅ Henry publicly posted “Just had our first app chart on the App Store today 😁,” which is a concrete early achievement signal around mobile app distribution. Source: https://x.com/henrylangmack
+- ✅ Henry publicly discussed building an offline-sync backend for an app, prioritizing stability over “crazy backend features,” which is relevant to booking reliability conversations. Source: https://x.com/henrylangmack
+- ✅ Henry publicly discussed paywall experimentation: moving 80% of paywalls to the most promising/logical variant and checking win/loss later, implying practical A/B/growth thinking. Source: https://x.com/henrylangmack
+- ✅ Henry publicly looked for an experienced SwiftUI developer to join an app studio, reinforcing that his background/network is mobile-app-heavy, not just web. Source: https://x.com/henrylangmack
+- ✅ Henry publicly cares about app product growth/paywalls/testing: tweets mention first app charting on the App Store, paywall variants, testing, SwiftUI, internal tools, Render, and offline sync/backend choices. Source: https://x.com/henrylangmack
 - 🟨 Founder read: Henry is young, product-obsessed, distribution-aware, speed-biased, comfortable with mobile/web/backend, and likely responds better to shipped artifacts + sharp product/engineering observations than generic admiration. Source: https://x.com/henrylangmack
 
 ## Funding / company stage
