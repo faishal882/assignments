@@ -61,6 +61,17 @@
 - 🟨 Soar can win a youth/creator-growth segment by making fare discovery shareable: X posts already encode prefilled direct offer links, which is closer to “deal feed → one-tap booking” than classic form-heavy OTA search. Source: https://x.com/SoarAI
 - 🟨 Risks: flight servicing is operationally brutal (schedule changes, refunds, fraud, passport data, support). Terms heavily disclaim airline/refund liability, but a great founding engineer should still build customer-visible reliability and support tooling. Source: https://flysoar.ai/terms
 
+## Portfolio positioning for Soar
+
+- ✅ Created `research/portfolio_positioning.md` as a concise evidence stack Faishal can use if Henry asks for background; it positions him around growth, booking reliability, internal tools, analytics, and production operations. Source: research/portfolio_positioning.md
+- 🔒 Lead positioning: “Full-stack product engineer who can own the messy layer between growth, booking reliability, internal tools, analytics, and production operations.” Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+- 🔒 Proof point 1: Tailorec demonstrates end-to-end product ownership across Next.js, FastAPI, agent/runtime workflows, analytics, and AWS operations. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+- 🔒 Proof point 2: Tailorec’s workflow/state-machine and event-trace work maps to Soar’s visible hold/payment/booking/support workflow risk. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/04-Job Agent/Archive/Agent Plan V1.md
+- 🔒 Proof point 3: Tailorec outreach analytics maps directly to Soar’s deal-link funnel measurement needs. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/06-Product Analytics/Outreach Analytics Coverage.md
+- 🔒 Proof point 4: AWS deployment/runbook work maps to production ownership if Soar needs reliability beyond early app iteration. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/Tailorec AWS Deployment Runbook.md
+- 🔒 Proof point 5: The 32-bit OS from scratch is a supporting systems-depth signal, but should come after the product/workflow story rather than replacing it. Source: vault:/home/faishal/Documents/Obsidian Vault/Applications/YC  APPLICATION.md
+- ✅ Positioning warning: do not pitch primarily as a generic AI engineer; Soar’s public signals suggest booking reliability, growth instrumentation, and internal tooling are sharper wedges. Source: https://flysoar.ai/terms
+
 ## Founder-engineer fit: why Faishal can be credible
 
 - 🔒 Local signal: Faishal has built Tailorec, an AI-assisted career/job platform spanning Next.js frontend, FastAPI backend, agent runtime, browser automation, analytics, AWS deployment, and production operations. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
