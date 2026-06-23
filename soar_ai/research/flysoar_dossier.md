@@ -45,7 +45,7 @@
 - ✅ Terms anticipate “merger, acquisition, financing, reorganisation, bankruptcy, or sale of assets,” but this is standard legal language and is not evidence of funding. Source: https://flysoar.ai/privacy
 - ✅ The product is live, has public X distribution, and handles real booking/payment/legal flows, so it appears beyond mockup stage even without public funding. Source: https://flysoar.ai/terms
 
-## Competitor landscape
+## Competitors landscape
 
 - ✅ Direct flight metasearch/OTA competitors: Google Flights, Skyscanner, Kayak, Momondo, Expedia, Hopper, Priceline, Kiwi, CheapOair, and airline direct booking. Source: https://flysoar.ai/terms
 - ✅ Soar’s likely wedge is not “more inventory” alone; Duffel inventory is accessible to others. The wedge is speed, consumer UX, social/deal distribution, mobile-web installability, and making checkout feel like Uber. Source: https://x.com/SoarAI
@@ -72,6 +72,10 @@
 - ✅ “Your X/deal links look like an acquisition loop: fare screenshot/deal → prefilled `flysoar.ai/flights/...` URL → one-tap booking. I can help tighten that growth loop with instrumentation and landing-to-booking funnel analytics.” Source: https://x.com/SoarAI
 - ✅ “The hard part is not just Duffel search; it is trust around payments, passport data, schedule changes, refunds, support, and fraud. My Tailorec work dealt with external workflows, audit logs, user-gated automation, and production ops.” Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
 - ✅ “I saw your tweet about internal tools being key to Cal AI growth; I would start by building tools that reduce booking/support/fraud/servicing toil, not just user-facing polish.” Source: https://x.com/henrylangmack
+
+## Outreach
+
+- ✅ Use the outreach below as a concise first message; every claim in it is backed by the product/founder/local evidence above. Source: https://flysoar.ai/
 
 ## Outreach draft
 
