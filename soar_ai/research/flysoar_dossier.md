@@ -2,6 +2,15 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## Consistency review
+
+- ✅ Created `research/consistency_review.md` after a safety pass to catch contradictions and overclaims before outreach. Source: research/consistency_review.md
+- ✅ Fixed the funding wording so the dossier now says funding is undisclosed unless Henry or a credible public source confirms otherwise, rather than implying bootstrapped status. Source: https://www.bing.com/search?q=%22flysoar.ai%22+funding
+- ✅ The consistency review confirms Duffel is safe to state because Soar terms explicitly name Duffel. Source: https://flysoar.ai/terms
+- ✅ The consistency review keeps public client-route observations framed as visible surfaces or hypotheses, not private backend facts. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ The consistency review preserves the safest technical caveat: public product/legal/client-route signals may be wrong on implementation details, but they identify workflow risks worth validating. Source: https://flysoar.ai/terms
+- ✅ The consistency review reinforces that local Tailorec/OS/Codex/Obsidian evidence should be summarized as fit signals, not sent as raw private notes. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Conversation And Existing Notes Evidence Map.md
+
 ## Minimal send pack
 
 - ✅ Created `research/minimal_send_pack.md` as the shortest operational version of the outreach: first DM, “send it” follow-up, “what would you ship?” answer, “why you?” answer, and stop rule. Source: research/minimal_send_pack.md
@@ -80,7 +89,7 @@
 
 ## Funding / company stage
 
-- ✅ I found no reliable public funding announcement, Crunchbase/YC listing, or investor disclosure in quick public search; treat Soar as bootstrapped/undisclosed unless Henry says otherwise. Source: https://www.bing.com/search?q=%22flysoar.ai%22+funding
+- ✅ I found no reliable public funding announcement, Crunchbase/YC listing, or investor disclosure in quick public search; treat Soar's funding as undisclosed unless Henry or a credible public source says otherwise. Source: https://www.bing.com/search?q=%22flysoar.ai%22+funding
 - ✅ Terms anticipate “merger, acquisition, financing, reorganisation, bankruptcy, or sale of assets,” but this is standard legal language and is not evidence of funding. Source: https://flysoar.ai/privacy
 - ✅ The product is live, has public X distribution, and handles real booking/payment/legal flows, so it appears beyond mockup stage even without public funding. Source: https://flysoar.ai/terms
 
