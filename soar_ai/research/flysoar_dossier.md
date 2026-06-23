@@ -78,7 +78,7 @@
 - ✅ Soar's public title/meta positions it as “Find and Book Cheap Flights”; description says users can search live airfare, compare airlines, get price alerts, and manage booked trips from one web app. Source: https://flysoar.ai/
 - ✅ The landing page is a flight-search/booking UI with origin/destination, explore-everywhere, multi-city, date, class, search, friends, settings, and booked-flight surfaces. Source: https://flysoar.ai/
 - ✅ The site pushes a PWA/mobile-web usage pattern: “Add Soar to your home screen” for a faster full-screen experience with booked flights, deal alerts, and instant search. Source: https://flysoar.ai/
-- ✅ Soar ships a web app manifest with `display: standalone`, `start_url: /`, black theme/background colors, app name “Soar,” and description “Find and book cheap flights instantly with live airfare search, deal alerts, and booked trip management,” confirming the mobile-home-screen/PWA product direction. Source: https://flysoar.ai/manifest.json
+- ✅ Soar ships a web app manifest with `display: standalone`, `start_url: /`, black theme/background colors, app name “Soar,” and description “Find and book cheap flights instantly with live airfare search, deal alerts, and booked trip management,” confirming the mobile-home-screen/PWA product direction. Source: https://flysoar.ai/manifest.webmanifest
 - ✅ Soar’s X profile describes the product as “Book Flights As Easy As Ubers.” Source: https://x.com/SoarAI
 - ✅ Soar’s X account links to deal/deep-link flight pages such as `flysoar.ai/flights/jfk/cdg/...` with preselected airline/carrier/flight/departure/arrival/bags params, implying viral/deal distribution through direct shareable fare URLs. Source: https://x.com/SoarAI
 - ✅ Public terms say Soar is a technology platform that surfaces flight inventory and facilitates bookings between users and third-party airlines through providers including Duffel. Source: https://flysoar.ai/terms
@@ -121,6 +121,8 @@
 - ✅ I found no reliable public funding announcement, Crunchbase/YC listing, or investor disclosure in quick public search; treat Soar's funding as undisclosed unless Henry or a credible public source says otherwise. Source: https://www.bing.com/search?q=%22flysoar.ai%22+funding
 - ✅ Terms anticipate “merger, acquisition, financing, reorganisation, bankruptcy, or sale of assets,” but this is standard legal language and is not evidence of funding. Source: https://flysoar.ai/privacy
 - ✅ The product is live, has public X distribution, and handles real booking/payment/legal flows, so it appears beyond mockup stage even without public funding. Source: https://flysoar.ai/terms
+- ✅ Soar’s sitemap lists the home page with daily change frequency and a June 23, 2026 last-modified timestamp, which is a public signal of active site maintenance rather than a stale launch page. Source: https://flysoar.ai/sitemap.xml
+- ✅ Soar’s robots.txt allows crawling and declares the sitemap location, making the public research based on allowed public pages rather than bypassed/private access. Source: https://flysoar.ai/robots.txt
 
 ## Competitors landscape
 

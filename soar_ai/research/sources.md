@@ -6,7 +6,8 @@
 - https://flysoar.ai/terms — legal/service role, Duffel, airline/booking disclaimers.
 - https://flysoar.ai/privacy — data collected, vendors/categories including Duffel, Twilio, payments, analytics, cloud, fraud.
 - https://flysoar.ai/sitemap.xml — public pages and recency.
-- https://flysoar.ai/manifest.json — PWA/installable app metadata: app name, display mode, start URL, icons, description.
+- https://flysoar.ai/manifest.webmanifest — PWA/installable app metadata: app name, display mode, start URL, icons, description.
+- https://flysoar.ai/robots.txt — confirms public crawling is allowed and declares the sitemap.
 - https://x.com/SoarAI — public profile: “Book Flights As Easy As Ubers,” followers/tweets, deal-link strategy.
 - https://x.com/henrylangmack — public founder profile and tweets: age/bio/location, Soar link, Cal AI/internal-tools/hiring/building signals.
 - https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js — public client bundle strings used only to infer visible frontend/API surfaces.
