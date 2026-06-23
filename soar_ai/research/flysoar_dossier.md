@@ -2,6 +2,15 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## Credibility guardrails
+
+- ✅ Created `research/credibility_guardrails.md` to prevent the outreach from sounding creepy, inflated, or overconfident; it covers private-knowledge claims, funding status, reverse-engineering phrasing, generic AI positioning, oversized asks, Henry’s age, and local/private notes. Source: research/credibility_guardrails.md
+- ✅ Guardrail: say “public product/legal/client-route signals” and “hypothesis,” not “I know your backend,” because only public site/legal/client routes were inspected. Source: https://flysoar.ai/terms
+- ✅ Guardrail: do not claim Soar is bootstrapped, funded, YC-backed, or investor-backed; public research only supports “funding undisclosed / no reliable public announcement found.” Source: https://www.bing.com/search?q=%22flysoar.ai%22+funding
+- ✅ Guardrail: do not lead with “I inspected your JS bundle”; frame it as studying public product surface and workflow shape so the message feels product-minded rather than adversarial. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Guardrail: do not pitch generic “AI for travel”; Soar’s public signals make booking reliability, social/deal-link growth, internal tooling, support operations, and trust around external providers the sharper wedge. Source: https://flysoar.ai/privacy
+- ✅ Guardrail: do not send raw local Obsidian/Codex notes; use them only to shape Faishal’s proof stack and summarize relevant experience. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Conversation And Existing Notes Evidence Map.md
+
 ## Pre-send checklist
 
 - ✅ Created `research/send_checklist.md` so Faishal can sanity-check the outreach before contacting Henry: verify current site/profile, pick one channel, do not attach everything, avoid overclaiming, and keep the pitch centered on booking reliability + internal tooling + growth funnel. Source: research/send_checklist.md
