@@ -2,6 +2,15 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## Pre-send checklist
+
+- ✅ Created `research/send_checklist.md` so Faishal can sanity-check the outreach before contacting Henry: verify current site/profile, pick one channel, do not attach everything, avoid overclaiming, and keep the pitch centered on booking reliability + internal tooling + growth funnel. Source: research/send_checklist.md
+- ✅ The checklist says to confirm Soar still matches the core public read — flight search/booking, mobile/PWA experience, and terms naming Duffel — before sending. Source: https://flysoar.ai/terms
+- ✅ The checklist says to re-open Henry’s X profile before sending in case his bio, role, or recent posts changed. Source: https://x.com/henrylangmack
+- ✅ The checklist says not to say “I reverse engineered your app”; use “public product/legal/client-route signals” to stay credible and non-creepy. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ The checklist defines first-message success criteria: prove product understanding, operational-layer understanding, adjacent Tailorec/systems proof, and one concrete thing to own immediately. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+- ✅ The checklist includes a restrained follow-up cadence: one short bump after 3-5 days, then stop unless a genuinely impressive 48-hour artifact is built. Source: research/send_checklist.md
+
 ## Outreach package index
 
 - ✅ Created `research/README.md` to make the artifact set usable in sequence: read dossier, send first-contact message, follow with teardown, use portfolio positioning for background, use objection handling for challenges, and use sources for evidence boundaries. Source: research/README.md
