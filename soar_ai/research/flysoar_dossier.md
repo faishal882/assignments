@@ -77,6 +77,15 @@
 - ✅ “The hard part is not just Duffel search; it is trust around payments, passport data, schedule changes, refunds, support, and fraud. My Tailorec work dealt with external workflows, audit logs, user-gated automation, and production ops.” Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
 - ✅ “I saw your tweet about internal tools being key to Cal AI growth; I would start by building tools that reduce booking/support/fraud/servicing toil, not just user-facing polish.” Source: https://x.com/henrylangmack
 
+## 30/60/90-day founding-engineer proposal
+
+- ✅ Day 0-30: instrument the X/deal-link funnel end-to-end — impression/click/landing/search/offer/hold/payment/ticketed/support — because public client code already captures UTM/twclid and posts analytics events to `/api/israel` and `/api/dog`. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ Day 0-30: build an internal booking/support console for Duffel order state, payment state, verification state, user/contact context, and timeline audit logs; Henry publicly said internal tools helped Cal AI streamline everything. Source: https://x.com/henrylangmack
+- ✅ Day 30-60: improve reliability around booking holds/progress/results and servicing edge cases with idempotency keys, retry-safe state machines, and user-visible status; visible routes already imply booking progress/result polling. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Day 30-60: ship share-card/deal-page experiments for X posts and friends/invites, measuring which fare formats convert to holds/bookings. Source: https://x.com/SoarAI
+- ✅ Day 60-90: add post-booking trust features — trip timeline, schedule-change/support intake, refund/change explainer, and proactive alerts — to reduce support load while differentiating from metasearch handoffs. Source: https://flysoar.ai/terms
+- ✅ Day 60-90: harden privacy/security posture for passport/travel documents/payment tokens with least-privilege access, audit logs, and deletion/export tooling, matching the data categories Soar admits it collects. Source: https://flysoar.ai/privacy
+
 ## Outreach
 
 - ✅ Use the outreach below as a concise first message; every claim in it is backed by the product/founder/local evidence above. Source: https://flysoar.ai/
