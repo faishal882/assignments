@@ -32,5 +32,5 @@ Build a credible, evidence-backed dossier for impressing FlySoar / Soar AI found
 - Gathered public product/legal/X/client-bundle evidence for Soar: Next.js frontend, Duffel booking provider, Stripe-like billing, Twilio/passkeys, analytics, shareable deal URLs, booking/hold/progress/result routes.
 - Gathered Henry Langmack public X signals: Soar link, “18. Making fun products,” internal-tools bias, Cal AI/app-studio hiring/growth signals, app charting, offline sync, paywall experimentation, SwiftUI hiring.
 - Added local fit signals from Obsidian/Codex: Tailorec full-stack/agent/runtime/analytics/AWS experience, OS-from-scratch achievement, MVP narrowing and debugging orientation.
-- Added competitor positioning, 30/60/90 plan, quick cheat sheet, outreach draft, five-minute call script, and follow-up teardown/prototype plan.
-- Next promising directions: refine into a standalone one-page teardown or a polished DM/email variant; avoid adding low-quality bullets just for counts.
+- Added competitor positioning, 30/60/90 plan, quick cheat sheet, outreach draft, five-minute call script, follow-up teardown/prototype plan, first-contact variants, standalone teardown, objection handling, and 48-hour work-trial plan.
+- Next promising directions: polish artifacts for final delivery, add a one-page resume/portfolio positioning section, or improve source coverage if new public company/funding data appears; avoid adding low-quality bullets just for counts.

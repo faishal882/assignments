@@ -142,6 +142,16 @@ I’ve built a similar complexity product solo: Tailorec — Next.js + FastAPI +
 
 One concrete thing I’d love to help with: tighten the X/deal-link loop into a measurable funnel from shared fare → landing → hold → ticketed booking, plus internal tools for booking/support toil. If useful, I can send a short teardown with the first 3 things I’d ship.
 
+## 48-hour work-trial plan
+
+- ✅ Work-trial framing: offer Henry a narrow, non-invasive 48-hour artifact rather than asking for broad access — event schema + fake-data admin timeline + production questions — because Soar’s public routes already expose a booking funnel worth validating. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Hour 0-4: align on one bottleneck to study — shared-link conversion, hold expiry, payment/verification ambiguity, support timeline gaps, or fraud triage — instead of guessing from outside. Source: https://flysoar.ai/terms
+- ✅ Hour 4-12: draft an event schema for `deal_clicked`, `offer_selected`, `hold_created`, `payment_authorized`, `booking_submitted`, `ticket_confirmed`, and `support_needed`, using Soar’s visible analytics/attribution pattern as inspiration. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ Hour 12-24: build a fake-data booking timeline console showing user/session context, offer/hold, Duffel order, payment, verification, support notes, and risk flags, matching the data categories Soar publicly says it handles. Source: https://flysoar.ai/privacy
+- ✅ Hour 24-36: write an implementation memo covering idempotency keys, retry semantics, ambiguous booking states, operator handoff, and which production questions must be answered before real integration. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Hour 36-48: record a short walkthrough and ship a GitHub/Markdown artifact Henry can judge for speed, product taste, and systems thinking without giving private access. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Frontend Deep Dive.md
+- ✅ Why this is credible: Faishal has already built Tailorec across Next.js, backend workflow state, agent/runtime orchestration, product analytics, and AWS ops, so the trial maps to demonstrated work rather than aspirational claims. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+
 ## Objection handling
 
 - ✅ Created `research/objection_handling.md` with concise answers for likely founder objections: travel-domain gap, production trust, speed, duplicated internal work, client-route overreach, 48-hour shipping plan, and desired role. Source: research/objection_handling.md
