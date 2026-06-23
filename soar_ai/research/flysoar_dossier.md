@@ -2,6 +2,16 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## Production validation questions
+
+- ✅ Created `research/production_validation_questions.md` to turn public-signal hypotheses into implementation-safe questions before touching Soar code. Source: research/production_validation_questions.md
+- ✅ Booking-state questions ask for canonical states from offer search to ticket confirmation, retry-safe states, operator-review states, hold expiry source of truth, and user-visible versus internal-only states. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Provider-boundary questions ask which Duffel objects/IDs are stored locally, where provider errors become user-facing messages, whether webhooks or polling are authoritative, and what happens when Duffel and local state disagree. Source: https://flysoar.ai/terms
+- ✅ Payment/idempotency questions ask what keys exist across hold, book, payment intent, capture, refund, and result polling, plus what happens if payment succeeds but ticketing fails. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Verification/traveler-data questions ask which passport/traveler fields are required before hold versus booking and who can view sensitive traveler data internally. Source: https://flysoar.ai/privacy
+- ✅ Growth-instrumentation questions ask whether UTM/twclid/referrer fields connect to booking outcomes and which metric matters most this month: activation, hold rate, payment completion, ticketed booking, repeat booking, or support reduction. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ Security/privacy questions ask which logs may contain PII, passport data, payment references, or support transcripts, and which admin actions need audit trails before an internal console is safe. Source: https://flysoar.ai/privacy
+
 ## Source confidence map
 
 - ✅ Created `research/source_confidence.md` to separate high-confidence public facts, medium-confidence public-signal inferences, and unknowns that should not be claimed. Source: research/source_confidence.md
