@@ -122,6 +122,14 @@
 - ✅ Best proof point to mention: Tailorec shipped solo with Next.js/FastAPI/agent runtime/analytics/AWS and real traffic, plus the 32-bit OS from scratch as systems-depth proof. Source: vault:/home/faishal/Documents/Obsidian Vault/Applications/Applications/Riverline AI Engineer Application.md
 - ✅ Best question to ask Henry: “What breaks most often right now: search quality, hold→ticket conversion, payment/verification, or post-booking support?” Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
 
+## First-contact message variants
+
+- ✅ Created `research/first_contact_messages.md` with X/DM, email/LinkedIn, “what would you build?”, and “why you?” variants so Faishal can match the channel instead of sending one overlong pitch. Source: research/first_contact_messages.md
+- ✅ The DM variant leads with the core insight that Soar’s hard part is making booking feel Uber-simple while managing Duffel offers/holds, payment, verification, booking progress/results, support, fraud, and attribution. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ The email variant explicitly says the read is based on public site, legal pages, and client-route signals, which keeps the outreach credible and avoids pretending to know private internals. Source: https://flysoar.ai/terms
+- ✅ The “what would you build?” reply proposes the booking/support reliability loop and an internal timeline console, tying directly to Henry’s public internal-tools bias. Source: https://x.com/henrylangmack
+- ✅ The “why you?” reply maps Faishal’s Tailorec experience to external workflows, agent/runtime orchestration, analytics, AWS ops, and user-trust surfaces. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
+
 ## Outreach
 
 - ✅ Use the outreach below as a concise first message; every claim in it is backed by the product/founder/local evidence above. Source: https://flysoar.ai/
