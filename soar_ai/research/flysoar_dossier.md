@@ -142,6 +142,15 @@ I’ve built a similar complexity product solo: Tailorec — Next.js + FastAPI +
 
 One concrete thing I’d love to help with: tighten the X/deal-link loop into a measurable funnel from shared fare → landing → hold → ticketed booking, plus internal tools for booking/support toil. If useful, I can send a short teardown with the first 3 things I’d ship.
 
+## Objection handling
+
+- ✅ Created `research/objection_handling.md` with concise answers for likely founder objections: travel-domain gap, production trust, speed, duplicated internal work, client-route overreach, 48-hour shipping plan, and desired role. Source: research/objection_handling.md
+- ✅ If Henry asks “Do you know travel?”, answer by narrowing to provider workflows, user trust, payments, identity/verification, support state, analytics, and tooling, then propose owning shared fare → hold → ticketed booking → support timeline. Source: https://flysoar.ai/privacy
+- ✅ If Henry asks “Why trust you with production?”, propose read-only logs/events, shadow dashboards, fake-data admin-console prototype, then low-risk instrumentation after validating actual architecture. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
+- ✅ If Henry asks “Can you move fast enough?”, offer a 48-hour artifact: event schema, funnel dashboard spec, fake-data booking timeline console, and production questions list. Source: vault:/home/faishal/Documents/Obsidian Vault/Applications/Applications/Riverline AI Engineer Application.md
+- ✅ If Henry says “We already have this internally,” redirect to discovering the actual bottleneck: search latency, hold expiry, payment/verification failures, support ops, fraud, or retention. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ If Henry worries about reverse-engineering, explicitly say public routes only form hypotheses and that the value is translating public signals into product/ops questions, metrics, risks, and prototypes without claiming private internals. Source: https://flysoar.ai/terms
+
 ## Five-minute call script
 
 - ✅ First 30 seconds: “I studied Soar’s public site and routes; it looks like the real system is already a complete booking workflow — streamed search, offer pages, holds, booking progress/results, Duffel seats/bags, passkeys, friends/invites, and attribution — not just a landing page.” Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
