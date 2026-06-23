@@ -78,6 +78,7 @@
 - ✅ Soar's public title/meta positions it as “Find and Book Cheap Flights”; description says users can search live airfare, compare airlines, get price alerts, and manage booked trips from one web app. Source: https://flysoar.ai/
 - ✅ The landing page is a flight-search/booking UI with origin/destination, explore-everywhere, multi-city, date, class, search, friends, settings, and booked-flight surfaces. Source: https://flysoar.ai/
 - ✅ The site pushes a PWA/mobile-web usage pattern: “Add Soar to your home screen” for a faster full-screen experience with booked flights, deal alerts, and instant search. Source: https://flysoar.ai/
+- ✅ Soar ships a web app manifest with `display: standalone`, `start_url: /`, black theme/background colors, app name “Soar,” and description “Find and book cheap flights instantly with live airfare search, deal alerts, and booked trip management,” confirming the mobile-home-screen/PWA product direction. Source: https://flysoar.ai/manifest.json
 - ✅ Soar’s X profile describes the product as “Book Flights As Easy As Ubers.” Source: https://x.com/SoarAI
 - ✅ Soar’s X account links to deal/deep-link flight pages such as `flysoar.ai/flights/jfk/cdg/...` with preselected airline/carrier/flight/departure/arrival/bags params, implying viral/deal distribution through direct shareable fare URLs. Source: https://x.com/SoarAI
 - ✅ Public terms say Soar is a technology platform that surfaces flight inventory and facilitates bookings between users and third-party airlines through providers including Duffel. Source: https://flysoar.ai/terms
@@ -87,6 +88,7 @@
 ## Technical: how it appears to work internally
 
 - ✅ Frontend is a Next.js app: HTML references `/_next/static/...` chunks and app routes. Source: https://flysoar.ai/
+- ✅ The HTML advertises `/manifest.webmanifest`, favicon/icon assets, and an Apple touch icon link, reinforcing that the product is optimized for installable mobile-web behavior rather than only desktop search. Source: https://flysoar.ai/
 - ✅ The client bundle includes search, booking, account, friends, passkeys, billing, and analytics API paths including `/api/search/stream`, `/api/book`, `/api/book/hold`, `/api/book/result`, `/api/offers`, `/api/price-calendar`, `/api/places`, `/api/duffel/seat-maps`, `/api/duffel/bag-services`, `/api/passkeys/*`, `/api/billing/*`, `/api/me/friends`, and `/api/feedback`. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
 - ✅ Public code strings include “duffel” and terms name Duffel as the IATA-accredited booking provider, strongly indicating Duffel supplies flight offers/bookings plus ancillaries like seats/bags. Source: https://flysoar.ai/terms
 - ✅ The booking flow appears to support holds, progress polling, result lookup, verification code, wallet/payment intent, group booking, and agent booking from visible API paths. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
