@@ -1,0 +1,82 @@
+# FlySoar / Soar founder-fit dossier for Faishal
+
+> Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
+
+## Product: what Soar does
+
+- ✅ Soar's public title/meta positions it as “Find and Book Cheap Flights”; description says users can search live airfare, compare airlines, get price alerts, and manage booked trips from one web app. Source: https://flysoar.ai/
+- ✅ The landing page is a flight-search/booking UI with origin/destination, explore-everywhere, multi-city, date, class, search, friends, settings, and booked-flight surfaces. Source: https://flysoar.ai/
+- ✅ The site pushes a PWA/mobile-web usage pattern: “Add Soar to your home screen” for a faster full-screen experience with booked flights, deal alerts, and instant search. Source: https://flysoar.ai/
+- ✅ Soar’s X profile describes the product as “Book Flights As Easy As Ubers.” Source: https://x.com/SoarAI
+- ✅ Soar’s X account links to deal/deep-link flight pages such as `flysoar.ai/flights/jfk/cdg/...` with preselected airline/carrier/flight/departure/arrival/bags params, implying viral/deal distribution through direct shareable fare URLs. Source: https://x.com/SoarAI
+- ✅ Public terms say Soar is a technology platform that surfaces flight inventory and facilitates bookings between users and third-party airlines through providers including Duffel. Source: https://flysoar.ai/terms
+- ✅ Public terms explicitly say Soar is not an airline, charter operator, travel agency of record, fiduciary, advisor, or guarantor; it acts as a limited-purpose technical agent. Source: https://flysoar.ai/terms
+- ✅ Privacy policy says Soar handles phone number, name, date of birth, email, passport/travel-document details, payment instrument tokens, device identifiers, approximate location, search history, booking history, and support correspondence. Source: https://flysoar.ai/privacy
+
+## Technical: how it appears to work internally
+
+- ✅ Frontend is a Next.js app: HTML references `/_next/static/...` chunks and app routes. Source: https://flysoar.ai/
+- ✅ The client bundle includes search, booking, account, friends, passkeys, billing, and analytics API paths including `/api/search/stream`, `/api/book`, `/api/book/hold`, `/api/book/result`, `/api/offers`, `/api/price-calendar`, `/api/places`, `/api/duffel/seat-maps`, `/api/duffel/bag-services`, `/api/passkeys/*`, `/api/billing/*`, `/api/me/friends`, and `/api/feedback`. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Public code strings include “duffel” and terms name Duffel as the IATA-accredited booking provider, strongly indicating Duffel supplies flight offers/bookings plus ancillaries like seats/bags. Source: https://flysoar.ai/terms
+- ✅ The booking flow appears to support holds, progress polling, result lookup, verification code, wallet/payment intent, group booking, and agent booking from visible API paths. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Payments likely use Stripe: client bundle contains Stripe references and billing/setup-intent/payment-method API routes. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Authentication includes phone verification and passkeys/WebAuthn: visible routes include `/api/start-verify`, `/api/verify`, `/api/passkeys/register/options`, `/api/passkeys/auth/options`, and SimpleWebAuthn browser code. Source: https://flysoar.ai/_next/static/chunks/523-5a981baebe2f5797.js
+- ✅ Analytics/attribution stack includes Microsoft Clarity ID `wtn939cgi1`, X/Twitter ads pixel default `rcozq`, UTM/twclid capture, page-view events, and internal endpoints `/api/israel` and `/api/dog`. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ The frontend captures platform, device type, viewport, locale, timezone, referrer, landing path, app version, build env, and session/anonymous IDs for analytics. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ Privacy policy names Twilio for SMS/identity verification and mentions airlines, payment processors, cloud infrastructure providers, analytics/observability vendors, and fraud-prevention services. Source: https://flysoar.ai/privacy
+- 🟨 Architecture inference: likely Vercel/Next.js frontend + API routes/serverless or Node backend, Duffel flight API, Stripe payments, Twilio verification, WebAuthn passkeys, Clarity/X ads analytics, and a database for accounts/bookings/friends/invoices; exact backend/cloud database is not public. Source: https://flysoar.ai/
+
+## Founder: Henry Langmack
+
+- ✅ Henry Langmack’s X profile is `@henrylangmack`, name “Henry Langmack,” bio “18. Making fun products,” location “New York, NY,” linked URL `flysoar.ai`, and affiliate label “Soar.” Source: https://x.com/henrylangmack
+- ✅ Henry’s X profile publicly showed about 4,961 followers, 193 following, 92 tweets at capture time. Source: https://x.com/henrylangmack
+- ✅ Henry’s X profile creation timestamp is April 2024 (`createdAtMs:1712765556652`). Source: https://x.com/henrylangmack
+- ✅ Henry’s public tweets indicate association with Cal AI/app-studio growth and hiring: one tweet says “Cal AI is hiring cracked engineers... fastest growing AI app in history” and lists iOS/Android roles. Source: https://x.com/henrylangmack
+- ✅ Henry publicly values internal tools for growth: “A key reason we’ve grown Cal AI so fast is because we build out internal tools to streamline EVERYTHING we do.” Source: https://x.com/henrylangmack
+- ✅ Henry publicly hires for speed and learning: Cal AI hiring requirements included expert TypeScript/Node and “Rapid speed of learning new...” Source: https://x.com/henrylangmack
+- ✅ Henry publicly likes builders with side projects: the Cal AI hiring tweet says “Side projects WELCOME.” Source: https://x.com/henrylangmack
+- ✅ Henry publicly works late/fast: “forgot how fun building @ 4am is” and “back to work 😁.” Source: https://x.com/henrylangmack
+- ✅ Henry publicly cares about app product growth/paywalls/testing: tweets mention first app charting on the App Store, paywall variants, testing, SwiftUI, React, internal tools, Render, and offline sync/backend choices. Source: https://x.com/henrylangmack
+- 🟨 Founder read: Henry is young, product-obsessed, distribution-aware, speed-biased, comfortable with mobile/web/backend, and likely responds better to shipped artifacts + sharp product/engineering observations than generic admiration. Source: https://x.com/henrylangmack
+
+## Funding / company stage
+
+- ✅ I found no reliable public funding announcement, Crunchbase/YC listing, or investor disclosure in quick public search; treat Soar as bootstrapped/undisclosed unless Henry says otherwise. Source: https://www.bing.com/search?q=%22flysoar.ai%22+funding
+- ✅ Terms anticipate “merger, acquisition, financing, reorganisation, bankruptcy, or sale of assets,” but this is standard legal language and is not evidence of funding. Source: https://flysoar.ai/privacy
+- ✅ The product is live, has public X distribution, and handles real booking/payment/legal flows, so it appears beyond mockup stage even without public funding. Source: https://flysoar.ai/terms
+
+## Competitor landscape
+
+- ✅ Direct flight metasearch/OTA competitors: Google Flights, Skyscanner, Kayak, Momondo, Expedia, Hopper, Priceline, Kiwi, CheapOair, and airline direct booking. Source: https://flysoar.ai/terms
+- ✅ Soar’s likely wedge is not “more inventory” alone; Duffel inventory is accessible to others. The wedge is speed, consumer UX, social/deal distribution, mobile-web installability, and making checkout feel like Uber. Source: https://x.com/SoarAI
+- ✅ Hopper competes on price prediction/alerts/mobile booking; Google Flights competes on search breadth; Skyscanner/Kayak compete on metasearch; Expedia/Priceline compete on bundled OTA scale; airline-direct competes on trust and servicing. Source: https://flysoar.ai/
+- 🟨 Soar can win a youth/creator-growth segment by making fare discovery shareable: X posts already encode prefilled direct offer links, which is closer to “deal feed → one-tap booking” than classic form-heavy OTA search. Source: https://x.com/SoarAI
+- 🟨 Risks: flight servicing is operationally brutal (schedule changes, refunds, fraud, passport data, support). Terms heavily disclaim airline/refund liability, but a great founding engineer should still build customer-visible reliability and support tooling. Source: https://flysoar.ai/terms
+
+## Founder-engineer fit: why Faishal can be credible
+
+- 🔒 Local signal: Faishal has built Tailorec, an AI-assisted career/job platform spanning Next.js frontend, FastAPI backend, agent runtime, browser automation, analytics, AWS deployment, and production operations. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+- 🔒 Local signal: Tailorec backend owns identity, candidate/job domain data, resume parsing, recommendations, tailoring state, referral workflows, analytics, and agent orchestration — similar “complex workflow + external providers + user trust” muscles needed by Soar. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+- 🔒 Local signal: Tailorec frontend is Next.js/React/TypeScript and includes onboarding, recommendation browsing, tailoring review, and live agent-application workspace; this maps well to Soar’s Next.js product UI needs. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Frontend Deep Dive.md
+- 🔒 Local signal: Faishal’s agent/browser automation work includes `open-agent`, `openclaw-browser`, Playwright, runtime events, PostgreSQL persistence, scoped tokens, and security boundaries. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
+- 🔒 Local signal: Faishal has product analytics/outreach attribution experience with PostHog, campaign links, signup attribution, and acquisition-to-product analytics — directly relevant to Soar’s X/deal-link growth loop. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/06-Product Analytics/Outreach Analytics Coverage.md
+- 🔒 Local signal: Faishal has AWS deployment/ops experience (ECS Fargate, ALB, Cloud Map, CloudWatch, service teardown/snapshots), useful if Soar needs infra reliability beyond early Vercel/API routes. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/Tailorec AWS Deployment Runbook.md
+- 🔒 Local signal: Faishal’s interview portfolio says Tailorec reached 240k+ requests / 3.1k+ pageviews / 11.9k cumulative daily uniques, giving a concrete shipped-product story. Source: vault:/home/faishal/Documents/Obsidian Vault/Applications/Applications/Riverline AI Engineer Application.md
+- 🔒 Local signal: Faishal built a 32-bit OS from scratch with keyboard/mouse/VGA/ATA drivers, memory management, multitasking, and FAT32 support — a strong “systems depth” proof point for a young founder who likes cracked builders. Source: vault:/home/faishal/Documents/Obsidian Vault/Applications/YC  APPLICATION.md
+- 🔒 Local signal: Codex memory shows Faishal repeatedly asks for architecture comparisons, source-level repo orientation, production-debugging prep, performance writeups, and founder outreach — strong fit for a founding engineer who must learn fast and communicate clearly. Source: ~/.codex/memories/rollout_summaries/2026-06-21T20-40-12-yBWJ-emergent_interview_prep_simulator.md
+- 🔒 Local signal: Codex memory shows Faishal prefers concrete MVP wedges and iterative narrowing, which matches an early-stage founder's need for speed and scope discipline. Source: ~/.codex/memories/rollout_summaries/2026-06-01T23-04-25-BoU9-oasis_openended_branching_multiverse_mvp.md
+
+## What to say to Henry: high-signal observations
+
+- ✅ “I noticed Soar is already more than a search box: public routes suggest stream search, offer pages, booking holds/progress/results, group booking, passkeys, Stripe billing, Duffel seats/bags, Twilio verification, friends/invites, and attribution.” Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ “Your X/deal links look like an acquisition loop: fare screenshot/deal → prefilled `flysoar.ai/flights/...` URL → one-tap booking. I can help tighten that growth loop with instrumentation and landing-to-booking funnel analytics.” Source: https://x.com/SoarAI
+- ✅ “The hard part is not just Duffel search; it is trust around payments, passport data, schedule changes, refunds, support, and fraud. My Tailorec work dealt with external workflows, audit logs, user-gated automation, and production ops.” Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
+- ✅ “I saw your tweet about internal tools being key to Cal AI growth; I would start by building tools that reduce booking/support/fraud/servicing toil, not just user-facing polish.” Source: https://x.com/henrylangmack
+
+## Outreach draft
+
+Henry — I dug into Soar and it feels like the interesting problem is not “another flight search UI,” it’s making flight booking feel as fast/social as Uber while hiding a brutal backend: streamed search, Duffel offers/ancillaries, booking holds/progress, Stripe, Twilio, passkeys, support, fraud, and attribution.
+
+I’ve built a similar complexity product solo: Tailorec — Next.js + FastAPI + agent/browser runtime + analytics + AWS ops — and scaled it to meaningful real traffic. I also built a 32-bit OS from scratch, so I’m comfortable going low-level when needed.
+
+One concrete thing I’d love to help with: tighten the X/deal-link loop into a measurable funnel from shared fare → landing → hold → ticketed booking, plus internal tools for booking/support toil. If useful, I can send a short teardown with the first 3 things I’d ship.
