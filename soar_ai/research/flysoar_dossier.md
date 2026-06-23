@@ -2,6 +2,15 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## High-signal questions for Henry
+
+- ✅ Created `research/questions_for_henry.md` so Faishal can ask discovery questions that identify Henry’s actual bottleneck instead of monologuing from the dossier. Source: research/questions_for_henry.md
+- ✅ Product/growth questions focus on paid acquisition, organic deal sharing, repeat booking, referrals/friends, and drop-off from click → landing → offer → hold → payment → ticketed. Source: https://x.com/SoarAI
+- ✅ Booking-reliability questions focus on ambiguous states like hold expiry, payment authorized but ticket unclear, provider timeout, traveler verification issue, and airline schedule/refund problems. Source: https://flysoar.ai/terms
+- ✅ Internal-tools questions ask what console should optimize first: support speed, fraud triage, payment debugging, Duffel order visibility, or growth funnel analysis. Source: https://flysoar.ai/privacy
+- ✅ Founder/team-fit questions ask what Henry means by “cracked engineer” and whether first-month value should bias toward product velocity, backend reliability, growth instrumentation, or operational tooling. Source: https://x.com/henrylangmack
+- ✅ The best short sequence is: identify the biggest current bottleneck, ask what internal tool would save the most time this week, and ask which 48-hour fake-data artifact would be most useful to evaluate. Source: research/questions_for_henry.md
+
 ## Consistency review
 
 - ✅ Created `research/consistency_review.md` after a safety pass to catch contradictions and overclaims before outreach. Source: research/consistency_review.md
