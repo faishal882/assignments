@@ -90,6 +90,19 @@
 - ✅ Day 60-90: add post-booking trust features — trip timeline, schedule-change/support intake, refund/change explainer, and proactive alerts — to reduce support load while differentiating from metasearch handoffs. Source: https://flysoar.ai/terms
 - ✅ Day 60-90: harden privacy/security posture for passport/travel documents/payment tokens with least-privilege access, audit logs, and deletion/export tooling, matching the data categories Soar admits it collects. Source: https://flysoar.ai/privacy
 
+## Follow-up teardown/prototype to send Henry
+
+- ✅ Artifact title: “Soar booking reliability + growth-loop teardown” — a 1-page follow-up that proves Faishal can think like an owner, not just ask for a job. Source: https://flysoar.ai/
+- ✅ Section 1 should diagram the public funnel: X/deal post → prefilled flight URL → landing/offer page → hold → verification/payment → booking progress → ticket/result → support. Source: https://x.com/SoarAI
+- ✅ Section 2 should name the likely state machine: `deal_clicked`, `search_stream_started`, `offer_selected`, `hold_created`, `traveler_verified`, `payment_authorized`, `booking_submitted`, `ticket_confirmed`, `support_needed`. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Section 3 should propose an internal console MVP with tabs for User, Offer/Hold, Duffel Order, Payment, Verification, Timeline, Support Notes, and Fraud Signals. Source: https://flysoar.ai/privacy
+- ✅ Section 4 should propose idempotency/retry rules around `/api/book`, `/api/book/hold`, `/api/book/progress`, and `/api/book/result`, because booking endpoints are exactly where duplicate charges or ambiguous user states can destroy trust. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Section 5 should propose a simple metric tree: activation = successful search, intent = offer select/hold, conversion = ticketed booking, trust = support cases per booking, growth = share-link booking rate. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ Section 6 should explicitly avoid claiming private backend knowledge: “This is from public site/client/legal signals; I would validate with your actual architecture before touching production.” Source: https://flysoar.ai/terms
+- ✅ Prototype option A: build a static mock admin console with fake data from the public route model to demonstrate product judgment without needing Soar internals. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Frontend Deep Dive.md
+- ✅ Prototype option B: build a tiny event-schema document and PostHog-style dashboard spec for the deal-link funnel, leveraging Faishal’s prior outreach analytics work. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/06-Product Analytics/Outreach Analytics Coverage.md
+- ✅ Prototype option C: build a booking-state-machine sketch with retry/idempotency tables, leveraging Faishal’s Tailorec agent-run/state-machine experience. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Tailorec/04-Job Agent/Archive/Agent Plan V1.md
+
 ## Quick cheat sheet
 
 - ✅ One-line product read: Soar is trying to make live flight search/booking feel social, fast, mobile-native, and Uber-simple, not like a legacy OTA. Source: https://flysoar.ai/
