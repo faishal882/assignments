@@ -2,6 +2,15 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## 15-minute call agenda
+
+- ✅ Created `research/call_agenda.md` to structure a short call around Henry’s bottleneck, not around reciting the whole dossier. Source: research/call_agenda.md
+- ✅ The opener frames all technical observations as public product/legal/client-route hypotheses and centers booking state, payment/verification ambiguity, support tooling, and deal-link conversion. Source: https://flysoar.ai/terms
+- ✅ The agenda’s first real move is to ask where the bottleneck is: shared-link conversion, hold-to-ticket reliability, payment/verification ambiguity, or post-booking support. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ The agenda maps Henry’s answer to one ownership slice: event schema/dashboard, booking state machine/idempotency memo, fake-data admin console, or fraud/operator handoff workflow. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ The fit proof is deliberately selective: Tailorec for external workflow/state/analytics/product ops, AWS/runbooks for production ownership, and OS only if low-level debugging comes up. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+- ✅ The close asks Henry which 48-hour artifact would be most useful to judge, matching the low-risk work-trial plan. Source: research/call_agenda.md
+
 ## High-signal questions for Henry
 
 - ✅ Created `research/questions_for_henry.md` so Faishal can ask discovery questions that identify Henry’s actual bottleneck instead of monologuing from the dossier. Source: research/questions_for_henry.md
