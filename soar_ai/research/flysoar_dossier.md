@@ -90,6 +90,16 @@
 - ✅ Day 60-90: add post-booking trust features — trip timeline, schedule-change/support intake, refund/change explainer, and proactive alerts — to reduce support load while differentiating from metasearch handoffs. Source: https://flysoar.ai/terms
 - ✅ Day 60-90: harden privacy/security posture for passport/travel documents/payment tokens with least-privilege access, audit logs, and deletion/export tooling, matching the data categories Soar admits it collects. Source: https://flysoar.ai/privacy
 
+## Quick cheat sheet
+
+- ✅ One-line product read: Soar is trying to make live flight search/booking feel social, fast, mobile-native, and Uber-simple, not like a legacy OTA. Source: https://flysoar.ai/
+- ✅ One-line tech read: public signals point to Next.js + Duffel + Stripe-like payments + Twilio verification + passkeys + analytics/growth attribution + booking state workflows. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ One-line founder read: Henry appears to value speed, internal tools, app distribution, growth experiments, and builders with side projects. Source: https://x.com/henrylangmack
+- ✅ One-line fit read: Faishal should pitch as the engineer who can own growth instrumentation, booking/support internal tools, external-provider workflow reliability, and production ops from day one. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Agent Platform Deep Dive.md
+- ✅ Best conversation opener: “I looked at Soar’s public routes and legal pages; I think the hidden hard part is booking-state reliability and support tooling, not just flight search.” Source: https://flysoar.ai/terms
+- ✅ Best proof point to mention: Tailorec shipped solo with Next.js/FastAPI/agent runtime/analytics/AWS and real traffic, plus the 32-bit OS from scratch as systems-depth proof. Source: vault:/home/faishal/Documents/Obsidian Vault/Applications/Applications/Riverline AI Engineer Application.md
+- ✅ Best question to ask Henry: “What breaks most often right now: search quality, hold→ticket conversion, payment/verification, or post-booking support?” Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+
 ## Outreach
 
 - ✅ Use the outreach below as a concise first message; every claim in it is backed by the product/founder/local evidence above. Source: https://flysoar.ai/
