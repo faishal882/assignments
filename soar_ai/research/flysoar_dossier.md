@@ -2,6 +2,15 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## Minimal send pack
+
+- ✅ Created `research/minimal_send_pack.md` as the shortest operational version of the outreach: first DM, “send it” follow-up, “what would you ship?” answer, “why you?” answer, and stop rule. Source: research/minimal_send_pack.md
+- ✅ The minimal first DM leads with Soar’s likely hard part — Uber-simple booking over Duffel offers/holds, payment, verification, booking progress/results, support, fraud, and attribution — instead of generic flight search. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ The “send it” follow-up explicitly caveats that the teardown is based only on public product/legal/client-route signals and that implementation details must be validated. Source: https://flysoar.ai/terms
+- ✅ The 48-hour artifact answer narrows to event schema, fake-data booking timeline/admin console, metric tree, and implementation questions before production access. Source: https://flysoar.ai/_next/static/chunks/app/layout-18bba28c6dc2acde.js
+- ✅ The “why you?” answer maps Faishal to product UX, backend workflows, event traces, runtime/tooling systems, analytics, and production ops, with Tailorec as proof and the OS project as systems-depth support. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Tailorec Backend Deep Dive.md
+- ✅ The stop rule prevents needy follow-up behavior: one short bump, then only send more if a genuinely strong 48-hour artifact exists. Source: research/send_checklist.md
+
 ## Credibility guardrails
 
 - ✅ Created `research/credibility_guardrails.md` to prevent the outreach from sounding creepy, inflated, or overconfident; it covers private-knowledge claims, funding status, reverse-engineering phrasing, generic AI positioning, oversized asks, Henry’s age, and local/private notes. Source: research/credibility_guardrails.md
