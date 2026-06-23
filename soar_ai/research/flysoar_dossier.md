@@ -2,6 +2,15 @@
 
 > Goal: impress Henry Langmack enough to earn a founding-engineer conversation. Confidence markers: ✅ public source, 🟨 inferred from public client/terms, 🔒 local-private fit signal.
 
+## Source confidence map
+
+- ✅ Created `research/source_confidence.md` to separate high-confidence public facts, medium-confidence public-signal inferences, and unknowns that should not be claimed. Source: research/source_confidence.md
+- ✅ High-confidence claims include Soar being a live flight-search/booking web app, Duffel being explicitly named in terms, and Soar disclaiming that it is an airline or travel agency of record. Source: https://flysoar.ai/terms
+- ✅ High-confidence privacy claims include Soar handling travel documents, payment instrument tokens, device identifiers, search history, booking history, support correspondence, and verification-related data. Source: https://flysoar.ai/privacy
+- ✅ Medium-confidence claims should be phrased as inferences: Stripe-like payment flows, sophisticated booking state workflow, X-driven acquisition, and speed/social deal distribution wedge. Source: https://flysoar.ai/_next/static/chunks/218-fbcfdfa552d4094a.js
+- ✅ Unknowns that should not be claimed include funding status beyond undisclosed, backend database/cloud provider, team size, revenue, conversion metrics, exact private contracts, and whether Soar is hiring founding engineers. Source: https://www.bing.com/search?q=%22flysoar.ai%22+funding
+- ✅ The phrasing rule is: use “is” for public terms/profile/site facts, “appears” or “my hypothesis” for client-route/product-strategy inferences, and “unknown/undisclosed” for private or funding claims. Source: research/source_confidence.md
+
 ## 15-minute call agenda
 
 - ✅ Created `research/call_agenda.md` to structure a short call around Henry’s bottleneck, not around reciting the whole dossier. Source: research/call_agenda.md
