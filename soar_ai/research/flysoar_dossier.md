@@ -48,6 +48,14 @@
 - ✅ The consistency review preserves the safest technical caveat: public product/legal/client-route signals may be wrong on implementation details, but they identify workflow risks worth validating. Source: https://flysoar.ai/terms
 - ✅ The consistency review reinforces that local Tailorec/OS/Codex/Obsidian evidence should be summarized as fit signals, not sent as raw private notes. Source: vault:/home/faishal/Documents/Obsidian Vault/01 Projects/Interview Portfolio/Conversation And Existing Notes Evidence Map.md
 
+## WhatsApp recovery message
+
+- ✅ Created `research/whatsapp_recovery_message.md` for the actual current situation: Henry already reached out, said he is looking for a “cracked developer,” offered same-day availability, and Faishal replied late/declined due to being busy. Source: research/whatsapp_recovery_message.md
+- ✅ The recommended recovery message takes ownership for timing without over-apologizing, frames the delay as preparation/respect for founder time, and makes it easy to restart with a 15-minute call. Source: research/whatsapp_recovery_message.md
+- ✅ The message uses Henry’s own “cracked developer” framing and connects Faishal’s interest to Soar’s booking-state/payment/verification/support/growth-loop layer. Source: https://x.com/henrylangmack
+- ✅ The message mentions Emergent AI only as context while making clear Soar is more exciting because it is closer to a founding-engineer problem. Source: https://emergent.sh
+- ✅ The message asks for a quick call or offers a short teardown, matching the existing outreach package and avoiding a giant unsolicited dossier. Source: research/minimal_send_pack.md
+
 ## Minimal send pack
 
 - ✅ Created `research/minimal_send_pack.md` as the shortest operational version of the outreach: first DM, “send it” follow-up, “what would you ship?” answer, “why you?” answer, and stop rule. Source: research/minimal_send_pack.md
