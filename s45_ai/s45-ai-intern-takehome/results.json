@@ -1,0 +1,10 @@
+{
+  "overall_score": 0.7416267942583732,
+  "num_evaluated": 1045,
+  "num_skipped": 15,
+  "per_category": {
+    "medium": 0.7395209580838323,
+    "hard": 0.4365482233502538,
+    "easy": 0.8599221789883269
+  }
+}
