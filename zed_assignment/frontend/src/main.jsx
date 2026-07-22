@@ -23,6 +23,7 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./styles.css";
 import { captureMapCanvas, MAP_CANVAS_CONTEXT_ATTRIBUTES } from "./mapExport.js";
+import { boundsForGeoJSON, createStaticProjector, featuresFromGeoJSON, geometryToSvgPaths, STATIC_MAP_SIZE } from "./staticMap.js";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 const CONSTRAINT_PMTILES_URL = import.meta.env.VITE_CONSTRAINT_PMTILES_URL;
@@ -185,6 +186,54 @@ class MapErrorBoundary extends React.Component {
   }
 }
 
+function StaticMapFallback({ parcel, result, previewConstraints, ghostBuildable, mode, setDraftPoints, draftPoints, manualEdits, pending }) {
+  const bounds = boundsForGeoJSON([parcel, result?.features?.buildable, result?.features?.excluded, result?.features?.constraints, previewConstraints, ghostBuildable, ...manualEdits.map((edit) => edit.geometry)]);
+  const projector = bounds ? createStaticProjector(bounds) : null;
+  const constraints = previewConstraints ?? result?.features?.constraints;
+  const renderFeatures = (value, className, colorByLayer = false) => featuresFromGeoJSON(value).flatMap((feature, featureIndex) => (
+    geometryToSvgPaths(feature.geometry, projector.project).map((path, pathIndex) => (
+      <path
+        className={className}
+        d={path}
+        fillRule="evenodd"
+        key={`${featureIndex}-${pathIndex}`}
+        style={colorByLayer ? { "--layer-color": LAYER_COLORS[feature.properties?.id] ?? "#69756d" } : undefined}
+      />
+    ))
+  ));
+  const handleClick = (event) => {
+    if (!mode || !projector) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * STATIC_MAP_SIZE.width;
+    const y = ((event.clientY - rect.top) / rect.height) * STATIC_MAP_SIZE.height;
+    setDraftPoints((points) => [...points, projector.unproject([x, y])]);
+  };
+
+  if (!projector) {
+    return <div className="map-fallback" role="alert"><strong>Map unavailable</strong><span>This browser could not start WebGL, and no parcel geometry is loaded yet.</span></div>;
+  }
+
+  return <div className="static-map-fallback" role="application" aria-label="Static buildable area map">
+    <svg viewBox={`0 0 ${STATIC_MAP_SIZE.width} ${STATIC_MAP_SIZE.height}`} onClick={handleClick}>
+      <rect width={STATIC_MAP_SIZE.width} height={STATIC_MAP_SIZE.height} />
+      {renderFeatures(result?.features?.excluded, "static-excluded")}
+      {renderFeatures(result?.features?.buildable, "static-buildable")}
+      {renderFeatures(ghostBuildable, "static-ghost")}
+      {renderFeatures(constraints, "static-constraint", true)}
+      {manualEdits.flatMap((edit, index) => geometryToSvgPaths(edit.geometry, projector.project).map((path, pathIndex) => (
+        <path className={`static-manual ${edit.kind === "restore" ? "restore" : ""} ${pending ? "pending" : ""}`} d={path} fillRule="evenodd" key={`${edit.id}-${index}-${pathIndex}`} />
+      )))}
+      {draftPoints.length > 1 && <polyline className="static-draft-line" points={draftPoints.map((point) => projector.project([point.lng, point.lat]).map((value) => value.toFixed(2)).join(",")).join(" ")} />}
+      {draftPoints.map((point, index) => {
+        const [cx, cy] = projector.project([point.lng, point.lat]);
+        return <circle className="static-draft-point" cx={cx} cy={cy} r="5" key={index} />;
+      })}
+      {renderFeatures(parcel, "static-parcel")}
+    </svg>
+    <div className="static-map-notice"><strong>Static map mode</strong><span>WebGL is unavailable in this browser, so panning and zooming are disabled. Drawing still works.</span></div>
+  </div>;
+}
+
 function MapView({ parcel, result, previewConstraints, ghostBuildable, mode, setDraftPoints, draftPoints, manualEdits, pending, onExportReady }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
@@ -313,7 +362,7 @@ function MapView({ parcel, result, previewConstraints, ghostBuildable, mode, set
   }, [result, previewConstraints, ghostBuildable, draftPoints, manualEdits, pending, mapReady]);
 
   if (mapFailed) {
-    return <div className="map-fallback" role="alert"><strong>Map unavailable</strong><span>This browser could not start WebGL. The analysis controls and totals remain available.</span></div>;
+    return <StaticMapFallback parcel={parcel} result={result} previewConstraints={previewConstraints} ghostBuildable={ghostBuildable} mode={mode} setDraftPoints={setDraftPoints} draftPoints={draftPoints} manualEdits={manualEdits} pending={pending} />;
   }
   return <div ref={containerRef} className="map" role="application" aria-label="Interactive buildable area map" />;
 }
