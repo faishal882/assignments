@@ -1,0 +1,404 @@
+{
+  "checkedAt": "2026-07-23T01:00:41.202313Z",
+  "method": "gstack browse persistent Chromium; page load plus deterministic technical-token presence check",
+  "scope": "This proves browser accessibility and technical signals, not semantic support by itself; claim support remains in the human-readable ledger.",
+  "summary": {
+    "total": 20,
+    "loaded": 20,
+    "failed": 0
+  },
+  "results": [
+    {
+      "appId": 4,
+      "app": "Attio",
+      "url": "https://attio.com/platform/developers",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "api key",
+        "rest",
+        "mcp"
+      ],
+      "title": "Attio | Developer Platform",
+      "finalUrl": "https://attio.com/platform/developers",
+      "textChars": 3152,
+      "tokenHits": {
+        "oauth": true,
+        "api key": false,
+        "rest": true,
+        "mcp": true
+      }
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "url": "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "token",
+        "rest",
+        "mcp"
+      ],
+      "title": "Authentication | Intercom and Fin Developer Platform",
+      "finalUrl": "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+      "textChars": 3838,
+      "tokenHits": {
+        "oauth": true,
+        "token": true,
+        "rest": true,
+        "mcp": true
+      }
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "url": "https://docs.slack.dev/authentication/",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "rest",
+        "mcp"
+      ],
+      "title": "Authentication overview | Slack Developer Docs",
+      "finalUrl": "https://docs.slack.dev/authentication/",
+      "textChars": 2632,
+      "tokenHits": {
+        "oauth": true,
+        "rest": false,
+        "mcp": false
+      }
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "url": "https://developers.google.com/google-ads/api/docs/concepts/call-structure",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "token",
+        "rest"
+      ],
+      "title": "API Call Structure  |  Google Ads API  |  Google for Developers",
+      "finalUrl": "https://developers.google.com/google-ads/api/docs/concepts/call-structure",
+      "textChars": 8623,
+      "tokenHits": {
+        "oauth": true,
+        "token": true,
+        "rest": true
+      }
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "url": "https://docs.bigcommerce.com/.md",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "token",
+        "rest",
+        "graphql",
+        "mcp"
+      ],
+      "title": "",
+      "finalUrl": "https://docs.bigcommerce.com/.md",
+      "textChars": 9367,
+      "tokenHits": {
+        "oauth": false,
+        "token": true,
+        "rest": true,
+        "graphql": true,
+        "mcp": true
+      }
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "url": "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "api key",
+        "rest",
+        "mcp"
+      ],
+      "title": "OAuth guide | Ahrefs for Developers",
+      "finalUrl": "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide",
+      "textChars": 4275,
+      "tokenHits": {
+        "oauth": true,
+        "api key": false,
+        "rest": true,
+        "mcp": true
+      }
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "url": "https://docs.github.com/en/rest",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "token",
+        "rest",
+        "graphql",
+        "mcp"
+      ],
+      "title": "GitHub REST API documentation - GitHub Docs",
+      "finalUrl": "https://docs.github.com/en/rest",
+      "textChars": 2108,
+      "tokenHits": {
+        "oauth": false,
+        "token": false,
+        "rest": true,
+        "graphql": false,
+        "mcp": false
+      }
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "url": "https://developers.notion.com/guides/get-started/authorization",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "token",
+        "rest",
+        "mcp"
+      ],
+      "title": "Authorization - Notion Docs",
+      "finalUrl": "https://developers.notion.com/guides/get-started/authorization",
+      "textChars": 22281,
+      "tokenHits": {
+        "oauth": true,
+        "token": true,
+        "rest": true,
+        "mcp": true
+      }
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "url": "https://docs.stripe.com/api/authentication",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "api key",
+        "rest",
+        "mcp"
+      ],
+      "title": "Authentication | Stripe API Reference",
+      "finalUrl": "https://docs.stripe.com/api/authentication",
+      "textChars": 22511,
+      "tokenHits": {
+        "oauth": false,
+        "api key": true,
+        "rest": true,
+        "mcp": false
+      }
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "url": "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "api key",
+        "rest",
+        "mcp"
+      ],
+      "title": "Just a moment...",
+      "finalUrl": "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API?__cf_chl_rt_tk=.sciYuKOxPQKnO2R.vBYmk0WukPgdH4sSE6KeRuhPFs-1784768427-1.0.1.1-oTPT0Pz_itL6Icfkf37pLLmwV8MPj7sWy_jhwiWSNtI",
+      "textChars": 0,
+      "tokenHits": {
+        "oauth": false,
+        "api key": false,
+        "rest": false,
+        "mcp": false
+      }
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "url": "https://developer.close.com/topics/authentication/",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "api key",
+        "rest"
+      ],
+      "title": "Authentication with API keys | Close | Developer API Documentation",
+      "finalUrl": "https://developer.close.com/api/overview/api-key-authentication",
+      "textChars": 14554,
+      "tokenHits": {
+        "oauth": true,
+        "api key": true,
+        "rest": false
+      }
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "url": "https://www.plain.com/docs/graphql/introduction",
+      "loaded": true,
+      "expectedTokens": [
+        "token",
+        "graphql"
+      ],
+      "title": "Introduction - Plain Docs",
+      "finalUrl": "https://www.plain.com/docs/graphql/introduction",
+      "textChars": 3325,
+      "tokenHits": {
+        "token": true,
+        "graphql": true
+      }
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "url": "https://developer.systeme.io/",
+      "loaded": true,
+      "expectedTokens": [
+        "api key",
+        "rest",
+        "webhook"
+      ],
+      "title": "Public API",
+      "finalUrl": "https://developer.systeme.io/reference/api",
+      "textChars": 8406,
+      "tokenHits": {
+        "api key": true,
+        "rest": true,
+        "webhook": true
+      }
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "url": "https://dev-docs.fanbasis.com/login.html",
+      "loaded": true,
+      "expectedTokens": [
+        "api key",
+        "rest",
+        "webhook"
+      ],
+      "title": "Login - FanBasis API Docsv3",
+      "finalUrl": "https://dev-docs.fanbasis.com/login.html",
+      "textChars": 50,
+      "tokenHits": {
+        "api key": false,
+        "rest": false,
+        "webhook": false
+      }
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "loaded": true,
+      "expectedTokens": [
+        "cli"
+      ],
+      "title": "GitHub - sherlock-project/sherlock: Hunt down social media accounts by username across social networks · GitHub",
+      "finalUrl": "https://github.com/sherlock-project/sherlock",
+      "textChars": 5077,
+      "tokenHits": {
+        "cli": true
+      }
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "url": "https://www.gopaygent.com/",
+      "loaded": true,
+      "expectedTokens": [
+        "api key",
+        "rest",
+        "webhook"
+      ],
+      "title": "Paygent | Merchant Payments and Tapn Tap-to-Pay Solutions",
+      "finalUrl": "https://www.gopaygent.com/",
+      "textChars": 5610,
+      "tokenHits": {
+        "api key": false,
+        "rest": true,
+        "webhook": true
+      }
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "url": "https://www.ipayx.ai/developers",
+      "loaded": true,
+      "expectedTokens": [
+        "api key",
+        "rest",
+        "webhook",
+        "mcp"
+      ],
+      "title": "FX Audit API & MCP — Developer Documentation — iPayX",
+      "finalUrl": "https://www.ipayx.ai/developers",
+      "textChars": 9457,
+      "tokenHits": {
+        "api key": true,
+        "rest": true,
+        "webhook": true,
+        "mcp": true
+      }
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "url": "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "rest"
+      ],
+      "title": "Create and manage notebooks (API)  |  Gemini Notebook Enterprise  |  Google Cloud Documentation",
+      "finalUrl": "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks",
+      "textChars": 4541,
+      "tokenHits": {
+        "oauth": false,
+        "rest": false
+      }
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "url": "https://github.com/mermaid-js/mermaid-cli",
+      "loaded": true,
+      "expectedTokens": [
+        "cli"
+      ],
+      "title": "GitHub - mermaid-js/mermaid-cli: Command line tool for the Mermaid library · GitHub",
+      "finalUrl": "https://github.com/mermaid-js/mermaid-cli",
+      "textChars": 6749,
+      "tokenHits": {
+        "cli": true
+      }
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "url": "https://transcriptapi.com/docs/api/",
+      "loaded": true,
+      "expectedTokens": [
+        "oauth",
+        "api key",
+        "rest",
+        "mcp"
+      ],
+      "title": "YouTube Transcript API Reference | TranscriptAPI.com",
+      "finalUrl": "https://transcriptapi.com/docs/api/",
+      "textChars": 26518,
+      "tokenHits": {
+        "oauth": false,
+        "api key": true,
+        "rest": false,
+        "mcp": true
+      }
+    }
+  ]
+}

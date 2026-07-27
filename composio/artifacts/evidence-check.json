@@ -1,0 +1,912 @@
+{
+  "summary": {
+    "checkedAt": "2026-07-23T01:01:14.609443Z",
+    "total": 100,
+    "reachable": 99,
+    "success2xx": 95,
+    "redirectsOrRestricted": 4,
+    "failed": 1
+  },
+  "results": [
+    {
+      "id": 1,
+      "name": "Salesforce",
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm",
+      "status": 403,
+      "finalUrl": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm",
+      "reachable": true,
+      "note": "Browser-accessible but automated request restricted"
+    },
+    {
+      "id": 2,
+      "name": "HubSpot",
+      "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/integrate-with-the-remote-hubspot-mcp-server",
+      "status": 200,
+      "finalUrl": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/integrate-with-the-remote-hubspot-mcp-server",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 3,
+      "name": "Pipedrive",
+      "url": "https://pipedrive.readme.io/docs/getting-started",
+      "status": 200,
+      "finalUrl": "https://pipedrive.readme.io/docs/getting-started",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 4,
+      "name": "Attio",
+      "url": "https://attio.com/platform/developers",
+      "status": 200,
+      "finalUrl": "https://attio.com/platform/developers",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "url": "https://docs.twenty.com/developers/extend/api",
+      "status": 200,
+      "finalUrl": "https://docs.twenty.com/developers/extend/api",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 6,
+      "name": "Podio",
+      "url": "https://developers.podio.com/authentication",
+      "status": 200,
+      "finalUrl": "https://developers.podio.com/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 7,
+      "name": "Zoho CRM",
+      "url": "https://www.zoho.com/crm/developer/docs/javascript-sdk/v2/initialize.html",
+      "status": 200,
+      "finalUrl": "https://www.zoho.com/crm/developer/docs/javascript-sdk/v2/initialize.html",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 8,
+      "name": "Close",
+      "url": "https://developer.close.com/topics/authentication/",
+      "status": 200,
+      "finalUrl": "https://developer.close.com/api/overview/api-key-authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 9,
+      "name": "Copper",
+      "url": "https://developer.copper.co/api-reference/authentication",
+      "status": 200,
+      "finalUrl": "https://developer.copper.co/api-reference/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 10,
+      "name": "DealCloud",
+      "url": "https://api.docs.dealcloud.com/docs/token",
+      "status": 200,
+      "finalUrl": "https://api.docs.dealcloud.com/docs/token",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 11,
+      "name": "Zendesk",
+      "url": "https://developer.zendesk.com/api-reference/introduction/security-and-auth/",
+      "status": 200,
+      "finalUrl": "https://developer.zendesk.com/api-reference/introduction/security-and-auth/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 12,
+      "name": "Intercom",
+      "url": "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+      "status": 200,
+      "finalUrl": "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 13,
+      "name": "Freshdesk",
+      "url": "https://developers.freshdesk.com/api/",
+      "status": 200,
+      "finalUrl": "https://developers.freshdesk.com/api/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "url": "https://dev.frontapp.com/me/docs/authentication",
+      "status": 200,
+      "finalUrl": "https://dev.frontapp.com/me/docs/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 15,
+      "name": "Pylon",
+      "url": "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+      "status": 200,
+      "finalUrl": "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 16,
+      "name": "LiveAgent",
+      "url": "https://support.liveagent.com/567924-Documentation",
+      "status": 200,
+      "finalUrl": "https://support.liveagent.com/567924-Documentation",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 17,
+      "name": "Plain",
+      "url": "https://www.plain.com/docs/graphql/introduction",
+      "status": 200,
+      "finalUrl": "https://www.plain.com/docs/graphql/introduction",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "url": "https://developer.helpscout.com/mailbox-api/overview/authentication/",
+      "status": 200,
+      "finalUrl": "https://developer.helpscout.com/mailbox-api/overview/authentication/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 19,
+      "name": "Gorgias",
+      "url": "https://developers.gorgias.com/reference/authentication",
+      "status": 200,
+      "finalUrl": "https://developers.gorgias.com/reference/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 20,
+      "name": "Gladly",
+      "url": "https://developer.gladly.com/rest/index.html",
+      "status": 200,
+      "finalUrl": "https://developer.gladly.com/rest/index.html",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 21,
+      "name": "Slack",
+      "url": "https://docs.slack.dev/authentication/",
+      "status": 200,
+      "finalUrl": "https://docs.slack.dev/authentication/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 22,
+      "name": "Twilio",
+      "url": "https://www.twilio.com/docs/iam/api-keys",
+      "status": 200,
+      "finalUrl": "https://www.twilio.com/docs/iam/api-keys",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 23,
+      "name": "Zoho Cliq",
+      "url": "https://www.zoho.com/cliq/help/restapi/v3/oauth/",
+      "status": 200,
+      "finalUrl": "https://www.zoho.com/cliq/help/restapi/v3/oauth/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 24,
+      "name": "Lark",
+      "url": "https://github.com/larksuite/lark-openapi-mcp/blob/main/README.md",
+      "status": 200,
+      "finalUrl": "https://github.com/larksuite/lark-openapi-mcp/blob/main/README.md",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 25,
+      "name": "Pumble",
+      "url": "https://pumble.com/help/integrations/automation-workflow-integrations/api-keys-integration/",
+      "status": 200,
+      "finalUrl": "https://pumble.com/help/integrations/automation-workflow-integrations/api-keys-integration/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 26,
+      "name": "Discord",
+      "url": "https://docs.discord.com/developers/topics/oauth2",
+      "status": 200,
+      "finalUrl": "https://docs.discord.com/developers/topics/oauth2",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 27,
+      "name": "Telegram",
+      "url": "https://core.telegram.org/api",
+      "status": 200,
+      "finalUrl": "https://core.telegram.org/api",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "url": "https://developers.facebook.com/docs/whatsapp/business-management-api/get-started/",
+      "status": 200,
+      "finalUrl": "https://developers.facebook.com/documentation/business-messaging/whatsapp/get-started",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 29,
+      "name": "Aircall",
+      "url": "https://developer.aircall.io/",
+      "status": 200,
+      "finalUrl": "https://developer.aircall.io/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "url": "https://developer.vonage.com/en/documentation",
+      "status": 200,
+      "finalUrl": "https://developer.vonage.com/en/documentation",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 31,
+      "name": "Google Ads",
+      "url": "https://developers.google.com/google-ads/api/docs/concepts/call-structure",
+      "status": 200,
+      "finalUrl": "https://developers.google.com/google-ads/api/docs/concepts/call-structure",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "url": "https://developers.facebook.com/docs/marketing-api/get-started/authentication/",
+      "status": 200,
+      "finalUrl": "https://developers.facebook.com/documentation/ads-commerce/marketing-api/get-started/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 33,
+      "name": "LinkedIn Ads",
+      "url": "https://developer.linkedin.com/product-catalog/marketing/advertising-api",
+      "status": 200,
+      "finalUrl": "https://developer.linkedin.com/product-catalog/marketing/advertising-api",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 34,
+      "name": "GoHighLevel",
+      "url": "https://developers.gohighlevel.com/",
+      "status": 200,
+      "finalUrl": "https://developers.gohighlevel.com/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 35,
+      "name": "Mailchimp",
+      "url": "https://mailchimp.com/developer/marketing/docs/fundamentals/",
+      "status": 200,
+      "finalUrl": "https://mailchimp.com/developer/marketing/docs/fundamentals/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "url": "https://developers.klaviyo.com/en/docs/authenticate_",
+      "status": 200,
+      "finalUrl": "https://developers.klaviyo.com/en/docs/authenticate_",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 37,
+      "name": "systeme.io",
+      "url": "https://developer.systeme.io/",
+      "status": 200,
+      "finalUrl": "https://developer.systeme.io/reference/api",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 38,
+      "name": "Pinterest",
+      "url": "https://developers.pinterest.com/docs/getting-started/connect-app/",
+      "status": 200,
+      "finalUrl": "https://developers.pinterest.com/docs/getting-started/connect-app/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 39,
+      "name": "Threads",
+      "url": "https://developers.facebook.com/docs/threads/get-started/",
+      "status": 200,
+      "finalUrl": "https://developers.facebook.com/documentation/threads/get-started",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 40,
+      "name": "SendGrid",
+      "url": "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authorization.md",
+      "status": 200,
+      "finalUrl": "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authorization.md",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 41,
+      "name": "Shopify",
+      "url": "https://shopify.dev/docs/api/usage/authentication",
+      "status": 200,
+      "finalUrl": "https://shopify.dev/docs/api/usage/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 42,
+      "name": "WooCommerce",
+      "url": "https://developer.woocommerce.com/docs/apis/rest-api/",
+      "status": 200,
+      "finalUrl": "https://developer.woocommerce.com/docs/apis/rest-api/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 43,
+      "name": "BigCommerce",
+      "url": "https://docs.bigcommerce.com/.md",
+      "status": 200,
+      "finalUrl": "https://docs.bigcommerce.com/.md",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 44,
+      "name": "Salesforce Commerce Cloud",
+      "url": "https://developer.salesforce.com/docs/commerce/b2c-commerce/guide/scapi-get-started.html",
+      "status": 403,
+      "finalUrl": "https://developer.salesforce.com/docs/commerce/b2c-commerce/guide/scapi-get-started.html",
+      "reachable": true,
+      "note": "Browser-accessible but automated request restricted"
+    },
+    {
+      "id": 45,
+      "name": "Adobe Commerce",
+      "url": "https://developer.adobe.com/commerce/webapi/get-started/authentication/gs-authentication-oauth",
+      "status": 200,
+      "finalUrl": "https://developer.adobe.com/commerce/webapi/get-started/authentication/gs-authentication-oauth",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 46,
+      "name": "Squarespace",
+      "url": "https://developers.squarespace.com/commerce-apis/making-requests",
+      "status": 200,
+      "finalUrl": "https://developers.squarespace.com/commerce-apis/making-requests",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 47,
+      "name": "Ecwid",
+      "url": "https://docs.ecwid.com/get-started/set-up-your-dev-environment-in-ecwid",
+      "status": 200,
+      "finalUrl": "https://docs.ecwid.com/get-started/set-up-your-dev-environment-in-ecwid",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 48,
+      "name": "Gumroad",
+      "url": "https://gumroad.com/api",
+      "status": 200,
+      "finalUrl": "https://gumroad.com/api",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 49,
+      "name": "Amazon Selling Partner",
+      "url": "https://developer-docs.amazon/sp-api/docs/onboarding-overview",
+      "status": 200,
+      "finalUrl": "https://developer-docs.amazon/sp-api/docs/onboarding-overview",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 50,
+      "name": "Fanbasis",
+      "url": "https://dev-docs.fanbasis.com/login.html",
+      "status": 200,
+      "finalUrl": "https://dev-docs.fanbasis.com/login.html",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 51,
+      "name": "DataForSEO",
+      "url": "https://docs.dataforseo.com/v3/",
+      "status": 200,
+      "finalUrl": "https://docs.dataforseo.com/v3/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 52,
+      "name": "SE Ranking",
+      "url": "https://seranking.com/api/how-to-get-api/",
+      "status": 200,
+      "finalUrl": "https://seranking.com/api/how-to-get-api/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 53,
+      "name": "Ahrefs",
+      "url": "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide",
+      "status": 200,
+      "finalUrl": "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 54,
+      "name": "MrScraper",
+      "url": "https://docs.mrscraper.com/docs/getting-started/mcp-server",
+      "status": 0,
+      "finalUrl": "https://docs.mrscraper.com/docs/getting-started/mcp-server",
+      "reachable": false,
+      "note": "<urlopen error [Errno 101] Network is unreachable>"
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "url": "https://docs.apify.com/api/v2",
+      "status": 200,
+      "finalUrl": "https://docs.apify.com/api/v2",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 56,
+      "name": "Firecrawl",
+      "url": "https://docs.firecrawl.dev/mcp-server",
+      "status": 200,
+      "finalUrl": "https://docs.firecrawl.dev/mcp-server",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 57,
+      "name": "Bright Data",
+      "url": "https://docs.brightdata.com/api-reference/authentication",
+      "status": 200,
+      "finalUrl": "https://docs.brightdata.com/api-reference/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 58,
+      "name": "Sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "status": 200,
+      "finalUrl": "https://github.com/sherlock-project/sherlock",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 59,
+      "name": "Waterfall.io",
+      "url": "https://docs.waterfall.io/v1/introduction",
+      "status": 200,
+      "finalUrl": "https://docs.waterfall.io/v1/introduction",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 60,
+      "name": "Clay",
+      "url": "https://university.clay.com/docs/clay-api-cli",
+      "status": 200,
+      "finalUrl": "https://university.clay.com/docs/clay-api-cli",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 61,
+      "name": "GitHub",
+      "url": "https://docs.github.com/en/rest",
+      "status": 200,
+      "finalUrl": "https://docs.github.com/en/rest",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 62,
+      "name": "Vercel",
+      "url": "https://vercel.com/docs/integrations/create-integration/marketplace-api",
+      "status": 200,
+      "finalUrl": "https://vercel.com/docs/integrations/create-integration/marketplace-api",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 63,
+      "name": "Netlify",
+      "url": "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api",
+      "status": 200,
+      "finalUrl": "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 64,
+      "name": "Cloudflare",
+      "url": "https://developers.cloudflare.com/fundamentals/oauth/create-an-oauth-client/",
+      "status": 200,
+      "finalUrl": "https://developers.cloudflare.com/fundamentals/oauth/create-an-oauth-client/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "url": "https://supabase.com/docs/guides/auth/oauth-server",
+      "status": 200,
+      "finalUrl": "https://supabase.com/docs/guides/auth/oauth-server",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 66,
+      "name": "Neo4j",
+      "url": "https://neo4j.com/docs/query-api/current/authentication-authorization/",
+      "status": 200,
+      "finalUrl": "https://neo4j.com/docs/query-api/current/authentication-authorization/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 67,
+      "name": "Snowflake",
+      "url": "https://docs.snowflake.com/en/en/developer-guide/snowflake-rest-api/authentication",
+      "status": 200,
+      "finalUrl": "https://docs.snowflake.com/en/en/developer-guide/snowflake-rest-api/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 68,
+      "name": "MongoDB Atlas",
+      "url": "https://www.mongodb.com/docs/atlas/configure-api-access/?interface=atlas-ui&programmatic-access=service-account",
+      "status": 200,
+      "finalUrl": "https://www.mongodb.com/docs/atlas/configure-api-access/?interface=atlas-ui&programmatic-access=service-account",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 69,
+      "name": "Datadog",
+      "url": "https://docs.datadoghq.com/extend/authorization/oauth2_in_datadog.md",
+      "status": 200,
+      "finalUrl": "https://docs.datadoghq.com/extend/authorization/oauth2_in_datadog.md",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 70,
+      "name": "Sentry",
+      "url": "https://docs.sentry.io/api/",
+      "status": 200,
+      "finalUrl": "https://docs.sentry.io/api/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 71,
+      "name": "Notion",
+      "url": "https://developers.notion.com/guides/get-started/authorization",
+      "status": 200,
+      "finalUrl": "https://developers.notion.com/guides/get-started/authorization",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 72,
+      "name": "Airtable",
+      "url": "https://airtable.com/developers/web/api/authentication",
+      "status": 200,
+      "finalUrl": "https://airtable.com/developers/web/api/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 73,
+      "name": "Linear",
+      "url": "https://linear.app/docs/api-and-webhooks",
+      "status": 200,
+      "finalUrl": "https://linear.app/docs/api-and-webhooks",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 74,
+      "name": "Jira",
+      "url": "https://developer.atlassian.com/cloud/jira/software/rest/intro/",
+      "status": 200,
+      "finalUrl": "https://developer.atlassian.com/cloud/jira/software/rest/intro/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 75,
+      "name": "Asana",
+      "url": "https://developers.asana.com/docs/authentication",
+      "status": 200,
+      "finalUrl": "https://developers.asana.com/docs/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 76,
+      "name": "Monday.com",
+      "url": "https://developer.monday.com/apps/docs/choosing-auth",
+      "status": 200,
+      "finalUrl": "https://developer.monday.com/apps/docs/choosing-auth",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 77,
+      "name": "ClickUp",
+      "url": "https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server",
+      "status": 200,
+      "finalUrl": "https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 78,
+      "name": "Coda",
+      "url": "https://coda.io/developers/apis/v1",
+      "status": 200,
+      "finalUrl": "https://docs.superhuman.com/developers/apis/v1",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 79,
+      "name": "Smartsheet",
+      "url": "https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication",
+      "status": 200,
+      "finalUrl": "https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 80,
+      "name": "Harvest",
+      "url": "https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/",
+      "status": 200,
+      "finalUrl": "https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 81,
+      "name": "Stripe",
+      "url": "https://docs.stripe.com/api/authentication?api-version=2026-04-22.dahlia",
+      "status": 200,
+      "finalUrl": "https://docs.stripe.com/api/authentication?api-version=2026-04-22.dahlia",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 82,
+      "name": "Plaid",
+      "url": "https://plaid.com/docs/api/",
+      "status": 200,
+      "finalUrl": "https://plaid.com/docs/api/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 83,
+      "name": "Binance",
+      "url": "https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md",
+      "status": 200,
+      "finalUrl": "https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 84,
+      "name": "Paygent Connect",
+      "url": "https://www.gopaygent.com/",
+      "status": 200,
+      "finalUrl": "https://www.gopaygent.com/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 85,
+      "name": "iPayX",
+      "url": "https://www.ipayx.ai/developers",
+      "status": 200,
+      "finalUrl": "https://www.ipayx.ai/developers",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 86,
+      "name": "QuickBooks",
+      "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization",
+      "status": 200,
+      "finalUrl": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "url": "https://developer.xero.com/",
+      "status": 200,
+      "finalUrl": "https://developer.xero.com/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 88,
+      "name": "Brex",
+      "url": "https://developer.brex.com/docs/mcp",
+      "status": 200,
+      "finalUrl": "https://developer.brex.com/docs/mcp",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 89,
+      "name": "Ramp",
+      "url": "https://docs.ramp.com/developer-api/v1/authorization",
+      "status": 200,
+      "finalUrl": "https://docs.ramp.com/developer-api/v1/authorization",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 90,
+      "name": "PitchBook",
+      "url": "https://pitchbook.com/data/api",
+      "status": 403,
+      "finalUrl": "https://pitchbook.com/data/api",
+      "reachable": true,
+      "note": "Browser-accessible but automated request restricted"
+    },
+    {
+      "id": 91,
+      "name": "NotebookLM",
+      "url": "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks",
+      "status": 200,
+      "finalUrl": "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 92,
+      "name": "Otter AI",
+      "url": "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+      "status": 403,
+      "finalUrl": "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+      "reachable": true,
+      "note": "Browser-accessible but automated request restricted"
+    },
+    {
+      "id": 93,
+      "name": "Fathom",
+      "url": "https://developers.fathom.ai/api-overview",
+      "status": 200,
+      "finalUrl": "https://developers.fathom.ai/api-overview",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 94,
+      "name": "Consensus",
+      "url": "https://docs.consensus.app/docs/mcp",
+      "status": 200,
+      "finalUrl": "https://docs.consensus.app/docs/mcp",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 95,
+      "name": "Reducto",
+      "url": "https://docs.reducto.ai/agent-guide",
+      "status": 200,
+      "finalUrl": "https://docs.reducto.ai/agent-guide",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 96,
+      "name": "Devin",
+      "url": "https://docs.devin.ai/work-with-devin/devin-mcp",
+      "status": 200,
+      "finalUrl": "https://docs.devin.ai/work-with-devin/devin-mcp",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 97,
+      "name": "Higgsfield",
+      "url": "https://docs.higgsfield.ai/docs/help/faq",
+      "status": 200,
+      "finalUrl": "https://docs.higgsfield.ai/docs/help/faq",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 98,
+      "name": "Mermaid CLI",
+      "url": "https://github.com/mermaid-js/mermaid-cli",
+      "status": 200,
+      "finalUrl": "https://github.com/mermaid-js/mermaid-cli",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 99,
+      "name": "YouTube Transcript",
+      "url": "https://transcriptapi.com/docs/api/",
+      "status": 200,
+      "finalUrl": "https://transcriptapi.com/docs/api/",
+      "reachable": true,
+      "note": ""
+    },
+    {
+      "id": 100,
+      "name": "Grain",
+      "url": "https://developers.grain.com/",
+      "status": 200,
+      "finalUrl": "https://developers.grain.com/",
+      "reachable": true,
+      "note": ""
+    }
+  ]
+}

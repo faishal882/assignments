@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Toolkit Radar: an evidence-backed build-versus-outreach map of 100 requested app integrations." />
+    <meta name="theme-color" content="#a72f27" />
+    <title>Toolkit Radar — 100-app integration research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to findings</a>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Toolkit Radar home">
+        <span class="wordmark-mark" aria-hidden="true">TR</span>
+        <span>Toolkit Radar</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#findings">Findings</a>
+        <a href="#agent">Agent</a>
+        <a href="#verification">Verification</a>
+        <a href="#dataset">100 apps</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="context-line">AI Product Ops take-home · researched 23 Jul 2026</p>
+          <h1>90 toolkits are technically buildable. Only 54 are ready without a gate.</h1>
+          <p class="hero-lede">
+            The integration backlog is not a yes/no list. It is a queue: ship the self-serve APIs, design around admin constraints, and send the nine partnership-gated apps to outreach.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#dataset">Explore all 100</a>
+            <a class="button button-quiet" href="artifacts/research.latest.json">Inspect current agent output <span aria-hidden="true">↗</span></a>
+            <a class="button button-quiet" href="https://github.com/faishal882/composio-toolkit-radar">Source + README <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <aside class="decision-note" aria-label="Portfolio decision">
+          <p class="decision-title">Recommended queue</p>
+          <ol>
+            <li><span>Ship</span><strong>54</strong><small>documented + workable now</small></li>
+            <li><span>Design around</span><strong>36</strong><small>plan, admin, or review constraints</small></li>
+            <li><span>Open a channel</span><strong>9</strong><small>partnership or sales gate</small></li>
+            <li><span>Hold</span><strong>1</strong><small>no public API located</small></li>
+          </ol>
+        </aside>
+      </section>
+
+      <section class="portfolio" aria-labelledby="portfolio-title">
+        <div class="section-heading compact">
+          <h2 id="portfolio-title">The buildability portfolio</h2>
+          <p>One bar, all 100 apps. “Build with constraints” is feasible engineering with a known access dependency—not a soft no.</p>
+        </div>
+        <div class="portfolio-bar" aria-label="54 build now, 36 build with constraints, 9 outreach first, 1 no public API">
+          <span class="segment segment-now" style="--share: 54"><b>54</b></span>
+          <span class="segment segment-constraints" style="--share: 36"><b>36</b></span>
+          <span class="segment segment-outreach" style="--share: 9"><b>9</b></span>
+          <span class="segment segment-no-api" style="--share: 1"><b class="sr-only">1</b></span>
+        </div>
+        <div class="portfolio-legend" aria-hidden="true">
+          <span><i class="key key-now"></i>Build now</span>
+          <span><i class="key key-constraints"></i>Build with constraints</span>
+          <span><i class="key key-outreach"></i>Outreach first</span>
+          <span><i class="key key-no-api"></i>No public API</span>
+        </div>
+      </section>
+
+      <section class="findings" id="findings" aria-labelledby="findings-title">
+        <div class="section-heading">
+          <h2 id="findings-title">What the rows say when you stop reading them one by one</h2>
+          <p>The useful pattern is commercial and operational: authentication is mostly solved; access is not.</p>
+        </div>
+
+        <div class="finding-primary">
+          <p class="finding-number">79<span>/100</span></p>
+          <div>
+            <h3>support an OAuth path</h3>
+            <p>OAuth dominates, but it is rarely the blocker. The hard part is getting a production client, approved scopes, or a customer admin to install it.</p>
+          </div>
+        </div>
+
+        <div class="finding-split">
+          <article>
+            <p class="finding-number small">48</p>
+            <h3>already expose an official MCP</h3>
+            <p>MCP is no longer edge infrastructure. It shortens the first build, but maturity ranges from GA endpoints to Enterprise EAPs—so “has MCP” is not the same as “self-serve.”</p>
+          </article>
+          <article>
+            <p class="finding-number small">16</p>
+            <h3>unique apps need a human gate</h3>
+            <p>Eleven require formal review and nine are outreach-first, with four apps in both groups. The union is 16, not 20.</p>
+          </article>
+          <article>
+            <p class="finding-number small">22</p>
+            <h3>hit the most common blocker</h3>
+            <p>Paid-plan or admin access is the largest blocker class. Solve entitlement and tenant-install UX before adding more API surface.</p>
+          </article>
+        </div>
+
+        <div class="category-map">
+          <div class="category-map-copy">
+            <h3>Start where schemas repeat and credentials are cheap</h3>
+            <p>Productivity and developer platforms are the cleanest wedge. Marketing and finance carry the most approval, compliance, and commercial friction.</p>
+          </div>
+          <div id="category-bars" class="category-bars" aria-label="Build-now share by category"></div>
+        </div>
+
+        <div class="category-map blocker-map">
+          <div class="category-map-copy">
+            <h3>Access gates beat protocol complexity</h3>
+            <p>Blockers are classified from the reviewed rows. The largest groups are paid-plan/admin access, formal review, and distribution approval—not missing REST endpoints.</p>
+          </div>
+          <div id="blocker-bars" class="category-bars" aria-label="Most common blocker classes"></div>
+        </div>
+      </section>
+
+      <section class="agent-section" id="agent" aria-labelledby="agent-title">
+        <div class="section-heading inverse">
+          <h2 id="agent-title">The agent is a research system, not a prompt</h2>
+          <p>Composio discovers and fetches. Deterministic gates reject weak evidence. Independent source review resolves cases where names, access gates, and “official” status cannot safely be inferred.</p>
+        </div>
+
+        <div class="workflow" aria-label="Research workflow">
+          <div class="workflow-step"><span>1</span><strong>Seed</strong><p>A generated identity registry uses only websites supplied in the brief, never final answers.</p></div>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <div class="workflow-step"><span>2</span><strong>Discover</strong><p>Python runs parallel Composio Search calls with retries and atomic checkpoints.</p></div>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <div class="workflow-step"><span>3</span><strong>Gate</strong><p>Entity locks and citation scores route weak evidence to explicit review.</p></div>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <div class="workflow-step"><span>4</span><strong>Review</strong><p>Stratified sample plus an adversarial queue for collisions and gates.</p></div>
+        </div>
+
+        <div class="agent-proof">
+          <div>
+            <p class="proof-label">Runnable trigger</p>
+            <code>npm run research -- --limit 100 --concurrency 4</code>
+            <p>The current run completed 100/100 searches. Python adds retries, resumable checkpoints, brief-derived domain guards, evidence scores, and an explicit review queue.</p>
+          </div>
+          <div class="agent-output" aria-label="Agent run output">
+            <span>COMPOSIO_SEARCH_WEB</span>
+            <span>4 concurrent workers</span>
+            <span>58 / 100 auto-cleared</span>
+            <span>42 / 100 held for review</span>
+          </div>
+        </div>
+
+        <div class="human-needed">
+          <h3>Where the automated pass needed a reviewer</h3>
+          <p>The first pass confidently researched the wrong entity for <strong>Sherlock</strong>, <strong>Paygent Connect</strong>, <strong>iPayX</strong>, and <strong>Mermaid CLI</strong>. It also mixed unrelated MCP citations into <strong>Close</strong> and <strong>Plain</strong>. The independent review corrected those rows and produced two permanent controls: lock the vendor domain before classification, and never promote community MCP to “official.” Only Fanbasis still needs a credentialed human or vendor contact because its technical docs are behind login. <a href="artifacts/document-review.json">Inspect the completed source review ↗</a></p>
+        </div>
+      </section>
+
+      <section class="verification" id="verification" aria-labelledby="verification-title">
+        <div class="section-heading">
+          <h2 id="verification-title">Accuracy moved because the loop changed</h2>
+          <p>Twenty apps × eight claims each. Ten were category-stratified; ten were deliberately adversarial. Positive technical claims require provider-owned evidence; identity/category are brief-locked and verdicts follow from verified facts or explicit uncertainty.</p>
+        </div>
+
+        <div class="accuracy-shift" aria-label="Verification-set support improved from 63.1 percent to 98.1 percent">
+          <div class="accuracy-before">
+            <span>First pass</span>
+            <strong>63.1%</strong>
+            <small>101 / 160 supported claims</small>
+          </div>
+          <div class="accuracy-arrow" aria-hidden="true">+35.0 pts →</div>
+          <div class="accuracy-after">
+            <span>After verification</span>
+            <strong>98.1%</strong>
+            <small>157 / 160 supported claims</small>
+          </div>
+        </div>
+
+        <div class="cohort-scores" aria-label="Verification scores by cohort">
+          <article><span>Category-stratified</span><strong>79/80 → 80/80</strong><p>A broad sanity sample: one app from each category.</p></article>
+          <article><span>Adversarial</span><strong>22/80 → 77/80</strong><p>Collision-prone and low-signal cases deliberately stress-tested.</p></article>
+        </div>
+
+        <div class="corrections" id="corrections"></div>
+
+        <div class="verification-footnote">
+          <strong>Why not claim 100%?</strong>
+          <p>Three Fanbasis claims remain unsupported because its provider documentation exposes only a login screen: authentication type, access route, and API shape. The build verdict stays “outreach first” instead of inventing certainty.</p>
+          <a href="data/verification.json">Audit all 160 field judgments <span aria-hidden="true">↗</span></a>
+          <a href="artifacts/document-review.json">Read the document review <span aria-hidden="true">↗</span></a>
+          <a href="artifacts/browser-verification.json">Inspect browser checks <span aria-hidden="true">↗</span></a>
+          <a href="artifacts/research.raw.json">Compare the original first pass <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="dataset" id="dataset" aria-labelledby="dataset-title">
+        <div class="section-heading dataset-heading">
+          <div>
+            <h2 id="dataset-title">The 100-app decision matrix</h2>
+            <p>Filter the portfolio, then open the provider evidence behind any row.</p>
+          </div>
+          <p class="result-count" aria-live="polite"><strong id="visible-count">100</strong> apps shown</p>
+        </div>
+
+        <form class="filters" id="filters" role="search">
+          <label class="search-field">
+            <span class="sr-only">Search apps</span>
+            <input id="search" type="search" placeholder="Search app, blocker, auth…" autocomplete="off" />
+          </label>
+          <label>
+            <span>Category</span>
+            <select id="category-filter"><option value="">All categories</option></select>
+          </label>
+          <label>
+            <span>Verdict</span>
+            <select id="verdict-filter"><option value="">All verdicts</option></select>
+          </label>
+          <label>
+            <span>Access</span>
+            <select id="access-filter"><option value="">All access paths</option></select>
+          </label>
+          <button class="clear-button" type="reset">Clear</button>
+        </form>
+
+        <div class="table-shell" tabindex="0" role="region" aria-label="Scrollable app research table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">App</th>
+                <th scope="col">What it does</th>
+                <th scope="col">Auth + access</th>
+                <th scope="col">Surface</th>
+                <th scope="col">Verdict / blocker</th>
+                <th scope="col">Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="apps-body"></tbody>
+          </table>
+        </div>
+        <p id="empty-state" class="empty-state" hidden>No apps match those filters. Clear one filter and try again.</p>
+      </section>
+
+      <section class="closing">
+        <p>The operating recommendation</p>
+        <h2>Build the 54. Prototype the constrained 36. Put the nine gates in a partner pipeline—not an engineering sprint.</h2>
+        <div>
+          <a class="button button-primary" href="data/apps.json">Download the machine-readable dataset</a>
+          <a class="button button-quiet" href="https://github.com/faishal882/composio-toolkit-radar">Run it yourself</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built as an auditable product-ops artifact. Every row has a direct evidence link; raw agent output and corrections are preserved.</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>

@@ -63,3 +63,4 @@ out/
 .cache/
 .tmp/
 tmp/
+.gstack/

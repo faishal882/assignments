@@ -1,0 +1,1418 @@
+[
+  {
+    "id": 1,
+    "app": "Salesforce",
+    "category": "CRM & Sales",
+    "briefHint": "salesforce.com",
+    "hintUrls": [
+      "http://salesforce.com"
+    ],
+    "hosts": [
+      "salesforce.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 2,
+    "app": "HubSpot",
+    "category": "CRM & Sales",
+    "briefHint": "hubspot.com",
+    "hintUrls": [
+      "http://hubspot.com"
+    ],
+    "hosts": [
+      "hubspot.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 3,
+    "app": "Pipedrive",
+    "category": "CRM & Sales",
+    "briefHint": "pipedrive.com",
+    "hintUrls": [
+      "http://pipedrive.com"
+    ],
+    "hosts": [
+      "pipedrive.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 4,
+    "app": "Attio",
+    "category": "CRM & Sales",
+    "briefHint": "attio.com",
+    "hintUrls": [
+      "http://attio.com"
+    ],
+    "hosts": [
+      "attio.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 5,
+    "app": "Twenty",
+    "category": "CRM & Sales",
+    "briefHint": "twenty.com (open-source CRM)",
+    "hintUrls": [
+      "http://twenty.com"
+    ],
+    "hosts": [
+      "twenty.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 6,
+    "app": "Podio",
+    "category": "CRM & Sales",
+    "briefHint": "podio.com",
+    "hintUrls": [
+      "http://podio.com"
+    ],
+    "hosts": [
+      "podio.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 7,
+    "app": "Zoho CRM",
+    "category": "CRM & Sales",
+    "briefHint": "zoho.com/crm",
+    "hintUrls": [
+      "http://zoho.com/crm"
+    ],
+    "hosts": [
+      "zoho.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 8,
+    "app": "Close",
+    "category": "CRM & Sales",
+    "briefHint": "close.com",
+    "hintUrls": [
+      "http://close.com"
+    ],
+    "hosts": [
+      "close.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief",
+    "disambiguation": "Exact company from the supplied close.com hint."
+  },
+  {
+    "id": 9,
+    "app": "Copper",
+    "category": "CRM & Sales",
+    "briefHint": "copper.com",
+    "hintUrls": [
+      "http://copper.com"
+    ],
+    "hosts": [
+      "copper.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 10,
+    "app": "DealCloud",
+    "category": "CRM & Sales",
+    "briefHint": "api.docs.dealcloud.com",
+    "hintUrls": [
+      "http://api.docs.dealcloud.com"
+    ],
+    "hosts": [
+      "api.docs.dealcloud.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 11,
+    "app": "Zendesk",
+    "category": "Support & Helpdesk",
+    "briefHint": "zendesk.com",
+    "hintUrls": [
+      "http://zendesk.com"
+    ],
+    "hosts": [
+      "zendesk.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 12,
+    "app": "Intercom",
+    "category": "Support & Helpdesk",
+    "briefHint": "intercom.com",
+    "hintUrls": [
+      "http://intercom.com"
+    ],
+    "hosts": [
+      "intercom.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 13,
+    "app": "Freshdesk",
+    "category": "Support & Helpdesk",
+    "briefHint": "freshdesk.com",
+    "hintUrls": [
+      "http://freshdesk.com"
+    ],
+    "hosts": [
+      "freshdesk.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 14,
+    "app": "Front",
+    "category": "Support & Helpdesk",
+    "briefHint": "front.com",
+    "hintUrls": [
+      "http://front.com"
+    ],
+    "hosts": [
+      "front.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 15,
+    "app": "Pylon",
+    "category": "Support & Helpdesk",
+    "briefHint": "usepylon.com",
+    "hintUrls": [
+      "http://usepylon.com"
+    ],
+    "hosts": [
+      "usepylon.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 16,
+    "app": "LiveAgent",
+    "category": "Support & Helpdesk",
+    "briefHint": "liveagent.com",
+    "hintUrls": [
+      "http://liveagent.com"
+    ],
+    "hosts": [
+      "liveagent.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 17,
+    "app": "Plain",
+    "category": "Support & Helpdesk",
+    "briefHint": "plain.com",
+    "hintUrls": [
+      "http://plain.com"
+    ],
+    "hosts": [
+      "plain.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief",
+    "disambiguation": "Exact support product from the supplied plain.com hint."
+  },
+  {
+    "id": 18,
+    "app": "Help Scout",
+    "category": "Support & Helpdesk",
+    "briefHint": "helpscout.com",
+    "hintUrls": [
+      "http://helpscout.com"
+    ],
+    "hosts": [
+      "helpscout.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 19,
+    "app": "Gorgias",
+    "category": "Support & Helpdesk",
+    "briefHint": "gorgias.com",
+    "hintUrls": [
+      "http://gorgias.com"
+    ],
+    "hosts": [
+      "gorgias.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 20,
+    "app": "Gladly",
+    "category": "Support & Helpdesk",
+    "briefHint": "gladly.com",
+    "hintUrls": [
+      "http://gladly.com"
+    ],
+    "hosts": [
+      "gladly.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 21,
+    "app": "Slack",
+    "category": "Communications",
+    "briefHint": "slack.com",
+    "hintUrls": [
+      "http://slack.com"
+    ],
+    "hosts": [
+      "slack.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 22,
+    "app": "Twilio",
+    "category": "Communications",
+    "briefHint": "twilio.com",
+    "hintUrls": [
+      "http://twilio.com"
+    ],
+    "hosts": [
+      "twilio.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 23,
+    "app": "Zoho Cliq",
+    "category": "Communications",
+    "briefHint": "zoho.com/cliq",
+    "hintUrls": [
+      "http://zoho.com/cliq"
+    ],
+    "hosts": [
+      "zoho.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 24,
+    "app": "Lark",
+    "category": "Communications",
+    "briefHint": "open.larksuite.com",
+    "hintUrls": [
+      "http://open.larksuite.com"
+    ],
+    "hosts": [
+      "open.larksuite.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 25,
+    "app": "Pumble",
+    "category": "Communications",
+    "briefHint": "pumble.com",
+    "hintUrls": [
+      "http://pumble.com"
+    ],
+    "hosts": [
+      "pumble.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 26,
+    "app": "Discord",
+    "category": "Communications",
+    "briefHint": "discord.com",
+    "hintUrls": [
+      "http://discord.com"
+    ],
+    "hosts": [
+      "discord.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 27,
+    "app": "Telegram",
+    "category": "Communications",
+    "briefHint": "core.telegram.org",
+    "hintUrls": [
+      "http://core.telegram.org"
+    ],
+    "hosts": [
+      "core.telegram.org"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 28,
+    "app": "WhatsApp Business",
+    "category": "Communications",
+    "briefHint": "developers.facebook.com/docs/whatsapp",
+    "hintUrls": [
+      "http://developers.facebook.com/docs/whatsapp"
+    ],
+    "hosts": [
+      "developers.facebook.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 29,
+    "app": "Aircall",
+    "category": "Communications",
+    "briefHint": "aircall.io",
+    "hintUrls": [
+      "http://aircall.io"
+    ],
+    "hosts": [
+      "aircall.io"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 30,
+    "app": "Vonage",
+    "category": "Communications",
+    "briefHint": "developer.vonage.com",
+    "hintUrls": [
+      "http://developer.vonage.com"
+    ],
+    "hosts": [
+      "developer.vonage.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 31,
+    "app": "Google Ads",
+    "category": "Marketing & Ads",
+    "briefHint": "developers.google.com/google-ads",
+    "hintUrls": [
+      "http://developers.google.com/google-ads"
+    ],
+    "hosts": [
+      "developers.google.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 32,
+    "app": "Meta Ads",
+    "category": "Marketing & Ads",
+    "briefHint": "developers.facebook.com/docs/marketing-apis",
+    "hintUrls": [
+      "http://developers.facebook.com/docs/marketing-apis"
+    ],
+    "hosts": [
+      "developers.facebook.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 33,
+    "app": "LinkedIn Ads",
+    "category": "Marketing & Ads",
+    "briefHint": "learn.microsoft.com/linkedin/marketing",
+    "hintUrls": [
+      "http://learn.microsoft.com/linkedin/marketing"
+    ],
+    "hosts": [
+      "learn.microsoft.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 34,
+    "app": "GoHighLevel",
+    "category": "Marketing & Ads",
+    "briefHint": "highlevel.stoplight.io",
+    "hintUrls": [
+      "http://highlevel.stoplight.io"
+    ],
+    "hosts": [
+      "highlevel.stoplight.io"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 35,
+    "app": "Mailchimp",
+    "category": "Marketing & Ads",
+    "briefHint": "mailchimp.com/developer",
+    "hintUrls": [
+      "http://mailchimp.com/developer"
+    ],
+    "hosts": [
+      "mailchimp.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 36,
+    "app": "Klaviyo",
+    "category": "Marketing & Ads",
+    "briefHint": "developers.klaviyo.com",
+    "hintUrls": [
+      "http://developers.klaviyo.com"
+    ],
+    "hosts": [
+      "developers.klaviyo.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 37,
+    "app": "systeme.io",
+    "category": "Marketing & Ads",
+    "briefHint": "systeme.io (funnel builder)",
+    "hintUrls": [
+      "http://systeme.io"
+    ],
+    "hosts": [
+      "systeme.io"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 38,
+    "app": "Pinterest",
+    "category": "Marketing & Ads",
+    "briefHint": "developers.pinterest.com",
+    "hintUrls": [
+      "http://developers.pinterest.com"
+    ],
+    "hosts": [
+      "developers.pinterest.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 39,
+    "app": "Threads",
+    "category": "Marketing & Ads",
+    "briefHint": "developers.facebook.com/docs/threads",
+    "hintUrls": [
+      "http://developers.facebook.com/docs/threads"
+    ],
+    "hosts": [
+      "developers.facebook.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 40,
+    "app": "SendGrid",
+    "category": "Marketing & Ads",
+    "briefHint": "sendgrid.com",
+    "hintUrls": [
+      "http://sendgrid.com"
+    ],
+    "hosts": [
+      "sendgrid.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 41,
+    "app": "Shopify",
+    "category": "Ecommerce",
+    "briefHint": "shopify.dev",
+    "hintUrls": [
+      "https://shopify.dev"
+    ],
+    "hosts": [
+      "shopify.dev"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 42,
+    "app": "WooCommerce",
+    "category": "Ecommerce",
+    "briefHint": "woocommerce.com/document/woocommerce-rest-api",
+    "hintUrls": [
+      "http://woocommerce.com/document/woocommerce-rest-api"
+    ],
+    "hosts": [
+      "woocommerce.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 43,
+    "app": "BigCommerce",
+    "category": "Ecommerce",
+    "briefHint": "developer.bigcommerce.com",
+    "hintUrls": [
+      "http://developer.bigcommerce.com"
+    ],
+    "hosts": [
+      "developer.bigcommerce.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "category": "Ecommerce",
+    "briefHint": "developer.salesforce.com/docs/commerce",
+    "hintUrls": [
+      "http://developer.salesforce.com/docs/commerce"
+    ],
+    "hosts": [
+      "developer.salesforce.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 45,
+    "app": "Adobe Commerce",
+    "category": "Ecommerce",
+    "briefHint": "developer.adobe.com/commerce",
+    "hintUrls": [
+      "http://developer.adobe.com/commerce"
+    ],
+    "hosts": [
+      "developer.adobe.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 46,
+    "app": "Squarespace",
+    "category": "Ecommerce",
+    "briefHint": "developers.squarespace.com",
+    "hintUrls": [
+      "http://developers.squarespace.com"
+    ],
+    "hosts": [
+      "developers.squarespace.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 47,
+    "app": "Ecwid",
+    "category": "Ecommerce",
+    "briefHint": "api-docs.ecwid.com",
+    "hintUrls": [
+      "http://api-docs.ecwid.com"
+    ],
+    "hosts": [
+      "api-docs.ecwid.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 48,
+    "app": "Gumroad",
+    "category": "Ecommerce",
+    "briefHint": "gumroad.com/api",
+    "hintUrls": [
+      "http://gumroad.com/api"
+    ],
+    "hosts": [
+      "gumroad.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 49,
+    "app": "Amazon Selling Partner",
+    "category": "Ecommerce",
+    "briefHint": "developer-docs.amazon.com/sp-api",
+    "hintUrls": [
+      "http://developer-docs.amazon.com/sp-api"
+    ],
+    "hosts": [
+      "developer-docs.amazon.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 50,
+    "app": "Fanbasis",
+    "category": "Ecommerce",
+    "briefHint": "fanbasis.com",
+    "hintUrls": [
+      "http://fanbasis.com"
+    ],
+    "hosts": [
+      "fanbasis.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief",
+    "disambiguation": "Capitalization normalized from the supplied fanbasis.com hint."
+  },
+  {
+    "id": 51,
+    "app": "DataForSEO",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "docs.dataforseo.com",
+    "hintUrls": [
+      "http://docs.dataforseo.com"
+    ],
+    "hosts": [
+      "docs.dataforseo.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 52,
+    "app": "SE Ranking",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "seranking.com/api",
+    "hintUrls": [
+      "http://seranking.com/api"
+    ],
+    "hosts": [
+      "seranking.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 53,
+    "app": "Ahrefs",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "ahrefs.com/api",
+    "hintUrls": [
+      "http://ahrefs.com/api"
+    ],
+    "hosts": [
+      "ahrefs.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 54,
+    "app": "MrScraper",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "docs.mrscraper.com",
+    "hintUrls": [
+      "http://docs.mrscraper.com"
+    ],
+    "hosts": [
+      "docs.mrscraper.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 55,
+    "app": "Apify",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "docs.apify.com",
+    "hintUrls": [
+      "http://docs.apify.com"
+    ],
+    "hosts": [
+      "docs.apify.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 56,
+    "app": "Firecrawl",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "firecrawl.dev",
+    "hintUrls": [
+      "https://firecrawl.dev"
+    ],
+    "hosts": [
+      "firecrawl.dev"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 57,
+    "app": "Bright Data",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "brightdata.com",
+    "hintUrls": [
+      "http://brightdata.com"
+    ],
+    "hosts": [
+      "brightdata.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 58,
+    "app": "Sherlock",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "github.com/sherlock-project/sherlock",
+    "hintUrls": [
+      "http://github.com/sherlock-project/sherlock"
+    ],
+    "hosts": [
+      "github.com"
+    ],
+    "urlContains": [
+      "sherlock-project/sherlock"
+    ],
+    "source": "assignment_brief",
+    "disambiguation": "Repository path supplied in the brief."
+  },
+  {
+    "id": 59,
+    "app": "Waterfall.io",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "waterfall.io (contact/company intel)",
+    "hintUrls": [
+      "http://waterfall.io"
+    ],
+    "hosts": [
+      "waterfall.io"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 60,
+    "app": "Clay",
+    "category": "Data, SEO & Scraping",
+    "briefHint": "clay.com",
+    "hintUrls": [
+      "http://clay.com"
+    ],
+    "hosts": [
+      "clay.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 61,
+    "app": "GitHub",
+    "category": "Developer & Infra",
+    "briefHint": "docs.github.com/rest",
+    "hintUrls": [
+      "http://docs.github.com/rest"
+    ],
+    "hosts": [
+      "docs.github.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 62,
+    "app": "Vercel",
+    "category": "Developer & Infra",
+    "briefHint": "vercel.com/docs/rest-api",
+    "hintUrls": [
+      "http://vercel.com/docs/rest-api"
+    ],
+    "hosts": [
+      "vercel.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 63,
+    "app": "Netlify",
+    "category": "Developer & Infra",
+    "briefHint": "docs.netlify.com/api",
+    "hintUrls": [
+      "http://docs.netlify.com/api"
+    ],
+    "hosts": [
+      "docs.netlify.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 64,
+    "app": "Cloudflare",
+    "category": "Developer & Infra",
+    "briefHint": "developers.cloudflare.com/api",
+    "hintUrls": [
+      "http://developers.cloudflare.com/api"
+    ],
+    "hosts": [
+      "developers.cloudflare.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 65,
+    "app": "Supabase",
+    "category": "Developer & Infra",
+    "briefHint": "supabase.com/docs",
+    "hintUrls": [
+      "http://supabase.com/docs"
+    ],
+    "hosts": [
+      "supabase.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 66,
+    "app": "Neo4j",
+    "category": "Developer & Infra",
+    "briefHint": "neo4j.com/docs/api",
+    "hintUrls": [
+      "http://neo4j.com/docs/api"
+    ],
+    "hosts": [
+      "neo4j.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 67,
+    "app": "Snowflake",
+    "category": "Developer & Infra",
+    "briefHint": "docs.snowflake.com",
+    "hintUrls": [
+      "http://docs.snowflake.com"
+    ],
+    "hosts": [
+      "docs.snowflake.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 68,
+    "app": "MongoDB Atlas",
+    "category": "Developer & Infra",
+    "briefHint": "mongodb.com/docs/atlas/api",
+    "hintUrls": [
+      "http://mongodb.com/docs/atlas/api"
+    ],
+    "hosts": [
+      "mongodb.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 69,
+    "app": "Datadog",
+    "category": "Developer & Infra",
+    "briefHint": "docs.datadoghq.com/api",
+    "hintUrls": [
+      "http://docs.datadoghq.com/api"
+    ],
+    "hosts": [
+      "docs.datadoghq.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 70,
+    "app": "Sentry",
+    "category": "Developer & Infra",
+    "briefHint": "docs.sentry.io/api",
+    "hintUrls": [
+      "http://docs.sentry.io/api"
+    ],
+    "hosts": [
+      "docs.sentry.io"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 71,
+    "app": "Notion",
+    "category": "Productivity",
+    "briefHint": "developers.notion.com",
+    "hintUrls": [
+      "http://developers.notion.com"
+    ],
+    "hosts": [
+      "developers.notion.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 72,
+    "app": "Airtable",
+    "category": "Productivity",
+    "briefHint": "airtable.com/developers",
+    "hintUrls": [
+      "http://airtable.com/developers"
+    ],
+    "hosts": [
+      "airtable.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 73,
+    "app": "Linear",
+    "category": "Productivity",
+    "briefHint": "developers.linear.app",
+    "hintUrls": [
+      "https://developers.linear.app"
+    ],
+    "hosts": [
+      "developers.linear.app"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 74,
+    "app": "Jira",
+    "category": "Productivity",
+    "briefHint": "developer.atlassian.com",
+    "hintUrls": [
+      "http://developer.atlassian.com"
+    ],
+    "hosts": [
+      "developer.atlassian.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 75,
+    "app": "Asana",
+    "category": "Productivity",
+    "briefHint": "developers.asana.com",
+    "hintUrls": [
+      "http://developers.asana.com"
+    ],
+    "hosts": [
+      "developers.asana.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 76,
+    "app": "Monday.com",
+    "category": "Productivity",
+    "briefHint": "developer.monday.com",
+    "hintUrls": [
+      "http://developer.monday.com"
+    ],
+    "hosts": [
+      "developer.monday.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 77,
+    "app": "ClickUp",
+    "category": "Productivity",
+    "briefHint": "clickup.com/api",
+    "hintUrls": [
+      "http://clickup.com/api"
+    ],
+    "hosts": [
+      "clickup.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 78,
+    "app": "Coda",
+    "category": "Productivity",
+    "briefHint": "coda.io/developers",
+    "hintUrls": [
+      "http://coda.io/developers"
+    ],
+    "hosts": [
+      "coda.io"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 79,
+    "app": "Smartsheet",
+    "category": "Productivity",
+    "briefHint": "smartsheet.com/developers",
+    "hintUrls": [
+      "http://smartsheet.com/developers"
+    ],
+    "hosts": [
+      "smartsheet.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 80,
+    "app": "Harvest",
+    "category": "Productivity",
+    "briefHint": "harvestapp.com (help.getharvest.com/api-v2)",
+    "hintUrls": [
+      "http://harvestapp.com",
+      "http://help.getharvest.com/api-v2"
+    ],
+    "hosts": [
+      "harvestapp.com",
+      "help.getharvest.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 81,
+    "app": "Stripe",
+    "category": "Finance & Fintech",
+    "briefHint": "stripe.com/docs/api",
+    "hintUrls": [
+      "http://stripe.com/docs/api"
+    ],
+    "hosts": [
+      "stripe.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 82,
+    "app": "Plaid",
+    "category": "Finance & Fintech",
+    "briefHint": "plaid.com/docs",
+    "hintUrls": [
+      "http://plaid.com/docs"
+    ],
+    "hosts": [
+      "plaid.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 83,
+    "app": "Binance",
+    "category": "Finance & Fintech",
+    "briefHint": "binance-docs.github.io",
+    "hintUrls": [
+      "http://binance-docs.github.io"
+    ],
+    "hosts": [
+      "binance-docs.github.io"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 84,
+    "app": "Paygent Connect",
+    "category": "Finance & Fintech",
+    "briefHint": "paygent (NMI-powered)",
+    "hintUrls": [],
+    "hosts": [
+      "gopaygent.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief",
+    "disambiguation": "The brief identifies Paygent Connect as the NMI-powered payments product."
+  },
+  {
+    "id": 85,
+    "app": "iPayX",
+    "category": "Finance & Fintech",
+    "briefHint": "ipayx.ai/docs",
+    "hintUrls": [
+      "http://ipayx.ai/docs"
+    ],
+    "hosts": [
+      "ipayx.ai"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief",
+    "disambiguation": "Exact domain supplied in the brief; do not substitute IXOPAY."
+  },
+  {
+    "id": 86,
+    "app": "QuickBooks",
+    "category": "Finance & Fintech",
+    "briefHint": "developer.intuit.com",
+    "hintUrls": [
+      "http://developer.intuit.com"
+    ],
+    "hosts": [
+      "developer.intuit.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 87,
+    "app": "Xero",
+    "category": "Finance & Fintech",
+    "briefHint": "developer.xero.com",
+    "hintUrls": [
+      "http://developer.xero.com"
+    ],
+    "hosts": [
+      "developer.xero.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 88,
+    "app": "Brex",
+    "category": "Finance & Fintech",
+    "briefHint": "developer.brex.com",
+    "hintUrls": [
+      "http://developer.brex.com"
+    ],
+    "hosts": [
+      "developer.brex.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 89,
+    "app": "Ramp",
+    "category": "Finance & Fintech",
+    "briefHint": "docs.ramp.com",
+    "hintUrls": [
+      "http://docs.ramp.com"
+    ],
+    "hosts": [
+      "docs.ramp.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 90,
+    "app": "PitchBook",
+    "category": "Finance & Fintech",
+    "briefHint": "pitchbook.com (research API)",
+    "hintUrls": [
+      "http://pitchbook.com"
+    ],
+    "hosts": [
+      "pitchbook.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 91,
+    "app": "NotebookLM",
+    "category": "AI, Research & Media",
+    "briefHint": "cloud.google.com/gemini (Enterprise API)",
+    "hintUrls": [
+      "http://cloud.google.com/gemini"
+    ],
+    "hosts": [
+      "cloud.google.com"
+    ],
+    "urlContains": [
+      "notebooklm",
+      "gemini"
+    ],
+    "source": "assignment_brief",
+    "disambiguation": "Enterprise NotebookLM hint supplied in the brief."
+  },
+  {
+    "id": 92,
+    "app": "Otter AI",
+    "category": "AI, Research & Media",
+    "briefHint": "help.otter.ai (MCP server)",
+    "hintUrls": [
+      "http://help.otter.ai"
+    ],
+    "hosts": [
+      "help.otter.ai"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 93,
+    "app": "Fathom",
+    "category": "AI, Research & Media",
+    "briefHint": "fathom.video",
+    "hintUrls": [
+      "https://fathom.video"
+    ],
+    "hosts": [
+      "fathom.video"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 94,
+    "app": "Consensus",
+    "category": "AI, Research & Media",
+    "briefHint": "consensus.app (OAuth requested)",
+    "hintUrls": [
+      "https://consensus.app"
+    ],
+    "hosts": [
+      "consensus.app"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 95,
+    "app": "Reducto",
+    "category": "AI, Research & Media",
+    "briefHint": "reducto.ai (document parsing)",
+    "hintUrls": [
+      "http://reducto.ai"
+    ],
+    "hosts": [
+      "reducto.ai"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 96,
+    "app": "Devin",
+    "category": "AI, Research & Media",
+    "briefHint": "docs.devin.ai (MCP)",
+    "hintUrls": [
+      "http://docs.devin.ai"
+    ],
+    "hosts": [
+      "docs.devin.ai"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 97,
+    "app": "Higgsfield",
+    "category": "AI, Research & Media",
+    "briefHint": "higgsfield.ai/cli (content suite)",
+    "hintUrls": [
+      "http://higgsfield.ai/cli"
+    ],
+    "hosts": [
+      "higgsfield.ai"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  },
+  {
+    "id": 98,
+    "app": "Mermaid CLI",
+    "category": "AI, Research & Media",
+    "briefHint": "github.com/mermaid-js/mermaid-cli",
+    "hintUrls": [
+      "http://github.com/mermaid-js/mermaid-cli"
+    ],
+    "hosts": [
+      "github.com"
+    ],
+    "urlContains": [
+      "mermaid-js/mermaid-cli"
+    ],
+    "source": "assignment_brief",
+    "disambiguation": "Repository path supplied in the brief."
+  },
+  {
+    "id": 99,
+    "app": "YouTube Transcript",
+    "category": "AI, Research & Media",
+    "briefHint": "transcriptapi.com",
+    "hintUrls": [
+      "http://transcriptapi.com"
+    ],
+    "hosts": [
+      "transcriptapi.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief",
+    "disambiguation": "Exact vendor domain supplied in the brief."
+  },
+  {
+    "id": 100,
+    "app": "Grain",
+    "category": "AI, Research & Media",
+    "briefHint": "grain.com (meeting notes)",
+    "hintUrls": [
+      "http://grain.com"
+    ],
+    "hosts": [
+      "grain.com"
+    ],
+    "urlContains": [],
+    "source": "assignment_brief"
+  }
+]

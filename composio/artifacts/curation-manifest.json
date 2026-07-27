@@ -1,0 +1,639 @@
+{
+  "input": "artifacts/research.latest.json",
+  "inputGeneratedAt": "2026-07-22T21:42:19.891922Z",
+  "output": "data/apps.json",
+  "autoCleared": 58,
+  "humanReviewCount": 42,
+  "reviewQueue": [
+    {
+      "id": 9,
+      "app": "Copper",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developer.copper.co/api-reference/authentication"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "app": "DealCloud",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://api.docs.dealcloud.com/docs/token"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "app": "Zendesk",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developer.zendesk.com/api-reference/introduction/security-and-auth/"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "app": "Front",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://dev.frontapp.com/me/docs/authentication"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "app": "Pylon",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.usepylon.com/pylon-docs/developer/api/authentication"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "app": "LiveAgent",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://support.liveagent.com/567924-Documentation"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "app": "Plain",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://www.plain.com/docs/graphql/introduction"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "app": "Help Scout",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developer.helpscout.com/mailbox-api/overview/authentication/"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "app": "GoHighLevel",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developers.gohighlevel.com/"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "app": "systeme.io",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developer.systeme.io/"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "app": "Squarespace",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developers.squarespace.com/commerce-apis/making-requests"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "app": "Ecwid",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.ecwid.com/get-started/set-up-your-dev-environment-in-ecwid"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "app": "Gumroad",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://gumroad.com/api"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "app": "Fanbasis",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Outreach first",
+      "finalConfidence": "Medium",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://dev-docs.fanbasis.com/login.html"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "app": "DataForSEO",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.dataforseo.com/v3/"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "app": "Ahrefs",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "app": "Sherlock",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://github.com/sherlock-project/sherlock"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "app": "GitHub",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.github.com/en/rest"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "app": "Netlify",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "app": "Supabase",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://supabase.com/docs/guides/auth/oauth-server"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "app": "Neo4j",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://neo4j.com/docs/query-api/current/authentication-authorization/"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "app": "Snowflake",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.snowflake.com/en/en/developer-guide/snowflake-rest-api/authentication"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "app": "MongoDB Atlas",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://www.mongodb.com/docs/atlas/configure-api-access/?interface=atlas-ui&programmatic-access=service-account"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "app": "Sentry",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.sentry.io/api/"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "app": "Linear",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://linear.app/docs/api-and-webhooks"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "app": "Binance",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "app": "Paygent Connect",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://www.gopaygent.com/"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "app": "iPayX",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://www.ipayx.ai/developers"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "app": "QuickBooks",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "app": "Xero",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developer.xero.com/"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "app": "Brex",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developer.brex.com/docs/mcp"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "app": "Ramp",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.ramp.com/developer-api/v1/authorization"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "app": "PitchBook",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Outreach first",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://pitchbook.com/data/api"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "app": "NotebookLM",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "app": "Otter AI",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API"
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "app": "Fathom",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developers.fathom.ai/api-overview"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "app": "Consensus",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.consensus.app/docs/mcp"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "app": "Reducto",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.reducto.ai/agent-guide"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "app": "Devin",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://docs.devin.ai/work-with-devin/devin-mcp"
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "app": "Mermaid CLI",
+      "agentReviewReasons": [
+        "no_official_identity_match"
+      ],
+      "humanDecision": "Build with constraints",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://github.com/mermaid-js/mermaid-cli"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "app": "YouTube Transcript",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://transcriptapi.com/docs/api/"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "app": "Grain",
+      "agentReviewReasons": [
+        "no_official_technical_evidence"
+      ],
+      "humanDecision": "Build now",
+      "finalConfidence": "High",
+      "evidence": [
+        {
+          "label": "Primary evidence",
+          "url": "https://developers.grain.com/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,434 @@
+{
+  "reviewedAt": "2026-07-23",
+  "reviewer": "Codex independent document review",
+  "reviewerType": "AI-assisted manual source review; not represented as human signoff",
+  "method": "Opened all 20 primary provider sources in Chromium, read the relevant technical text, cross-checked provider-owned secondary pages where one page did not cover every field, and corrected final rows before recomputing the claim ledger.",
+  "fieldPolicy": {
+    "identity": "Matched to the exact entity supplied in the assignment brief and confirmed against the provider source.",
+    "category": "Taken from the fixed assignment taxonomy, not invented by the research agent.",
+    "technical": "Positive auth, access, API, and MCP claims require provider-owned evidence; 'none found' is a bounded public-source search result.",
+    "verdict": "Deterministically derived from verified technical facts or explicitly bounded uncertainty."
+  },
+  "summary": {
+    "reviewedApps": 20,
+    "reviewedClaims": 160,
+    "supportedClaims": 157,
+    "unsupportedClaims": 3,
+    "correctedRows": [
+      84,
+      85
+    ]
+  },
+  "reviews": [
+    {
+      "appId": 4,
+      "app": "Attio",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "note": "Confirmed OAuth/API-token REST access, webhooks, and Attio-hosted MCP."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "note": "Confirmed token/OAuth authentication, REST platform, and Intercom-hosted MCP."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "note": "Confirmed OAuth, Web API/events, hosted MCP, and workspace-admin approval boundary."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "note": "Confirmed OAuth plus developer token and both REST and gRPC request surfaces."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "note": "Confirmed tokens/OAuth, REST and GraphQL surfaces, sandbox path, and hosted MCP listing."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "note": "Confirmed OAuth/API credentials, REST surface, paid-plan boundary, and MCP documentation."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "note": "Confirmed token/OAuth access, REST and GraphQL APIs, and GitHub's official MCP server."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "note": "Confirmed integration tokens/OAuth, REST API, page-sharing boundary, and hosted MCP."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "note": "Confirmed API keys, Connect OAuth, REST API, and Stripe's public-preview MCP server."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "note": "Confirmed Enterprise-only bearer-key API and Otter-hosted OAuth MCP; Chromium hit a bot gate, so cached official Help Center text was cross-checked."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "note": "Confirmed API-key REST/webhook access and removed the unsupported first-party MCP claim."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "status": "bounded uncertainty",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [
+        "auth",
+        "access",
+        "api"
+      ],
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "note": "The provider developer portal exists but exposes only a login screen; credential type, access route, and API shape remain unsupported."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "note": "Separated consumer NotebookLM from Gemini Notebook Enterprise and confirmed the licensed preview API."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "note": "Corrected entity drift from Mermaid Chart to the supplied open-source local rendering CLI."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "status": "supported",
+      "supportedFields": [
+        "identity",
+        "category",
+        "description",
+        "auth",
+        "access",
+        "api",
+        "mcp",
+        "verdict"
+      ],
+      "unsupportedFields": [],
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "note": "Corrected the vendor identity and confirmed bearer-key REST access, self-serve signup, and the provider MCP endpoint."
+    }
+  ]
+}

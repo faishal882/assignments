@@ -1,0 +1,2270 @@
+[
+  {
+    "id": 1,
+    "name": "Salesforce",
+    "category": "CRM & Sales",
+    "description": "Enterprise CRM for sales, service, and customer data",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST + GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Production access still follows org edition, scopes, and admin policy",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 2,
+    "name": "HubSpot",
+    "category": "CRM & Sales",
+    "description": "CRM and marketing automation platform",
+    "auth": [
+      "OAuth 2.0",
+      "private token"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Public distribution requires OAuth and app review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/integrate-with-the-remote-hubspot-mcp-server"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 3,
+    "name": "Pipedrive",
+    "category": "CRM & Sales",
+    "description": "Pipeline-focused sales CRM",
+    "auth": [
+      "OAuth 2.0",
+      "API token"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Marketplace apps must use OAuth",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://pipedrive.readme.io/docs/getting-started"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 4,
+    "name": "Attio",
+    "category": "CRM & Sales",
+    "description": "Flexible, data-model-driven CRM",
+    "auth": [
+      "OAuth 2.0",
+      "API key"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Multi-workspace apps need OAuth",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://attio.com/platform/developers"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 5,
+    "name": "Twenty",
+    "category": "CRM & Sales",
+    "description": "Open-source CRM with customizable objects",
+    "auth": [
+      "OAuth 2.0",
+      "API key"
+    ],
+    "access": "Open source",
+    "api": "REST + GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Self-hosted deployments add version variance",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.twenty.com/developers/extend/api"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 6,
+    "name": "Podio",
+    "category": "CRM & Sales",
+    "description": "Configurable work and relationship management",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Workspace permissions bound each token",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.podio.com/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 7,
+    "name": "Zoho CRM",
+    "category": "CRM & Sales",
+    "description": "Full-suite CRM for sales operations",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Multi-region domains and granular scopes add setup cost",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.zoho.com/crm/developer/docs/javascript-sdk/v2/initialize.html"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 8,
+    "name": "Close",
+    "category": "CRM & Sales",
+    "description": "Sales CRM with calling, email, and automation",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "API access requires a Close account; OAuth is for partner apps",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.close.com/topics/authentication/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 9,
+    "name": "Copper",
+    "category": "CRM & Sales",
+    "description": "Google Workspace-centric CRM",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Workspace user email and account permissions are required",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.copper.co/api-reference/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 10,
+    "name": "DealCloud",
+    "category": "CRM & Sales",
+    "description": "Deal and relationship management for capital markets",
+    "auth": [
+      "OAuth 2.0",
+      "API key"
+    ],
+    "access": "Plan/admin",
+    "api": "REST + GraphQL",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "An admin must enable API access for the user group",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://api.docs.dealcloud.com/docs/token"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 11,
+    "name": "Zendesk",
+    "category": "Support & Helpdesk",
+    "description": "Ticketing and customer-service platform",
+    "auth": [
+      "OAuth 2.0",
+      "API token via Basic"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "API-token auth is scheduled for retirement in 2027",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.zendesk.com/api-reference/introduction/security-and-auth/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 12,
+    "name": "Intercom",
+    "category": "Support & Helpdesk",
+    "description": "Customer messaging, support, and engagement",
+    "auth": [
+      "OAuth 2.0",
+      "access token"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Public apps require review and approved scopes",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 13,
+    "name": "Freshdesk",
+    "category": "Support & Helpdesk",
+    "description": "Cloud helpdesk and ticketing software",
+    "auth": [
+      "API key via Basic"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official beta",
+    "verdict": "Build with constraints",
+    "blocker": "Official MCP is Enterprise EAP; API limits vary by plan",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.freshdesk.com/api/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 14,
+    "name": "Front",
+    "category": "Support & Helpdesk",
+    "description": "Collaborative inbox and customer-operations platform",
+    "auth": [
+      "OAuth 2.0",
+      "API token"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Public apps require OAuth and marketplace review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://dev.frontapp.com/me/docs/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 15,
+    "name": "Pylon",
+    "category": "Support & Helpdesk",
+    "description": "B2B support platform spanning chat and tickets",
+    "auth": [
+      "Bearer token",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Only admins can create scoped API tokens",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.usepylon.com/pylon-docs/developer/api/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 16,
+    "name": "LiveAgent",
+    "category": "Support & Helpdesk",
+    "description": "Helpdesk, chat, and call-center software",
+    "auth": [
+      "API key"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "API v1 and v3 use separate keys and plan limits",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://support.liveagent.com/567924-Documentation"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 17,
+    "name": "Plain",
+    "category": "Support & Helpdesk",
+    "description": "API-first B2B customer support platform",
+    "auth": [
+      "Bearer token"
+    ],
+    "access": "Self-serve",
+    "api": "GraphQL",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Workspace-scoped keys need careful tenant isolation",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.plain.com/docs/graphql/introduction"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 18,
+    "name": "Help Scout",
+    "category": "Support & Helpdesk",
+    "description": "Shared inbox, docs, and customer support",
+    "auth": [
+      "OAuth 2.0",
+      "API key via Basic"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Docs and Inbox APIs use different auth models",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.helpscout.com/mailbox-api/overview/authentication/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 19,
+    "name": "Gorgias",
+    "category": "Support & Helpdesk",
+    "description": "Ecommerce-focused customer support helpdesk",
+    "auth": [
+      "API key via Basic",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Public apps require OAuth and review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.gorgias.com/reference/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 20,
+    "name": "Gladly",
+    "category": "Support & Helpdesk",
+    "description": "Enterprise customer-service conversation platform",
+    "auth": [
+      "API token via Basic",
+      "OAuth 2.0"
+    ],
+    "access": "Contact sales",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Outreach first",
+    "blocker": "OAuth registration and API roles require Gladly coordination",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.gladly.com/rest/index.html"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 21,
+    "name": "Slack",
+    "category": "Communications",
+    "description": "Team messaging and collaboration workspace",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST + Events",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Workspace admin approval can block installation",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.slack.dev/authentication/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 22,
+    "name": "Twilio",
+    "category": "Communications",
+    "description": "Programmable messaging, voice, and communications",
+    "auth": [
+      "API key via Basic",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Capabilities and regulatory setup vary by country",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.twilio.com/docs/iam/api-keys"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 23,
+    "name": "Zoho Cliq",
+    "category": "Communications",
+    "description": "Business team chat in the Zoho suite",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Zoho data-center domains must be handled correctly",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.zoho.com/cliq/help/restapi/v3/oauth/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 24,
+    "name": "Lark",
+    "category": "Communications",
+    "description": "Messaging, documents, calendar, and workplace suite",
+    "auth": [
+      "App credentials",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Tenant admins approve app permissions",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://github.com/larksuite/lark-openapi-mcp/blob/main/README.md"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 25,
+    "name": "Pumble",
+    "category": "Communications",
+    "description": "Team messaging and workspace collaboration",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "API add-on availability depends on workspace plan",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://pumble.com/help/integrations/automation-workflow-integrations/api-keys-integration/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 26,
+    "name": "Discord",
+    "category": "Communications",
+    "description": "Community chat, bots, and real-time messaging",
+    "auth": [
+      "OAuth 2.0",
+      "bot token"
+    ],
+    "access": "Self-serve",
+    "api": "REST + WebSocket",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Privileged gateway intents need approval at scale",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.discord.com/developers/topics/oauth2"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 27,
+    "name": "Telegram",
+    "category": "Communications",
+    "description": "Consumer messaging with bot and client APIs",
+    "auth": [
+      "Bot token",
+      "app ID/hash"
+    ],
+    "access": "Self-serve",
+    "api": "REST + MTProto",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Bot API and user API are separate trust models",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://core.telegram.org/api"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 28,
+    "name": "WhatsApp Business",
+    "category": "Communications",
+    "description": "Business messaging over Meta's WhatsApp network",
+    "auth": [
+      "OAuth 2.0",
+      "bearer token"
+    ],
+    "access": "Review required",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Business verification, templates, and app review gate production",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.facebook.com/docs/whatsapp/business-management-api/get-started/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 29,
+    "name": "Aircall",
+    "category": "Communications",
+    "description": "Cloud phone system and call-center platform",
+    "auth": [
+      "API token via Basic",
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Outreach first",
+    "blocker": "Multi-customer OAuth credentials require technology partnership",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.aircall.io/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 30,
+    "name": "Vonage",
+    "category": "Communications",
+    "description": "Programmable voice, video, SMS, and verification",
+    "auth": [
+      "API key via Basic",
+      "JWT"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Each API family has a different signing scheme",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.vonage.com/en/documentation"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 31,
+    "name": "Google Ads",
+    "category": "Marketing & Ads",
+    "description": "Programmatic campaign management and reporting",
+    "auth": [
+      "OAuth 2.0",
+      "developer token"
+    ],
+    "access": "Review required",
+    "api": "REST + gRPC",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Production developer-token access is reviewed",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 32,
+    "name": "Meta Ads",
+    "category": "Marketing & Ads",
+    "description": "Advertising management across Meta properties",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "App Review and business permissions gate real customers",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.facebook.com/docs/marketing-api/get-started/authentication/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 33,
+    "name": "LinkedIn Ads",
+    "category": "Marketing & Ads",
+    "description": "Campaign creation and analytics on LinkedIn",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Outreach first",
+    "blocker": "Advertising API products require explicit approval",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.linkedin.com/product-catalog/marketing/advertising-api"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 34,
+    "name": "GoHighLevel",
+    "category": "Marketing & Ads",
+    "description": "Agency CRM, funnels, and marketing automation",
+    "auth": [
+      "OAuth 2.0",
+      "private token"
+    ],
+    "access": "Plan/admin",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Marketplace access and OAuth depend on agency plan",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.gohighlevel.com/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 35,
+    "name": "Mailchimp",
+    "category": "Marketing & Ads",
+    "description": "Email marketing and audience automation",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Partner listing requires review, but private use is immediate",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://mailchimp.com/developer/marketing/docs/fundamentals/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 36,
+    "name": "Klaviyo",
+    "category": "Marketing & Ads",
+    "description": "Ecommerce marketing automation and customer data",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Marketplace distribution requires OAuth and review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.klaviyo.com/en/docs/authenticate_"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 37,
+    "name": "systeme.io",
+    "category": "Marketing & Ads",
+    "description": "Funnels, email, courses, and online-business automation",
+    "auth": [
+      "API key"
+    ],
+    "access": "Plan/admin",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Public API availability follows account access",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.systeme.io/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 38,
+    "name": "Pinterest",
+    "category": "Marketing & Ads",
+    "description": "Visual discovery and advertising platform",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Outreach first",
+    "blocker": "Trial access itself requires application approval",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.pinterest.com/docs/getting-started/connect-app/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 39,
+    "name": "Threads",
+    "category": "Marketing & Ads",
+    "description": "Meta's text-based social network",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Non-tester access requires Meta App Review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.facebook.com/docs/threads/get-started/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 40,
+    "name": "SendGrid",
+    "category": "Marketing & Ads",
+    "description": "Transactional and marketing email delivery",
+    "auth": [
+      "API key"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Sender verification is required before meaningful sends",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authorization.md"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 41,
+    "name": "Shopify",
+    "category": "Ecommerce",
+    "description": "Hosted commerce platform for online stores",
+    "auth": [
+      "OAuth 2.0",
+      "access token"
+    ],
+    "access": "Self-serve",
+    "api": "GraphQL",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Public apps need review and version upgrades every quarter",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://shopify.dev/docs/api/usage/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 42,
+    "name": "WooCommerce",
+    "category": "Ecommerce",
+    "description": "Open-source commerce plugin for WordPress",
+    "auth": [
+      "API key via Basic",
+      "OAuth 1.0a"
+    ],
+    "access": "Open source",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Store versions and plugins create schema variance",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.woocommerce.com/docs/apis/rest-api/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 43,
+    "name": "BigCommerce",
+    "category": "Ecommerce",
+    "description": "Hosted ecommerce platform for stores and channels",
+    "auth": [
+      "OAuth 2.0",
+      "access token"
+    ],
+    "access": "Self-serve",
+    "api": "REST + GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Marketplace publication requires partner review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.bigcommerce.com/.md"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 44,
+    "name": "Salesforce Commerce Cloud",
+    "category": "Ecommerce",
+    "description": "Enterprise storefront and commerce services",
+    "auth": [
+      "OAuth 2.0/2.1"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official beta",
+    "verdict": "Build with constraints",
+    "blocker": "Requires a licensed B2C Commerce instance and admin setup",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.salesforce.com/docs/commerce/b2c-commerce/guide/scapi-get-started.html"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 45,
+    "name": "Adobe Commerce",
+    "category": "Ecommerce",
+    "description": "Composable and self-hosted enterprise ecommerce",
+    "auth": [
+      "OAuth 1.0a",
+      "bearer token"
+    ],
+    "access": "Open source",
+    "api": "REST + GraphQL",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Deployment versions and admin integration setup vary",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.adobe.com/commerce/webapi/get-started/authentication/gs-authentication-oauth"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 46,
+    "name": "Squarespace",
+    "category": "Ecommerce",
+    "description": "Website builder with commerce APIs",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "OAuth extensions require registration and review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.squarespace.com/commerce-apis/making-requests"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 47,
+    "name": "Ecwid",
+    "category": "Ecommerce",
+    "description": "Embeddable online-store and commerce platform",
+    "auth": [
+      "OAuth 2.0",
+      "access token"
+    ],
+    "access": "Plan/admin",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "API access needs a paid store or manual dev-store upgrade",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.ecwid.com/get-started/set-up-your-dev-environment-in-ecwid"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 48,
+    "name": "Gumroad",
+    "category": "Ecommerce",
+    "description": "Digital-product storefront and creator payments",
+    "auth": [
+      "OAuth 2.0",
+      "access token"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Community",
+    "verdict": "Build now",
+    "blocker": "API documentation is sparse and marketplace semantics are limited",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://gumroad.com/api"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 49,
+    "name": "Amazon Selling Partner",
+    "category": "Ecommerce",
+    "description": "Amazon seller operations, catalog, and orders",
+    "auth": [
+      "OAuth 2.0 (LWA)"
+    ],
+    "access": "Review required",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Outreach first",
+    "blocker": "Public apps undergo Amazon registration and data-access review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer-docs.amazon/sp-api/docs/onboarding-overview"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 50,
+    "name": "Fanbasis",
+    "category": "Ecommerce",
+    "description": "Creator storefronts, payments, and digital experiences",
+    "auth": [
+      "API key"
+    ],
+    "access": "Contact sales",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Outreach first",
+    "blocker": "Official API docs are login-gated; no public OAuth path",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://dev-docs.fanbasis.com/login.html"
+      }
+    ],
+    "confidence": "Medium",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 51,
+    "name": "DataForSEO",
+    "category": "Data, SEO & Scraping",
+    "description": "SEO, SERP, and marketing-data APIs",
+    "auth": [
+      "Basic credentials"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Usage is credit-based and asynchronous endpoints need polling",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.dataforseo.com/v3/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 52,
+    "name": "SE Ranking",
+    "category": "Data, SEO & Scraping",
+    "description": "SEO rank tracking, audit, and competitive research",
+    "auth": [
+      "API token"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "API access and quotas depend on subscription",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://seranking.com/api/how-to-get-api/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 53,
+    "name": "Ahrefs",
+    "category": "Data, SEO & Scraping",
+    "description": "SEO backlink, keyword, and site data",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Production integrations and hosted MCP require paid access",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 54,
+    "name": "MrScraper",
+    "category": "Data, SEO & Scraping",
+    "description": "Hosted AI-assisted web scraping",
+    "auth": [
+      "API token"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Targets can block or change independently of the API",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.mrscraper.com/docs/getting-started/mcp-server"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 55,
+    "name": "Apify",
+    "category": "Data, SEO & Scraping",
+    "description": "Cloud platform for scraping and automation actors",
+    "auth": [
+      "API token",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Actor inputs and outputs are not uniform",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.apify.com/api/v2"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 56,
+    "name": "Firecrawl",
+    "category": "Data, SEO & Scraping",
+    "description": "Web crawling and extraction for LLM-ready content",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Credits and target-site defenses constrain reliability",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.firecrawl.dev/mcp-server"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 57,
+    "name": "Bright Data",
+    "category": "Data, SEO & Scraping",
+    "description": "Proxy, scraping, browser, and web-data platform",
+    "auth": [
+      "API key",
+      "proxy Basic"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Products expose different endpoints and compliance controls",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.brightdata.com/api-reference/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 58,
+    "name": "Sherlock",
+    "category": "Data, SEO & Scraping",
+    "description": "Open-source CLI that finds usernames across sites",
+    "auth": [
+      "No auth"
+    ],
+    "access": "Open source",
+    "api": "CLI/local",
+    "mcp": "N/A",
+    "verdict": "Build with constraints",
+    "blocker": "No hosted API: toolkit must wrap a local process and normalize sites",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://github.com/sherlock-project/sherlock"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 59,
+    "name": "Waterfall.io",
+    "category": "Data, SEO & Scraping",
+    "description": "Contact and company enrichment waterfall",
+    "auth": [
+      "API key"
+    ],
+    "access": "Contact sales",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Outreach first",
+    "blocker": "Master keys and broader access are enterprise-managed",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.waterfall.io/v1/introduction"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 60,
+    "name": "Clay",
+    "category": "Data, SEO & Scraping",
+    "description": "Data enrichment and outbound workflow platform",
+    "auth": [
+      "API key"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Broader people/company API access is plan-dependent",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://university.clay.com/docs/clay-api-cli"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 61,
+    "name": "GitHub",
+    "category": "Developer & Infra",
+    "description": "Code hosting, collaboration, and software delivery",
+    "auth": [
+      "OAuth 2.0",
+      "app/PAT token"
+    ],
+    "access": "Self-serve",
+    "api": "REST + GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Fine-grained permissions and org approval need careful UX",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.github.com/en/rest"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 62,
+    "name": "Vercel",
+    "category": "Developer & Infra",
+    "description": "Frontend cloud deployment and hosting platform",
+    "auth": [
+      "Bearer token",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Marketplace provider status is reviewed; private API use is immediate",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://vercel.com/docs/integrations/create-integration/marketplace-api"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 63,
+    "name": "Netlify",
+    "category": "Developer & Infra",
+    "description": "Web hosting, deployment, forms, and edge services",
+    "auth": [
+      "PAT",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Public integrations must implement OAuth",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 64,
+    "name": "Cloudflare",
+    "category": "Developer & Infra",
+    "description": "Edge network, DNS, security, and developer platform",
+    "auth": [
+      "API token",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "The API surface is huge and token permissions are product-specific",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.cloudflare.com/fundamentals/oauth/create-an-oauth-client/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 65,
+    "name": "Supabase",
+    "category": "Developer & Infra",
+    "description": "Open-source Postgres backend platform",
+    "auth": [
+      "API key",
+      "OAuth 2.1"
+    ],
+    "access": "Self-serve",
+    "api": "REST + GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Service-role credentials must never reach user-facing agents",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://supabase.com/docs/guides/auth/oauth-server"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 66,
+    "name": "Neo4j",
+    "category": "Developer & Infra",
+    "description": "Graph database and managed graph platform",
+    "auth": [
+      "Basic",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Write queries need strong guardrails",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://neo4j.com/docs/query-api/current/authentication-authorization/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 67,
+    "name": "Snowflake",
+    "category": "Developer & Infra",
+    "description": "Enterprise cloud data warehouse and platform",
+    "auth": [
+      "PAT",
+      "OAuth 2.0",
+      "key pair"
+    ],
+    "access": "Self-serve",
+    "api": "REST + SQL",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Admins must configure integrations, roles, and network policy",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.snowflake.com/en/en/developer-guide/snowflake-rest-api/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 68,
+    "name": "MongoDB Atlas",
+    "category": "Developer & Infra",
+    "description": "Managed document database and cloud operations",
+    "auth": [
+      "OAuth 2.0",
+      "digest API key"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Legacy keys and service accounts coexist",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.mongodb.com/docs/atlas/configure-api-access/?interface=atlas-ui&programmatic-access=service-account"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 69,
+    "name": "Datadog",
+    "category": "Developer & Infra",
+    "description": "Observability, monitoring, logs, and incident data",
+    "auth": [
+      "API + application keys",
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Multi-customer OAuth is limited to approved partners",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.datadoghq.com/extend/authorization/oauth2_in_datadog.md"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 70,
+    "name": "Sentry",
+    "category": "Developer & Infra",
+    "description": "Application error monitoring and performance tracing",
+    "auth": [
+      "Bearer token",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Public integrations still require partner review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.sentry.io/api/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 71,
+    "name": "Notion",
+    "category": "Productivity",
+    "description": "Collaborative docs, wikis, and structured databases",
+    "auth": [
+      "Bearer token",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Pages must be explicitly shared with each integration",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.notion.com/guides/get-started/authorization"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 72,
+    "name": "Airtable",
+    "category": "Productivity",
+    "description": "Spreadsheet-database hybrid for team workflows",
+    "auth": [
+      "PAT",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Base-level permissions and rate limits shape tool design",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://airtable.com/developers/web/api/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 73,
+    "name": "Linear",
+    "category": "Productivity",
+    "description": "Issue tracking and product development workflow",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "GraphQL complexity needs a curated action layer",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://linear.app/docs/api-and-webhooks"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 74,
+    "name": "Jira",
+    "category": "Productivity",
+    "description": "Issue tracking and agile project management",
+    "auth": [
+      "OAuth 2.0",
+      "API token via Basic"
+    ],
+    "access": "Self-serve",
+    "api": "REST + GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Cloud and Data Center APIs differ materially",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.atlassian.com/cloud/jira/software/rest/intro/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 75,
+    "name": "Asana",
+    "category": "Productivity",
+    "description": "Work, task, and project management",
+    "auth": [
+      "PAT",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Enterprise service accounts require super-admin setup",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.asana.com/docs/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 76,
+    "name": "Monday.com",
+    "category": "Productivity",
+    "description": "Visual work management and automation platform",
+    "auth": [
+      "API token",
+      "OAuth 2.1"
+    ],
+    "access": "Self-serve",
+    "api": "GraphQL",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Complexity accounting and board schemas vary",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.monday.com/apps/docs/choosing-auth"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 77,
+    "name": "ClickUp",
+    "category": "Productivity",
+    "description": "Tasks, docs, chat, and project management",
+    "auth": [
+      "Personal token",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Workspace admins can restrict MCP and app installs",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 78,
+    "name": "Coda",
+    "category": "Productivity",
+    "description": "Collaborative documents with programmable tables",
+    "auth": [
+      "API token",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Pack OAuth and public API tokens are separate paths",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://coda.io/developers/apis/v1"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 79,
+    "name": "Smartsheet",
+    "category": "Productivity",
+    "description": "Enterprise work management in grid form",
+    "auth": [
+      "Bearer token",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "API access requires Business or Enterprise plan",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 80,
+    "name": "Harvest",
+    "category": "Productivity",
+    "description": "Time tracking, expenses, and invoicing",
+    "auth": [
+      "PAT",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Only admins can register OAuth applications",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 81,
+    "name": "Stripe",
+    "category": "Finance & Fintech",
+    "description": "Payments, billing, and financial infrastructure",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Use restricted keys and confirmation steps for money movement",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.stripe.com/api/authentication?api-version=2026-04-22.dahlia"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 82,
+    "name": "Plaid",
+    "category": "Finance & Fintech",
+    "description": "Bank-account connectivity and financial data",
+    "auth": [
+      "Client ID + secret",
+      "OAuth"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Production access and institution OAuth require review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://plaid.com/docs/api/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 83,
+    "name": "Binance",
+    "category": "Finance & Fintech",
+    "description": "Crypto exchange, trading, and market data",
+    "auth": [
+      "Signed API key",
+      "partner OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST + WebSocket",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Trading actions need strict scope and confirmation controls",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 84,
+    "name": "Paygent Connect",
+    "category": "Finance & Fintech",
+    "description": "Marketplace payments, onboarding, and payouts",
+    "auth": [
+      "Bearer API key"
+    ],
+    "access": "Self-serve",
+    "api": "REST + Webhooks",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Production payments still require merchant onboarding and compliance checks",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.gopaygent.com/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 85,
+    "name": "iPayX",
+    "category": "Finance & Fintech",
+    "description": "Institutional foreign-exchange audit and verification",
+    "auth": [
+      "Bearer API key"
+    ],
+    "access": "Plan/admin",
+    "api": "REST + Webhooks",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Production API access starts on a paid developer plan",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://www.ipayx.ai/developers"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 86,
+    "name": "QuickBooks",
+    "category": "Finance & Fintech",
+    "description": "Small-business accounting, invoices, and payments",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build now",
+    "blocker": "Production apps must pass Intuit review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 87,
+    "name": "Xero",
+    "category": "Finance & Fintech",
+    "description": "Cloud accounting and bookkeeping platform",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Connection-based pricing and app review affect distribution",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.xero.com/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 88,
+    "name": "Brex",
+    "category": "Finance & Fintech",
+    "description": "Corporate cards, spend, travel, and banking",
+    "auth": [
+      "Bearer token",
+      "OAuth 2.0"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Customer admin agreement or partner approval is required",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developer.brex.com/docs/mcp"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 89,
+    "name": "Ramp",
+    "category": "Finance & Fintech",
+    "description": "Corporate cards, expenses, and accounts payable",
+    "auth": [
+      "OAuth 2.0"
+    ],
+    "access": "Review required",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Developer access and sensitive scopes are reviewed",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.ramp.com/developer-api/v1/authorization"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 90,
+    "name": "PitchBook",
+    "category": "Finance & Fintech",
+    "description": "Private-market company, deal, and investor research",
+    "auth": [
+      "API token"
+    ],
+    "access": "Contact sales",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Outreach first",
+    "blocker": "API and premium MCP are licensed enterprise products",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://pitchbook.com/data/api"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 91,
+    "name": "NotebookLM",
+    "category": "AI, Research & Media",
+    "description": "Grounded research notebooks over uploaded sources",
+    "auth": [
+      "Google IAM/OAuth"
+    ],
+    "access": "Plan/admin",
+    "api": "REST preview",
+    "mcp": "None found",
+    "verdict": "Build with constraints",
+    "blocker": "Only Gemini Notebook Enterprise exposes a preview API and needs licenses",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 92,
+    "name": "Otter AI",
+    "category": "AI, Research & Media",
+    "description": "Meeting recording, transcription, and knowledge search",
+    "auth": [
+      "Bearer API key",
+      "MCP OAuth"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "REST API is Enterprise-only; MCP has no public API-key flow",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 93,
+    "name": "Fathom",
+    "category": "AI, Research & Media",
+    "description": "AI meeting recorder, summaries, and call insights",
+    "auth": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Public OAuth promotion may require review",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.fathom.ai/api-overview"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 94,
+    "name": "Consensus",
+    "category": "AI, Research & Media",
+    "description": "AI search engine for scientific research",
+    "auth": [
+      "MCP OAuth",
+      "enterprise API key"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "MCP is self-serve, but raw API access is enterprise-gated",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.consensus.app/docs/mcp"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 95,
+    "name": "Reducto",
+    "category": "AI, Research & Media",
+    "description": "Document parsing, extraction, and transformation",
+    "auth": [
+      "Bearer API key"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Document workloads are asynchronous and credit-bound",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.reducto.ai/agent-guide"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 96,
+    "name": "Devin",
+    "category": "AI, Research & Media",
+    "description": "Autonomous software-engineering agent platform",
+    "auth": [
+      "Bearer API key",
+      "MCP OAuth"
+    ],
+    "access": "Plan/admin",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build with constraints",
+    "blocker": "Requires a paid Devin workspace and organization policy",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.devin.ai/work-with-devin/devin-mcp"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 97,
+    "name": "Higgsfield",
+    "category": "AI, Research & Media",
+    "description": "AI image and video generation suite",
+    "auth": [
+      "API credentials"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Generation is asynchronous and credit-intensive",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://docs.higgsfield.ai/docs/help/faq"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 98,
+    "name": "Mermaid CLI",
+    "category": "AI, Research & Media",
+    "description": "Local CLI that renders Mermaid diagrams to files",
+    "auth": [
+      "No auth"
+    ],
+    "access": "Open source",
+    "api": "CLI/local",
+    "mcp": "N/A",
+    "verdict": "Build with constraints",
+    "blocker": "Not a SaaS API; toolkit must sandbox local file and browser execution",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://github.com/mermaid-js/mermaid-cli"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 99,
+    "name": "YouTube Transcript",
+    "category": "AI, Research & Media",
+    "description": "API for transcripts, video metadata, and search",
+    "auth": [
+      "Bearer API key",
+      "MCP OAuth"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Paid credits are required beyond free metadata calls",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://transcriptapi.com/docs/api/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  },
+  {
+    "id": 100,
+    "name": "Grain",
+    "category": "AI, Research & Media",
+    "description": "AI meeting recording, transcripts, and conversation intelligence",
+    "auth": [
+      "PAT",
+      "OAuth 2.0"
+    ],
+    "access": "Self-serve",
+    "api": "REST",
+    "mcp": "Official",
+    "verdict": "Build now",
+    "blocker": "Workspace permissions bound transcript access",
+    "evidence": [
+      {
+        "label": "Primary evidence",
+        "url": "https://developers.grain.com/"
+      }
+    ],
+    "confidence": "High",
+    "checkedAt": "2026-07-23"
+  }
+]

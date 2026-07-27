@@ -1,0 +1,4135 @@
+{
+  "method": {
+    "sampleSize": 20,
+    "claimFieldsPerApp": 8,
+    "claimFields": [
+      "identity",
+      "category",
+      "description",
+      "auth",
+      "access",
+      "api",
+      "mcp",
+      "verdict"
+    ],
+    "cohorts": {
+      "stratified": "One app per category, selected before manual review.",
+      "adversarial": "Ten low-signal, collision-prone, gated, or contradictory results flagged from the raw run."
+    },
+    "scoring": "Identity/category score from the locked brief plus provider confirmation; positive technical claims require provider-owned evidence, while 'none found' records a bounded public-source search; verdict scores only when it follows from verified facts or explicit uncertainty. Unknown claims score zero.",
+    "scoreLabel": "Verification-set support rate; the adversarial half means this is not a population-wide accuracy estimate.",
+    "firstPass": {
+      "supportedClaims": 101,
+      "totalClaims": 160,
+      "accuracy": 63.1
+    },
+    "finalPass": {
+      "supportedClaims": 157,
+      "totalClaims": 160,
+      "accuracy": 98.1
+    },
+    "cohortScores": {
+      "stratified": {
+        "first": 79,
+        "final": 80,
+        "total": 80,
+        "firstAccuracy": 98.8,
+        "finalAccuracy": 100.0
+      },
+      "adversarial": {
+        "first": 22,
+        "final": 77,
+        "total": 80,
+        "firstAccuracy": 27.5,
+        "finalAccuracy": 96.2
+      }
+    },
+    "remainingUncertainty": "Three claims remain intentionally unsupported: Fanbasis authentication, access route, and API shape are hidden behind its provider login gate.",
+    "independentReview": "All 20 sampled rows were read document-by-document by Codex and recorded in artifacts/document-review.json. This is disclosed as AI-assisted manual review, not human signoff."
+  },
+  "samples": [
+    {
+      "id": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "Attio auth, REST surface, webhooks, and official MCP were directly documented.",
+      "sourceUrls": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      }
+    },
+    {
+      "id": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "Intercom's private-token, public OAuth, REST, and remote MCP paths matched docs.",
+      "sourceUrls": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      }
+    },
+    {
+      "id": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "first": 7,
+      "final": 8,
+      "result": "corrected",
+      "note": "Slack's API result was sound; review added the official MCP and admin-install constraint.",
+      "sourceUrls": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      }
+    },
+    {
+      "id": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "Google Ads requires OAuth plus a developer token and reviewed production access.",
+      "sourceUrls": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      }
+    },
+    {
+      "id": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "BigCommerce documents REST, GraphQL, OAuth tokens, dev stores, and hosted MCP.",
+      "sourceUrls": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      }
+    },
+    {
+      "id": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "Ahrefs key/OAuth paths and plan-gated production access were supported.",
+      "sourceUrls": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      }
+    },
+    {
+      "id": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "GitHub REST, GraphQL, token types, and official MCP were directly supported.",
+      "sourceUrls": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      }
+    },
+    {
+      "id": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "Notion internal tokens, public OAuth, REST, and hosted MCP matched docs.",
+      "sourceUrls": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      }
+    },
+    {
+      "id": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "Stripe API keys, Connect OAuth, REST, and hosted MCP matched docs.",
+      "sourceUrls": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      }
+    },
+    {
+      "id": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "first": 8,
+      "final": 8,
+      "result": "hit",
+      "note": "Otter's Enterprise REST API and OAuth-authenticated MCP were verified in its Help Center.",
+      "sourceUrls": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      }
+    },
+    {
+      "id": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "first": 1,
+      "final": 8,
+      "result": "corrected",
+      "note": "Close retrieved unrelated vendors. Entity locking replaced the result with Close-owned docs.",
+      "sourceUrls": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      }
+    },
+    {
+      "id": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "first": 1,
+      "final": 8,
+      "result": "corrected",
+      "note": "Plain retrieved unrelated MCP vendors. Provider-domain enforcement recovered the correct product.",
+      "sourceUrls": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      }
+    },
+    {
+      "id": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "first": 6,
+      "final": 8,
+      "result": "corrected",
+      "note": "systeme.io auth/API were right, but a community MCP was initially labeled first-party.",
+      "sourceUrls": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      }
+    },
+    {
+      "id": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "first": 3,
+      "final": 5,
+      "result": "uncertain",
+      "note": "Fanbasis relied on unofficial packages. Official docs are login-gated, so access remains uncertain.",
+      "sourceUrls": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      }
+    },
+    {
+      "id": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "first": 1,
+      "final": 8,
+      "result": "corrected",
+      "note": "Sherlock resolved to a payment product instead of the supplied open-source username CLI.",
+      "sourceUrls": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      }
+    },
+    {
+      "id": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "first": 1,
+      "final": 8,
+      "result": "corrected",
+      "note": "Paygent Connect resolved to an unrelated AI-billing product; public API breadth remains uncertain.",
+      "sourceUrls": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      }
+    },
+    {
+      "id": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "first": 1,
+      "final": 8,
+      "result": "corrected",
+      "note": "iPayX was conflated with IXOPAY. No public developer docs were located for auth or API.",
+      "sourceUrls": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      }
+    },
+    {
+      "id": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "first": 3,
+      "final": 8,
+      "result": "corrected",
+      "note": "The first pass checked consumer NotebookLM; review found the licensed Enterprise preview API.",
+      "sourceUrls": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      }
+    },
+    {
+      "id": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "first": 2,
+      "final": 8,
+      "result": "corrected",
+      "note": "Mermaid CLI drifted to Mermaid Chart. The target is the supplied local open-source CLI.",
+      "sourceUrls": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      }
+    },
+    {
+      "id": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "first": 3,
+      "final": 8,
+      "result": "corrected",
+      "note": "The first pass researched another transcript vendor; domain locking recovered transcriptapi.com.",
+      "sourceUrls": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      }
+    }
+  ],
+  "claimAudit": [
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Attio",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "CRM & Sales",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Flexible, data-model-driven CRM",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "OAuth 2.0; API key",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 4,
+      "app": "Attio",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://attio.com/platform/developers",
+        "https://docs.attio.com/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 4
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Intercom",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Support & Helpdesk",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Customer messaging, support, and engagement",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "OAuth 2.0; access token",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 12,
+      "app": "Intercom",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+        "https://developers.intercom.com/docs/guides/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 12
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Slack",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Communications",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Team messaging and collaboration workspace",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "OAuth 2.0",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST + Events",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Confirmed OAuth, Web API/events, hosted MCP, and workspace-admin approval boundary."
+    },
+    {
+      "appId": 21,
+      "app": "Slack",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://docs.slack.dev/authentication/",
+        "https://docs.slack.dev/ai/slack-mcp-server/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 21
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Google Ads",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Marketing & Ads",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Programmatic campaign management and reporting",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "OAuth 2.0; developer token",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Review required",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST + gRPC",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "None found",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 31,
+      "app": "Google Ads",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://developers.google.com/google-ads/api/docs/concepts/call-structure"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 31
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "BigCommerce",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Ecommerce",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Hosted ecommerce platform for stores and channels",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "OAuth 2.0; access token",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST + GraphQL",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 43,
+      "app": "BigCommerce",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://docs.bigcommerce.com/.md"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 43
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Ahrefs",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Data, SEO & Scraping",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "SEO backlink, keyword, and site data",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "API key; OAuth 2.0",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Plan/admin",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 53,
+      "app": "Ahrefs",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://docs.ahrefs.com/en/ahrefs-connect/docs/oauth-guide"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 53
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "GitHub",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Developer & Infra",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Code hosting, collaboration, and software delivery",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "OAuth 2.0; app/PAT token",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST + GraphQL",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 61,
+      "app": "GitHub",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://docs.github.com/en/rest",
+        "https://docs.github.com/en/graphql",
+        "https://github.com/github/github-mcp-server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 61
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Notion",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Productivity",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Collaborative docs, wikis, and structured databases",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Bearer token; OAuth 2.0",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 71,
+      "app": "Notion",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://developers.notion.com/guides/get-started/authorization",
+        "https://developers.notion.com/guides/mcp/overview"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 71
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Stripe",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Finance & Fintech",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Payments, billing, and financial infrastructure",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "API key; OAuth 2.0",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 81,
+      "app": "Stripe",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://docs.stripe.com/api/authentication",
+        "https://docs.stripe.com/mcp"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 81
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Otter AI",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "AI, Research & Media",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Meeting recording, transcription, and knowledge search",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Bearer API key; MCP OAuth",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "access",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Plan/admin",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "mcp",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 92,
+      "app": "Otter AI",
+      "cohort": "stratified",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://help.otter.ai/hc/en-us/articles/36130822688279-Otter-ai-Public-API",
+        "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 92
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Close",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "CRM & Sales",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Sales CRM with calling, email, and automation",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "API key; OAuth 2.0",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Plan/admin",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "None found",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 8,
+      "app": "Close",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://developer.close.com/topics/authentication/",
+        "https://help.close.com/docs/api-keys-oauth"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 8
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision and confirmed Close API keys, partner OAuth, and account-gated REST access."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Plain",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Support & Helpdesk",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "API-first B2B customer support platform",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Bearer token",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "GraphQL",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "None found",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 17,
+      "app": "Plain",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://www.plain.com/docs/graphql/introduction"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 17
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected unrelated-provider citations and confirmed workspace bearer tokens plus GraphQL."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "systeme.io",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Marketing & Ads",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Funnels, email, courses, and online-business automation",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "API key",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Plan/admin",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Confirmed API-key REST/webhook access and removed the unsupported first-party MCP claim."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST + Webhooks",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "None found",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Confirmed API-key REST/webhook access and removed the unsupported first-party MCP claim."
+    },
+    {
+      "appId": 37,
+      "app": "systeme.io",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://developer.systeme.io/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 37
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Fanbasis",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Ecommerce",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Creator storefronts, payments, and digital experiences",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": false,
+      "finalValue": "API key",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "The provider developer portal exists but exposes only a login screen; credential type, access route, and API shape remain unsupported."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": false,
+      "finalValue": "Contact sales",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "The provider developer portal exists but exposes only a login screen; credential type, access route, and API shape remain unsupported."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": false,
+      "finalValue": "REST + Webhooks",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "The provider developer portal exists but exposes only a login screen; credential type, access route, and API shape remain unsupported."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "None found",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "The provider developer portal exists but exposes only a login screen; credential type, access route, and API shape remain unsupported."
+    },
+    {
+      "appId": 50,
+      "app": "Fanbasis",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Outreach first",
+      "sources": [
+        "https://dev-docs.fanbasis.com/login.html"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 50
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "The provider developer portal exists but exposes only a login screen; credential type, access route, and API shape remain unsupported."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Sherlock",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Data, SEO & Scraping",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Open-source CLI that finds usernames across sites",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "No auth",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Open source",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "CLI/local",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "N/A",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 58,
+      "app": "Sherlock",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://github.com/sherlock-project/sherlock"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 58
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the entity collision to the supplied open-source username-search CLI; it is a local process, not a hosted API or MCP."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Paygent Connect",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Finance & Fintech",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Marketplace payments, onboarding, and payouts",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Bearer API key",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "REST + Webhooks",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "None found",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 84,
+      "app": "Paygent Connect",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://www.gopaygent.com/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 84
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the stale gate: the provider now shows bearer-key REST/webhooks, sandbox testing, and self-serve signup for Paygent Connect."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "iPayX",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Finance & Fintech",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Institutional foreign-exchange audit and verification",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Bearer API key",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Plan/admin",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "REST + Webhooks",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 85,
+      "app": "iPayX",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://www.ipayx.ai/developers"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 85
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected vendor confusion: the provider documents bearer-key REST/webhooks and its official remote MCP; production API access is paid."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "NotebookLM",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "AI, Research & Media",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Grounded research notebooks over uploaded sources",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Google IAM/OAuth",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Separated consumer NotebookLM from Gemini Notebook Enterprise and confirmed the licensed preview API."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Plan/admin",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Separated consumer NotebookLM from Gemini Notebook Enterprise and confirmed the licensed preview API."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "REST preview",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Separated consumer NotebookLM from Gemini Notebook Enterprise and confirmed the licensed preview API."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "None found",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Separated consumer NotebookLM from Gemini Notebook Enterprise and confirmed the licensed preview API."
+    },
+    {
+      "appId": 91,
+      "app": "NotebookLM",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 91
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Separated consumer NotebookLM from Gemini Notebook Enterprise and confirmed the licensed preview API."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Mermaid CLI",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected entity drift from Mermaid Chart to the supplied open-source local rendering CLI."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "AI, Research & Media",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "Local CLI that renders Mermaid diagrams to files",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "No auth",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected entity drift from Mermaid Chart to the supplied open-source local rendering CLI."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Open source",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected entity drift from Mermaid Chart to the supplied open-source local rendering CLI."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "CLI/local",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected entity drift from Mermaid Chart to the supplied open-source local rendering CLI."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "N/A",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected entity drift from Mermaid Chart to the supplied open-source local rendering CLI."
+    },
+    {
+      "appId": 98,
+      "app": "Mermaid CLI",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build with constraints",
+      "sources": [
+        "https://github.com/mermaid-js/mermaid-cli"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 98
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected entity drift from Mermaid Chart to the supplied open-source local rendering CLI."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "identity",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "YouTube Transcript",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the vendor identity and confirmed bearer-key REST access, self-serve signup, and the provider MCP endpoint."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "category",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "AI, Research & Media",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "description",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "API for transcripts, video metadata, and search",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "auth",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Bearer API key; MCP OAuth",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the vendor identity and confirmed bearer-key REST access, self-serve signup, and the provider MCP endpoint."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "access",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Self-serve",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the vendor identity and confirmed bearer-key REST access, self-serve signup, and the provider MCP endpoint."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "api",
+      "firstSupported": true,
+      "finalSupported": true,
+      "finalValue": "REST",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Supported under the documented field policy in artifacts/document-review.json."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "mcp",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Official",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the vendor identity and confirmed bearer-key REST access, self-serve signup, and the provider MCP endpoint."
+    },
+    {
+      "appId": 99,
+      "app": "YouTube Transcript",
+      "cohort": "adversarial",
+      "field": "verdict",
+      "firstSupported": false,
+      "finalSupported": true,
+      "finalValue": "Build now",
+      "sources": [
+        "https://transcriptapi.com/docs/api/"
+      ],
+      "firstPassArtifact": {
+        "path": "artifacts/research.raw.json",
+        "rowId": 99
+      },
+      "verificationMethods": [
+        "assignment identity lock",
+        "provider document review",
+        "Chromium browser check"
+      ],
+      "checkedAt": "2026-07-23",
+      "note": "Corrected the vendor identity and confirmed bearer-key REST access, self-serve signup, and the provider MCP endpoint."
+    }
+  ]
+}

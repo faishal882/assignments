@@ -1,0 +1,135 @@
+{
+  "generatedFrom": "data/apps.json",
+  "total": 100,
+  "authNonExclusive": {
+    "OAuth path": 79,
+    "API key or token": 72,
+    "Basic credentials": 13,
+    "No authentication": 2,
+    "Unknown": 0
+  },
+  "access": {
+    "Self-serve": 57,
+    "Open source": 5,
+    "Plan/admin": 23,
+    "Contact sales": 4,
+    "Review required": 11
+  },
+  "verdicts": {
+    "Build now": 55,
+    "Build with constraints": 37,
+    "Outreach first": 8
+  },
+  "mcp": {
+    "Official": 47,
+    "None found": 48,
+    "Official beta": 2,
+    "Community": 1,
+    "N/A": 2
+  },
+  "officialMcpIncludingBeta": 49,
+  "blockers": {
+    "Paid plan / admin": 23,
+    "Distribution review": 17,
+    "Permissions / tenant setup": 14,
+    "Integration design": 12,
+    "Formal app review": 11,
+    "Version / schema variance": 8,
+    "Rate limits / usage": 6,
+    "Partnership / sales gate": 4,
+    "Compliance / safety": 3,
+    "Local hosting / execution": 2
+  },
+  "topBlocker": {
+    "type": "Paid plan / admin",
+    "count": 23
+  },
+  "categories": [
+    {
+      "category": "CRM & Sales",
+      "total": 10,
+      "selfServeOrOpen": 7,
+      "gated": 3,
+      "buildNow": 7,
+      "outreachOrHold": 0
+    },
+    {
+      "category": "Support & Helpdesk",
+      "total": 10,
+      "selfServeOrOpen": 4,
+      "gated": 6,
+      "buildNow": 4,
+      "outreachOrHold": 1
+    },
+    {
+      "category": "Communications",
+      "total": 10,
+      "selfServeOrOpen": 7,
+      "gated": 3,
+      "buildNow": 7,
+      "outreachOrHold": 1
+    },
+    {
+      "category": "Marketing & Ads",
+      "total": 10,
+      "selfServeOrOpen": 3,
+      "gated": 7,
+      "buildNow": 3,
+      "outreachOrHold": 2
+    },
+    {
+      "category": "Ecommerce",
+      "total": 10,
+      "selfServeOrOpen": 5,
+      "gated": 5,
+      "buildNow": 4,
+      "outreachOrHold": 2
+    },
+    {
+      "category": "Data, SEO & Scraping",
+      "total": 10,
+      "selfServeOrOpen": 6,
+      "gated": 4,
+      "buildNow": 5,
+      "outreachOrHold": 1
+    },
+    {
+      "category": "Developer & Infra",
+      "total": 10,
+      "selfServeOrOpen": 9,
+      "gated": 1,
+      "buildNow": 8,
+      "outreachOrHold": 0
+    },
+    {
+      "category": "Productivity",
+      "total": 10,
+      "selfServeOrOpen": 9,
+      "gated": 1,
+      "buildNow": 9,
+      "outreachOrHold": 0
+    },
+    {
+      "category": "Finance & Fintech",
+      "total": 10,
+      "selfServeOrOpen": 6,
+      "gated": 4,
+      "buildNow": 3,
+      "outreachOrHold": 1
+    },
+    {
+      "category": "AI, Research & Media",
+      "total": 10,
+      "selfServeOrOpen": 6,
+      "gated": 4,
+      "buildNow": 5,
+      "outreachOrHold": 0
+    }
+  ],
+  "humanGate": {
+    "formalReview": 11,
+    "outreachFirst": 8,
+    "overlap": 4,
+    "uniqueApps": 15
+  }
+}

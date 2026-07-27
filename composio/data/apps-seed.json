@@ -1,0 +1,12 @@
+[
+  {"category":"CRM & Sales","apps":["Salesforce","HubSpot","Pipedrive","Attio","Twenty","Podio","Zoho CRM","Close","Copper","DealCloud"]},
+  {"category":"Support & Helpdesk","apps":["Zendesk","Intercom","Freshdesk","Front","Pylon","LiveAgent","Plain","Help Scout","Gorgias","Gladly"]},
+  {"category":"Communications","apps":["Slack","Twilio","Zoho Cliq","Lark","Pumble","Discord","Telegram","WhatsApp Business","Aircall","Vonage"]},
+  {"category":"Marketing & Ads","apps":["Google Ads","Meta Ads","LinkedIn Ads","GoHighLevel","Mailchimp","Klaviyo","systeme.io","Pinterest","Threads","SendGrid"]},
+  {"category":"Ecommerce","apps":["Shopify","WooCommerce","BigCommerce","Salesforce Commerce Cloud","Adobe Commerce","Squarespace","Ecwid","Gumroad","Amazon Selling Partner","Fanbasis"]},
+  {"category":"Data, SEO & Scraping","apps":["DataForSEO","SE Ranking","Ahrefs","MrScraper","Apify","Firecrawl","Bright Data","Sherlock","Waterfall.io","Clay"]},
+  {"category":"Developer & Infra","apps":["GitHub","Vercel","Netlify","Cloudflare","Supabase","Neo4j","Snowflake","MongoDB Atlas","Datadog","Sentry"]},
+  {"category":"Productivity","apps":["Notion","Airtable","Linear","Jira","Asana","Monday.com","ClickUp","Coda","Smartsheet","Harvest"]},
+  {"category":"Finance & Fintech","apps":["Stripe","Plaid","Binance","Paygent Connect","iPayX","QuickBooks","Xero","Brex","Ramp","PitchBook"]},
+  {"category":"AI, Research & Media","apps":["NotebookLM","Otter AI","Fathom","Consensus","Reducto","Devin","Higgsfield","Mermaid CLI","YouTube Transcript","Grain"]}
+]

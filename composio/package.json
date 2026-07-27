@@ -1,0 +1,20 @@
+{
+  "name": "composio-toolkit-radar",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:identities": "python3 scripts/build_identities.py",
+    "research": "python3 agent/research.py",
+    "curate": "python3 scripts/curate.py",
+    "analyze": "python3 scripts/analyze.py",
+    "build:document-review": "python3 scripts/build_document_review.py",
+    "build:verification": "python3 scripts/build_verification.py",
+    "verify:browser": "python3 scripts/browser_verify.py",
+    "build:data": "npm run build:identities && npm run curate && npm run analyze && npm run build:document-review && npm run build:verification",
+    "validate": "python3 scripts/validate.py",
+    "check:evidence": "python3 scripts/check_evidence.py",
+    "test": "python3 -m unittest discover -s tests -v",
+    "serve": "python3 -m http.server 4173"
+  }
+}
